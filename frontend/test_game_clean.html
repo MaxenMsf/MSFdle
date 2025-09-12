@@ -43,7 +43,7 @@
         }
         input {
             width: 100%;
-            padding: 15px 20px;
+            padding: 15px 20px 15px 60px; /* Espace pour le portrait */
             font-size: 18px;
             border: 2px solid #334155;
             border-radius: 15px;
@@ -58,6 +58,19 @@
             border-color: #F59E0B;
             box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
             transform: translateY(-2px);
+        }
+        .search-portrait {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(245, 158, 11, 0.5);
+            display: none;
+            z-index: 10;
         }
         .suggestions {
             background: linear-gradient(145deg, #1E293B, #334155);
@@ -85,12 +98,32 @@
             color: #0F172A;
             transform: translateX(5px);
         }
+        .suggestion-portrait {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .portrait {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(245, 158, 11, 0.5);
+        }
+        .portrait-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
         .guess-history {
             margin-top: 20px;
         }
         .guess-row {
             display: grid;
-            grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr 2fr;
+            grid-template-columns: 80px 2fr 1fr 1.5fr 1.5fr 1fr 2fr;
             gap: 12px;
             margin-bottom: 12px;
             padding: 15px;
@@ -177,6 +210,35 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
         }
+        /* Animation de flip pour les nouvelles cellules uniquement */
+        .cell.new-cell {
+            animation: flipCard 0.6s ease-in-out;
+        }
+        /* Animation en cascade pour les cellules d'une ligne */
+        .cell.new-cell:nth-child(1) { animation-delay: 0s; }
+        .cell.new-cell:nth-child(2) { animation-delay: 0.1s; }
+        .cell.new-cell:nth-child(3) { animation-delay: 0.2s; }
+        .cell.new-cell:nth-child(4) { animation-delay: 0.3s; }
+        .cell.new-cell:nth-child(5) { animation-delay: 0.4s; }
+        .cell.new-cell:nth-child(6) { animation-delay: 0.5s; }
+        .cell.new-cell:nth-child(7) { animation-delay: 0.6s; }
+        .cell.new-cell:nth-child(8) { animation-delay: 0.7s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes flipCard {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(-90deg); }
+            100% { transform: rotateY(0deg); }
+        }
         .loading {
             display: flex;
             align-items: center;
@@ -250,6 +312,7 @@
         </div>
 
         <div class="search-container">
+            <img id="searchPortrait" class="search-portrait" alt="Portrait">
             <input type="text" id="characterInput" placeholder="Tapez le nom d'un personnage..." autocomplete="off">
             <div id="suggestions" class="suggestions" style="display: none;"></div>
         </div>
@@ -258,6 +321,7 @@
 
         <div class="guess-history">
             <div class="guess-row guess-header">
+                <div class="cell">Portrait</div>
                 <div class="cell">Personnage</div>
                 <div class="cell">Affiliation</div>
                 <div class="cell">Secteur</div>
@@ -285,6 +349,7 @@
         const charCount = document.getElementById('charCount');
         const apiStatus = document.getElementById('apiStatus');
         const lastError = document.getElementById('lastError');
+        const searchPortrait = document.getElementById('searchPortrait');
 
         // Charger tous les personnages au démarrage
         async function loadCharacters() {
@@ -296,16 +361,21 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                allCharacters = await response.json();
-                charCount.textContent = allCharacters.length;
-                apiStatus.textContent = 'Connecté ✅';
-                lastError.textContent = 'Aucune';
-                
-                console.log(`✅ ${allCharacters.length} personnages chargés`);
-                console.log('Premier personnage:', allCharacters[0]);
-                
-                if (allCharacters.length === 0) {
-                    throw new Error('Aucun personnage trouvé dans la base de données');
+                const data = await response.json();
+                if (data.success) {
+                    allCharacters = data.characters;
+                    charCount.textContent = allCharacters.length;
+                    apiStatus.textContent = 'Connecté ✅';
+                    lastError.textContent = 'Aucune';
+                    
+                    console.log(`✅ ${allCharacters.length} personnages chargés`);
+                    console.log('Premier personnage:', allCharacters[0]);
+                    
+                    if (allCharacters.length === 0) {
+                        throw new Error('Aucun personnage trouvé dans la base de données');
+                    }
+                } else {
+                    throw new Error(data.error || 'Erreur lors du chargement des personnages');
                 }
                 
             } catch (error) {
@@ -321,6 +391,7 @@
         input.addEventListener('input', (e) => {
             const value = e.target.value.trim();
             showSuggestions(value);
+            updateSearchPortrait(value);
         });
 
         input.addEventListener('keypress', (e) => {
@@ -420,8 +491,12 @@
             }
 
             suggestions.innerHTML = filtered.map(char => {
+                // Utiliser le character_id pour construire le chemin du portrait
+                const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
                 return `
                     <div class="suggestion" onclick="selectCharacter('${char.alias}')">
+                        <img src="${portraitSrc}" alt="${char.alias}" class="suggestion-portrait" 
+                             onerror="this.style.display='none'">
                         <span>${char.alias}</span>
                     </div>
                 `;
@@ -434,7 +509,32 @@
         function selectCharacter(name) {
             input.value = name;
             suggestions.style.display = 'none';
+            updateSearchPortrait(name);
             makeGuess();
+        }
+
+        // Mettre à jour le portrait dans la barre de recherche
+        function updateSearchPortrait(value) {
+            if (value.length < 2) {
+                searchPortrait.style.display = 'none';
+                return;
+            }
+            
+            const match = allCharacters.find(char => 
+                char.alias.toLowerCase() === value.toLowerCase()
+            );
+            
+            if (match) {
+                // Utiliser le character_id pour construire le chemin du portrait
+                const portraitSrc = `http://localhost:5001/portraits/Portrait_${match.character_id}.png`;
+                searchPortrait.src = portraitSrc;
+                searchPortrait.style.display = 'block';
+                searchPortrait.onerror = () => {
+                    searchPortrait.style.display = 'none';
+                };
+            } else {
+                searchPortrait.style.display = 'none';
+            }
         }
 
         // Faire une tentative
@@ -489,6 +589,7 @@
                 }
 
                 input.value = '';
+                searchPortrait.style.display = 'none';
                 
             } catch (error) {
                 showMessage('❌ Erreur de connexion', 'error');
@@ -498,26 +599,47 @@
             }
         }
 
-        // Mettre à jour l'historique des tentatives
+        // Mettre à jour l'historique des tentatives avec animation en cascade
         function updateGuessHistory() {
-            historyDiv.innerHTML = guessHistory.map((guess, index) => {
+            const newGuessIndex = guessHistory.length - 1;
+            
+            // Inverser l'ordre pour afficher les plus récentes en haut
+            const reversedHistory = [...guessHistory].reverse();
+            
+            historyDiv.innerHTML = reversedHistory.map((guess, index) => {
                 const comp = guess.comparison;
                 const char = guess.character;
                 
                 const isWin = char.id === targetCharacter.id;
                 const characterClass = isWin ? 'correct' : 'character';
+                // La nouvelle tentative est maintenant à l'index 0 après l'inversion
+                const isNewGuess = index === 0;
+                
+                // Construire le chemin du portrait à partir du character_id
+                const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
                 
                 return `
-                    <div class="guess-row">
-                        <div class="cell ${characterClass}">${char.alias}</div>
-                        <div class="cell ${comp.alignment}">${char.alignment}</div>
-                        <div class="cell ${comp.location}">${char.location}</div>
-                        <div class="cell ${comp.origins}">${char.origins}</div>
-                        <div class="cell ${comp.role}">${char.role}</div>
-                        <div class="cell ${comp.tags}">${char.tags}</div>
+                    <div class="guess-row" style="animation: slideIn 0.5s ease-out;">
+                        <div class="cell portrait-cell ${isNewGuess ? 'new-cell' : ''}">
+                            <img src="${portraitSrc}" alt="${char.alias}" class="portrait" 
+                                 onerror="this.style.display='none'">
+                        </div>
+                        <div class="cell ${characterClass} ${isNewGuess ? 'new-cell' : ''}">${char.alias}</div>
+                        <div class="cell ${comp.alignment} ${isNewGuess ? 'new-cell' : ''}">${char.alignment}</div>
+                        <div class="cell ${comp.location} ${isNewGuess ? 'new-cell' : ''}">${char.location}</div>
+                        <div class="cell ${comp.origins} ${isNewGuess ? 'new-cell' : ''}">${char.origins}</div>
+                        <div class="cell ${comp.role} ${isNewGuess ? 'new-cell' : ''}">${char.role}</div>
+                        <div class="cell ${comp.tags} ${isNewGuess ? 'new-cell' : ''}">${char.tags}</div>
                     </div>
                 `;
             }).join('');
+            
+            // Supprimer la classe new-cell après l'animation
+            setTimeout(() => {
+                document.querySelectorAll('.new-cell').forEach(cell => {
+                    cell.classList.remove('new-cell');
+                });
+            }, 1000);
         }
 
         // Utilitaires

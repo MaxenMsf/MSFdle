@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import sqlite3
 import os
@@ -27,7 +27,7 @@ def get_db_connection():
 @app.route('/')
 def serve_game():
     """Sert le jeu MSFdle"""
-    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'test_debug.html')
+    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'test_game_clean.html')
     try:
         with open(frontend_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -45,6 +45,16 @@ def admin():
         return content
     except FileNotFoundError:
         return "Interface d'admin non trouvée", 404
+
+@app.route('/portraits/<filename>')
+def serve_portrait(filename):
+    """Sert les portraits des personnages"""
+    portraits_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'portraits')
+    try:
+        return send_from_directory(portraits_path, filename)
+    except FileNotFoundError:
+        # Retourner un portrait par défaut ou une erreur 404
+        return jsonify({"error": "Portrait non trouvé"}), 404
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
@@ -437,21 +447,23 @@ def get_all_characters():
         for row in rows:
             character = {
                 'id': row[0],
-                'alias': row[1],
-                'alignment': row[2],
-                'location': row[3],
-                'origins': row[4],
-                'role': row[5]
+                'character_id': row[1],  # Le character_id est maintenant en position 1
+                'alias': row[2],
+                'alignment': row[3],
+                'location': row[4],
+                'origins': row[5],
+                'role': row[6],
+                'portrait_path': f"portraits/Portrait_{row[1]}.png"  # Chemin vers le portrait
             }
-            # Ajouter origins2 si disponible (colonne 6)
-            if len(row) > 6:
-                character['origins2'] = row[6] if row[6] else None
+            # Ajouter origins2 si disponible (colonne 7)
+            if len(row) > 7:
+                character['origins2'] = row[7] if row[7] else None
             else:
                 character['origins2'] = None
             
-            # Ajouter tags si disponible (colonne 7)
-            if len(row) > 7:
-                character['tags'] = row[7] if row[7] else ""
+            # Ajouter tags si disponible (colonne 8)
+            if len(row) > 8:
+                character['tags'] = row[8] if row[8] else ""
             else:
                 character['tags'] = ""
             
@@ -460,10 +472,16 @@ def get_all_characters():
         cursor.close()
         conn.close()
         
-        return jsonify(characters)
+        return jsonify({
+            "success": True,
+            "characters": characters
+        })
     
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
 
 @app.route('/api/characters', methods=['POST'])
 def create_character():
@@ -553,13 +571,15 @@ def get_random_character():
         if row:
             character = {
                 'id': row[0],
-                'alias': row[1],
-                'alignment': row[2],
-                'location': row[3],
-                'origins': row[4],
-                'role': row[5],
-                'origins2': row[6] if len(row) > 6 and row[6] else None,
-                'tags': row[7] if len(row) > 7 and row[7] else ""
+                'character_id': row[1],  # Le character_id est en position 1
+                'alias': row[2],
+                'alignment': row[3],
+                'location': row[4],
+                'origins': row[5],
+                'role': row[6],
+                'origins2': row[7] if len(row) > 7 and row[7] else None,
+                'tags': row[8] if len(row) > 8 and row[8] else "",
+                'portrait_path': f"portraits/Portrait_{row[1]}.png"  # Chemin vers le portrait
             }
         else:
             character = None
@@ -580,11 +600,11 @@ def check_guess():
     """Vérifie une tentative de devinette"""
     try:
         data = request.get_json()
-        guessed_alias = data.get('guess')
+        guessed_alias = data.get('character_name')  # Correspond à ce que le frontend envoie
         target_id = data.get('target_id')
         
         if not guessed_alias or not target_id:
-            return jsonify({"error": "Missing guess or target_id"}), 400
+            return jsonify({"error": "Missing character_name or target_id"}), 400
         
         conn = get_db_connection()
         if not conn:
@@ -612,28 +632,32 @@ def check_guess():
         # Convertir les rows en dictionnaires
         guessed_char = {
             'id': guessed_row[0],
-            'alias': guessed_row[1],
-            'alignment': guessed_row[2],
-            'location': guessed_row[3],
-            'origins': guessed_row[4],
-            'role': guessed_row[5],
-            'origins2': guessed_row[6] if len(guessed_row) > 6 and guessed_row[6] else None,
-            'tags': guessed_row[7] if len(guessed_row) > 7 and guessed_row[7] else ""
+            'character_id': guessed_row[1],  # Le character_id est en position 1
+            'alias': guessed_row[2],
+            'alignment': guessed_row[3],
+            'location': guessed_row[4],
+            'origins': guessed_row[5],
+            'role': guessed_row[6],
+            'origins2': guessed_row[7] if len(guessed_row) > 7 and guessed_row[7] else None,
+            'tags': guessed_row[8] if len(guessed_row) > 8 and guessed_row[8] else "",
+            'portrait_path': f"portraits/Portrait_{guessed_row[1]}.png"
         }
         
         target_char = {
             'id': target_row[0],
-            'alias': target_row[1],
-            'alignment': target_row[2],
-            'location': target_row[3],
-            'origins': target_row[4],
-            'role': target_row[5],
-            'origins2': target_row[6] if len(target_row) > 6 and target_row[6] else None,
-            'tags': target_row[7] if len(target_row) > 7 and target_row[7] else ""
+            'character_id': target_row[1],  # Le character_id est en position 1
+            'alias': target_row[2],
+            'alignment': target_row[3],
+            'location': target_row[4],
+            'origins': target_row[5],
+            'role': target_row[6],
+            'origins2': target_row[7] if len(target_row) > 7 and target_row[7] else None,
+            'tags': target_row[8] if len(target_row) > 8 and target_row[8] else ""
         }
         
         # Logique de comparaison
         result = {
+            "success": True,
             "character": guessed_char,
             "correct": guessed_char['id'] == target_char['id'],
             "comparison": {
@@ -648,7 +672,7 @@ def check_guess():
         return jsonify(result)
     
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"success": False, "error": str(e)}), 500
 
 def compare_attribute(guessed, target):
     """Compare deux attributs simples"""

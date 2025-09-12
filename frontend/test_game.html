@@ -109,7 +109,7 @@
         }
         .guess-row {
             display: grid;
-            grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr 2fr;
+            grid-template-columns: 80px 2fr 1fr 1.5fr 1.5fr 1fr 2fr;
             gap: 12px;
             margin-bottom: 12px;
             padding: 15px;
@@ -156,6 +156,7 @@
         .cell.new-cell:nth-child(5) { animation-delay: 0.4s; }
         .cell.new-cell:nth-child(6) { animation-delay: 0.5s; }
         .cell.new-cell:nth-child(7) { animation-delay: 0.6s; }
+        .cell.new-cell:nth-child(8) { animation-delay: 0.7s; }
         
         .correct {
             background: linear-gradient(145deg, #10B981, #059669);
@@ -469,7 +470,8 @@
             );
             
             if (match) {
-                const portraitSrc = `portraits/Portrait_${match.name.replace(/[^a-zA-Z0-9]/g, '')}.png`;
+                // Utiliser le character_id pour construire le chemin du portrait
+                const portraitSrc = `http://localhost:5001/portraits/Portrait_${match.character_id}.png`;
                 searchPortrait.src = portraitSrc;
                 searchPortrait.style.display = 'block';
                 searchPortrait.onerror = () => {
@@ -497,7 +499,8 @@
             }
 
             suggestions.innerHTML = filtered.map(char => {
-                const portraitSrc = `portraits/Portrait_${char.alias.replace(/[^a-zA-Z0-9]/g, '')}.png`;
+                // Utiliser le character_id pour construire le chemin du portrait
+                const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
                 return `
                     <div class="suggestion" onclick="selectCharacter('${char.alias}')">
                         <img src="${portraitSrc}" alt="${char.alias}" class="suggestion-portrait" 
@@ -541,7 +544,8 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        character_name: guessedCharacter.alias
+                        character_name: guessedCharacter.alias,
+                        target_id: targetCharacter.id
                     })
                 });
 
@@ -588,17 +592,28 @@
         function updateGuessHistory() {
             const newGuessIndex = guessHistory.length - 1;
             
-            historyDiv.innerHTML = guessHistory.map((guess, index) => {
+            // Inverser l'ordre pour afficher les plus récentes en haut
+            const reversedHistory = [...guessHistory].reverse();
+            
+            historyDiv.innerHTML = reversedHistory.map((guess, index) => {
                 const comp = guess.comparison;
                 const char = guess.character;
                 
-                // Construire l'affichage sans la colonne portrait
+                // Construire l'affichage avec la colonne portrait
                 const isWin = char.id === targetCharacter.id;
                 const characterClass = isWin ? 'correct' : 'character';
-                const isNewGuess = index === newGuessIndex;
+                // La nouvelle tentative est maintenant à l'index 0 après l'inversion
+                const isNewGuess = index === 0;
+                
+                // Construire le chemin du portrait à partir du character_id
+                const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
                 
                 return `
                     <div class="guess-row" style="animation: slideIn 0.5s ease-out;">
+                        <div class="cell portrait-cell ${isNewGuess ? 'new-cell' : ''}">
+                            <img src="${portraitSrc}" alt="${char.alias}" class="portrait" 
+                                 onerror="this.style.display='none'">
+                        </div>
                         <div class="cell ${characterClass} ${isNewGuess ? 'new-cell' : ''}">${char.alias}</div>
                         <div class="cell ${comp.alignment} ${isNewGuess ? 'new-cell' : ''}">${char.alignment}</div>
                         <div class="cell ${comp.location} ${isNewGuess ? 'new-cell' : ''}">${char.location}</div>
