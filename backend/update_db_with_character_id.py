@@ -17,7 +17,7 @@ def update_database_with_character_id():
         conn = sqlite3.connect(DATABASE_PATH)
         cursor = conn.cursor()
         
-        # Créer la table characters avec character_id
+        # Créer la table characters avec character_id (SANS la colonne tags)
         cursor.execute('''
             CREATE TABLE characters (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,8 +27,7 @@ def update_database_with_character_id():
                 location TEXT NOT NULL,
                 origins TEXT NOT NULL,
                 role TEXT NOT NULL,
-                origins2 TEXT,
-                tags TEXT DEFAULT ""
+                origins2 TEXT
             )
         ''')
         

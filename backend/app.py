@@ -445,6 +445,17 @@ def get_all_characters():
         # Convertir les résultats en dictionnaires
         characters = []
         for row in rows:
+            # Récupérer les tags depuis la table character_tags
+            cursor.execute('''
+                SELECT GROUP_CONCAT(t.name, ', ') as tags
+                FROM character_tags ct
+                JOIN tags t ON ct.tag_id = t.id
+                WHERE ct.character_id = ?
+            ''', (row[0],))
+            
+            tags_result = cursor.fetchone()
+            character_tags = tags_result[0] if tags_result and tags_result[0] else "AUCUN"
+            
             character = {
                 'id': row[0],
                 'character_id': row[1],  # Le character_id est maintenant en position 1
@@ -453,19 +464,14 @@ def get_all_characters():
                 'location': row[4],
                 'origins': row[5],
                 'role': row[6],
-                'portrait_path': f"portraits/Portrait_{row[1]}.png"  # Chemin vers le portrait
+                'portrait_path': f"portraits/Portrait_{row[1]}.png",  # Chemin vers le portrait
+                'tags': character_tags
             }
             # Ajouter origins2 si disponible (colonne 7)
             if len(row) > 7:
                 character['origins2'] = row[7] if row[7] else None
             else:
                 character['origins2'] = None
-            
-            # Ajouter tags si disponible (colonne 8)
-            if len(row) > 8:
-                character['tags'] = row[8] if row[8] else ""
-            else:
-                character['tags'] = ""
             
             characters.append(character)
         
@@ -569,6 +575,17 @@ def get_random_character():
         row = cursor.fetchone()
         
         if row:
+            # Récupérer les tags depuis la table character_tags
+            cursor.execute('''
+                SELECT GROUP_CONCAT(t.name, ', ') as tags
+                FROM character_tags ct
+                JOIN tags t ON ct.tag_id = t.id
+                WHERE ct.character_id = ?
+            ''', (row[0],))
+            
+            tags_result = cursor.fetchone()
+            character_tags = tags_result[0] if tags_result and tags_result[0] else "AUCUN"
+            
             character = {
                 'id': row[0],
                 'character_id': row[1],  # Le character_id est en position 1
@@ -578,7 +595,7 @@ def get_random_character():
                 'origins': row[5],
                 'role': row[6],
                 'origins2': row[7] if len(row) > 7 and row[7] else None,
-                'tags': row[8] if len(row) > 8 and row[8] else "",
+                'tags': character_tags,
                 'portrait_path': f"portraits/Portrait_{row[1]}.png"  # Chemin vers le portrait
             }
         else:
@@ -620,6 +637,36 @@ def check_guess():
         cursor.execute("SELECT * FROM characters WHERE id = ?", (target_id,))
         target_row = cursor.fetchone()
         
+        if not guessed_row:
+            cursor.close()
+            conn.close()
+            return jsonify({"error": "Character not found"}), 404
+        
+        if not target_row:
+            cursor.close()
+            conn.close()
+            return jsonify({"error": "Target character not found"}), 404
+        
+        # Récupérer les tags pour le personnage deviné
+        cursor.execute('''
+            SELECT GROUP_CONCAT(t.name, ', ') as tags
+            FROM character_tags ct
+            JOIN tags t ON ct.tag_id = t.id
+            WHERE ct.character_id = ?
+        ''', (guessed_row[0],))
+        guessed_tags_result = cursor.fetchone()
+        guessed_tags = guessed_tags_result[0] if guessed_tags_result and guessed_tags_result[0] else "AUCUN"
+        
+        # Récupérer les tags pour le personnage cible
+        cursor.execute('''
+            SELECT GROUP_CONCAT(t.name, ', ') as tags
+            FROM character_tags ct
+            JOIN tags t ON ct.tag_id = t.id
+            WHERE ct.character_id = ?
+        ''', (target_row[0],))
+        target_tags_result = cursor.fetchone()
+        target_tags = target_tags_result[0] if target_tags_result and target_tags_result[0] else "AUCUN"
+        
         cursor.close()
         conn.close()
         
@@ -639,7 +686,7 @@ def check_guess():
             'origins': guessed_row[5],
             'role': guessed_row[6],
             'origins2': guessed_row[7] if len(guessed_row) > 7 and guessed_row[7] else None,
-            'tags': guessed_row[8] if len(guessed_row) > 8 and guessed_row[8] else "",
+            'tags': guessed_tags,
             'portrait_path': f"portraits/Portrait_{guessed_row[1]}.png"
         }
         
@@ -652,7 +699,7 @@ def check_guess():
             'origins': target_row[5],
             'role': target_row[6],
             'origins2': target_row[7] if len(target_row) > 7 and target_row[7] else None,
-            'tags': target_row[8] if len(target_row) > 8 and target_row[8] else ""
+            'tags': target_tags
         }
         
         # Logique de comparaison
