@@ -1,0 +1,55 @@
+# Fichiers de configuration secrets
+.env
+.env.local
+.env.production
+.env.staging
+
+# Dossiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Base de données locale
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Cache et builds
+.cache/
+.coverage
+htmlcov/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node modules (pour le frontend plus tard)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build frontend
+frontend/dist/
+frontend/build/

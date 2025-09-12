@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSFdle - Test du Jeu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            color: #eee;
+            min-height: 100vh;
+        }
+        .container {
+            background: linear-gradient(145deg, #1E293B, #0F172A);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        h1 {
+            text-align: center;
+            background: linear-gradient(45deg, #F59E0B, #FCD34D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+        .game-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        input {
+            width: 100%;
+            padding: 15px 20px 15px 60px; /* Espace pour le portrait */
+            font-size: 18px;
+            border: 2px solid #334155;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #1E293B, #334155);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        input:focus {
+            outline: none;
+            border-color: #F59E0B;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+        .search-portrait {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(245, 158, 11, 0.5);
+            display: none;
+            z-index: 10;
+        }
+        .suggestions {
+            background: linear-gradient(145deg, #1E293B, #334155);
+            border: 2px solid #334155;
+            border-top: none;
+            max-height: 250px;
+            overflow-y: auto;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+        .suggestion {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .suggestion:hover {
+            background: linear-gradient(145deg, #F59E0B, #FCD34D);
+            color: #0F172A;
+            transform: translateX(5px);
+        }
+        .suggestion-portrait {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .guess-history {
+            margin-top: 20px;
+        }
+        .guess-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr 1fr 2fr;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #1E293B, #334155);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(245, 158, 11, 0.1);
+        }
+        .guess-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .guess-header {
+            font-weight: bold;
+            background: linear-gradient(145deg, #F59E0B, #FCD34D);
+            color: #0F172A;
+            border: 2px solid #FCD34D;
+        }
+        .cell {
+            padding: 12px;
+            text-align: center;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 25px;
+            max-height: 60px; /* Hauteur fixe pour éviter les variations */
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-wrap: break-word;
+            overflow: hidden;
+            font-size: 14px;
+        }
+        /* Animation de flip pour les nouvelles cellules uniquement */
+        .cell.new-cell {
+            animation: flipCard 0.6s ease-in-out;
+        }
+        /* Animation en cascade pour les cellules d'une ligne */
+        .cell.new-cell:nth-child(1) { animation-delay: 0s; }
+        .cell.new-cell:nth-child(2) { animation-delay: 0.1s; }
+        .cell.new-cell:nth-child(3) { animation-delay: 0.2s; }
+        .cell.new-cell:nth-child(4) { animation-delay: 0.3s; }
+        .cell.new-cell:nth-child(5) { animation-delay: 0.4s; }
+        .cell.new-cell:nth-child(6) { animation-delay: 0.5s; }
+        .cell.new-cell:nth-child(7) { animation-delay: 0.6s; }
+        
+        .correct {
+            background: linear-gradient(145deg, #10B981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            color: white;
+        }
+        .partial {
+            background: linear-gradient(145deg, #F59E0B, #D97706);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            color: white;
+        }
+        .incorrect {
+            background: linear-gradient(145deg, #EF4444, #DC2626);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            color: white;
+        }
+        .character {
+            background: linear-gradient(145deg, #3B82F6, #2563EB);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+        .portrait {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(245, 158, 11, 0.5);
+        }
+        .portrait-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes flipCard {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(-90deg); }
+            100% { transform: rotateY(0deg); }
+        }
+        .message {
+            text-align: center;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 600;
+            font-size: 16px;
+            animation: slideIn 0.5s ease-out;
+        }
+        .success {
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+            border: 2px solid rgba(16, 185, 129, 0.5);
+            color: #10B981;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+        .error {
+            background: linear-gradient(145deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+            border: 2px solid rgba(239, 68, 68, 0.5);
+            color: #EF4444;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2);
+        }
+        .info {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.2));
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            color: #3B82F6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+        .new-game-btn {
+            background: linear-gradient(145deg, #F59E0B, #FCD34D);
+            color: #0F172A;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+        .new-game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
+            background: linear-gradient(145deg, #FCD34D, #F59E0B);
+        }
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff33;
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f39c12;
+        }
+        .dev-info {
+            background-color: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            color: #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: monospace;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 MSFdle</h1>
+        
+        <div class="game-info">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value" id="attemptCount">0</div>
+                    <div>Tentatives</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <img id="searchPortrait" class="search-portrait" alt="Portrait">
+            <input type="text" id="characterInput" placeholder="Tapez le nom d'un personnage..." autocomplete="off">
+            <div id="suggestions" class="suggestions" style="display: none;"></div>
+        </div>
+
+        <div id="message" class="message" style="display: none;"></div>
+
+        <div class="dev-info" id="devInfo">
+            <div id="targetDebug"></div>
+        </div>
+
+        <div class="guess-history">
+            <div class="guess-row guess-header">
+                <div class="cell">Portrait</div>
+                <div class="cell">Personnage</div>
+                <div class="cell">Affiliation</div>
+                <div class="cell">Secteur</div>
+                <div class="cell">Origine</div>
+                <div class="cell">Rôle</div>
+                <div class="cell">Tags</div>
+            </div>
+            <div id="guessHistory"></div>
+        </div>
+
+        <button class="new-game-btn" onclick="startNewGame()">Nouvelle Partie</button>
+    </div>
+
+    <script>
+        let allCharacters = [];
+        let targetCharacter = null;
+        let guessHistory = [];
+        let gameWon = false;
+        
+        const input = document.getElementById('characterInput');
+        const suggestions = document.getElementById('suggestions');
+        const messageDiv = document.getElementById('message');
+        const historyDiv = document.getElementById('guessHistory');
+        const attemptCountDiv = document.getElementById('attemptCount');
+        const devInfo = document.getElementById('devInfo');
+        const targetDebug = document.getElementById('targetDebug');
+        const searchPortrait = document.getElementById('searchPortrait');
+
+        // Charger tous les personnages au démarrage
+        async function loadCharacters() {
+            try {
+                const response = await fetch('http://localhost:5001/api/characters');
+                const data = await response.json();
+                if (data.success) {
+                    allCharacters = data.characters;
+                } else {
+                    throw new Error('Erreur lors du chargement des personnages');
+                }
+            } catch (error) {
+                showMessage('❌ Erreur de connexion au serveur', 'error');
+                console.error('Erreur:', error);
+            }
+        }
+
+        // Événements d'entrée
+        input.addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+            showSuggestions(value);
+            updateSearchPortrait(value);
+        });
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                makeGuess();
+            }
+        });
+
+        // Cacher les suggestions quand on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                suggestions.style.display = 'none';
+            }
+        });
+
+        // Afficher/masquer le loading
+        function showLoading(show) {
+            if (show) {
+                messageDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Recherche en cours...</div>';
+                messageDiv.className = 'message info';
+                messageDiv.style.display = 'block';
+            }
+        }
+
+        // Afficher un message
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            if (type === 'error') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Commencer une nouvelle partie
+        async function startNewGame() {
+            showLoading(true);
+            
+            try {
+                const response = await fetch('http://localhost:5001/api/random-character', {
+                    method: 'GET'
+                });
+                const data = await response.json();
+                
+                if (data.id) {
+                    targetCharacter = data;
+                    guessHistory = [];
+                    gameWon = false;
+                    input.disabled = false;
+                    input.value = '';
+                    messageDiv.style.display = 'none';
+                    historyDiv.innerHTML = '';
+                    attemptCountDiv.textContent = '0';
+                    searchPortrait.style.display = 'none';
+                    
+                    // Afficher les infos debug si en développement
+                    if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') {
+                        devInfo.style.display = 'block';
+                        targetDebug.textContent = `🎯 CIBLE: ${targetCharacter.alias} | Affiliation: ${targetCharacter.alignment} | Secteur: ${targetCharacter.location} | Origine: ${targetCharacter.origins} | Rôle: ${targetCharacter.role} | Tags: ${targetCharacter.tags}`;
+                    }
+                    
+                    showMessage('🎯 Nouvelle partie commencée ! Devinez le personnage...', 'info');
+                    
+                } else {
+                    showMessage('❌ Erreur lors du démarrage de la partie', 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Erreur lors du démarrage de la partie', 'error');
+                console.error('Erreur:', error);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Mettre à jour le portrait dans la barre de recherche
+        function updateSearchPortrait(value) {
+            if (value.length < 2) {
+                searchPortrait.style.display = 'none';
+                return;
+            }
+            
+            const match = allCharacters.find(char => 
+                char.alias.toLowerCase() === value.toLowerCase()
+            );
+            
+            if (match) {
+                const portraitSrc = `portraits/Portrait_${match.name.replace(/[^a-zA-Z0-9]/g, '')}.png`;
+                searchPortrait.src = portraitSrc;
+                searchPortrait.style.display = 'block';
+                searchPortrait.onerror = () => {
+                    searchPortrait.style.display = 'none';
+                };
+            } else {
+                searchPortrait.style.display = 'none';
+            }
+        }
+
+        // Filtrer et afficher les suggestions
+        function showSuggestions(value) {
+            if (value.length < 2) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            const filtered = allCharacters.filter(char => 
+                char.alias.toLowerCase().includes(value.toLowerCase())
+            ).slice(0, 10);
+
+            if (filtered.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            suggestions.innerHTML = filtered.map(char => {
+                const portraitSrc = `portraits/Portrait_${char.alias.replace(/[^a-zA-Z0-9]/g, '')}.png`;
+                return `
+                    <div class="suggestion" onclick="selectCharacter('${char.alias}')">
+                        <img src="${portraitSrc}" alt="${char.alias}" class="suggestion-portrait" 
+                             onerror="this.style.display='none'">
+                        <span>${char.alias}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            suggestions.style.display = 'block';
+        }
+
+        // Sélectionner un personnage
+        function selectCharacter(name) {
+            input.value = name;
+            suggestions.style.display = 'none';
+            updateSearchPortrait(name);
+            makeGuess();
+        }
+
+        // Faire une tentative
+        async function makeGuess() {
+            const characterName = input.value.trim();
+            if (!characterName || gameWon) return;
+
+            const guessedCharacter = allCharacters.find(char => 
+                char.alias.toLowerCase() === characterName.toLowerCase()
+            );
+
+            if (!guessedCharacter) {
+                showMessage('❌ Personnage non trouvé. Vérifiez l\'orthographe.', 'error');
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                const response = await fetch('http://localhost:5001/api/guess', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        character_name: guessedCharacter.alias
+                    })
+                });
+
+                const comparison = await response.json();
+                
+                if (comparison.success) {
+                    // Ajouter à l'historique
+                    const guessResult = {
+                        character: comparison.character,
+                        comparison: comparison.comparison
+                    };
+                    
+                    guessHistory.push(guessResult);
+                    updateGuessHistory();
+                    
+                    // Mettre à jour le compteur
+                    attemptCountDiv.textContent = guessHistory.length;
+                    
+                    if (comparison.correct) {
+                        gameWon = true;
+                        input.disabled = true;
+                        showMessage(`🎉 Félicitations ! Vous avez trouvé ${targetCharacter.alias} en ${guessHistory.length} tentative(s) !`, 'success');
+                        
+                        // Cacher les infos de debug
+                        devInfo.style.display = 'none';
+                    } else {
+                        showMessage(`❌ Non, ce n'est pas ${guessedCharacter.alias}. Regardez les indices de couleur !`, 'error');
+                    }
+                    
+                    input.value = '';
+                    searchPortrait.style.display = 'none';
+                } else {
+                    showMessage(`❌ ${comparison.error || 'Erreur lors de la tentative'}`, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Erreur de connexion', 'error');
+                console.error('Erreur:', error);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Mettre à jour l'historique des tentatives avec animation en cascade
+        function updateGuessHistory() {
+            const newGuessIndex = guessHistory.length - 1;
+            
+            historyDiv.innerHTML = guessHistory.map((guess, index) => {
+                const comp = guess.comparison;
+                const char = guess.character;
+                
+                // Construire l'affichage sans la colonne portrait
+                const isWin = char.id === targetCharacter.id;
+                const characterClass = isWin ? 'correct' : 'character';
+                const isNewGuess = index === newGuessIndex;
+                
+                return `
+                    <div class="guess-row" style="animation: slideIn 0.5s ease-out;">
+                        <div class="cell ${characterClass} ${isNewGuess ? 'new-cell' : ''}">${char.alias}</div>
+                        <div class="cell ${comp.alignment} ${isNewGuess ? 'new-cell' : ''}">${char.alignment}</div>
+                        <div class="cell ${comp.location} ${isNewGuess ? 'new-cell' : ''}">${char.location}</div>
+                        <div class="cell ${comp.origins} ${isNewGuess ? 'new-cell' : ''}">${char.origins}</div>
+                        <div class="cell ${comp.role} ${isNewGuess ? 'new-cell' : ''}">${char.role}</div>
+                        <div class="cell ${comp.tags} ${isNewGuess ? 'new-cell' : ''}">${char.tags}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Supprimer la classe new-cell après l'animation
+            setTimeout(() => {
+                document.querySelectorAll('.new-cell').forEach(cell => {
+                    cell.classList.remove('new-cell');
+                });
+            }, 1000);
+        }
+
+        // Initialiser le jeu
+        window.addEventListener('load', async () => {
+            await loadCharacters();
+            startNewGame();
+        });
+    </script>
+</body>
+</html>
