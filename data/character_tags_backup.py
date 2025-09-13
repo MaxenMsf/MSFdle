@@ -24,9 +24,8 @@ IGNORED_TAGS = [
     "CHAPITRE 2 - CONQUÉRANT", "DEADPOOL ET SES COPAINS", "PLEIN D'ÉNERGIE", "LÉGENDAIRE"
 ]
 
-# Tags des personnages extraits des captures d'écran
+# Tags des personnages (vide pour l'instant)
 character_tags = {
-    # Personnages déjà traités
     "PhantomRider": ["SECRET WARRIOR"],
     "Scorpion": ["SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "INFESTATION"],
     "SuperiorSpiderMan": ["SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "SUPERIOR SIX"],
@@ -39,69 +38,19 @@ character_tags = {
     "YoYo": ["S.H.I.E.L.D", "INHUMAN", "SECRET WARRIOR"],
     "Abomination": ["GAMMA"],
     "AdamWarlock": ["INFINITY WATCH"],
-    
-    # Nouveaux personnages depuis les captures d'écran
-    "AgathaHarkness": ["DARKHOLD", "NIGHTSTALKER"],
-    "Coulson": ["S.H.I.E.L.D", "AVENGER", "NOUVEL AVENGER"],
-    "ShieldSecurityGuard": ["S.H.I.E.L.D"],  # Agent du S.H.I.E.L.D.
-    "AgentVenom": ["SPIDER-VERSE", "SYMBIOTE", "RENAISSANCE"],
-    "AmericaChavez": ["YOUNG AVENGERS"],
-    "AncientOne": ["AUCUN"],  # Pas de tags spéciaux visibles
-    "AntMan": ["PYM TECH", "INFESTATION"],
-    "SpiderSlayer": ["SPIDER-VERSE", "SUPERIOR SIX", "SINISTER SIX"],  # Anti-Araignée
-    "AntiVenom": ["SPIDER-VERSE", "SYMBIOTE"],
-    "Archangel": ["GRAINE DE MORT", "CAVALIER"],
-    "HandArcher": ["MAIN"],  # Archer de la Main
-    "AimAssaulter": ["A.I.M"],  # Assaillant de l'A.I.M.
-    "HandAssassin": ["MAIN"],  # Assassin de la Main
-    "Azazel": ["CLUB DES DAMNES", "MAUDIT"],
-    "BaronZemo": ["HYDRA"],
-    "BetaRayBill": ["ASGARDIEN"],
-    "Bishop": ["ASTONISHING X-MEN"],
-    "BlackBolt": ["INHUMAN", "ILLUMINATI"],
-    "BlackPanther": ["AVENGER", "WAKANDIEN", "CHIEN DE GUERRE", "UNI"],
-    "BlackPantherBC": ["WAKANDIEN", "CHIEN DE GUERRE"],  # Black Panther (1MM)
-    "BlackPantherShuri": ["WAKANDIEN", "ILLUMINATI"],
-    "BlackWidow": ["S.H.I.E.L.D", "AVENGER - VAGUE I", "MILITAIRE", "INFESTATION"],
-    "Blade": ["NIGHTSTALKER"],
-    "RedGoblin": ["SPIDER-VERSE", "SYMBIOTE", "CONSCIENCE COLLECTIVE"],  # Bouffon rouge
 }
 
 # Tags disponibles (sera rempli automatiquement)
 available_tags = [
-    "A.I.M",
-    "ASGARDIEN", 
-    "ASTONISHING X-MEN",
-    "AVENGER",
-    "AVENGER - VAGUE I",
-    "CAVALIER",
-    "CHIEN DE GUERRE",
-    "CLUB DES DAMNES",
-    "CONSCIENCE COLLECTIVE",
-    "DARKHOLD",
     "GAMMA",
-    "GRAINE DE MORT",
-    "HYDRA",
-    "ILLUMINATI",
     "INFESTATION",
     "INFINITY WATCH",
     "INHUMAN",
     "INSIDIOUS SIX",
-    "MAIN",
-    "MAUDIT",
-    "MILITAIRE",
-    "NIGHTSTALKER",
-    "NOUVEL AVENGER",
-    "PYM TECH",
-    "RENAISSANCE",
     "S.H.I.E.L.D",
     "SECRET WARRIOR",
     "SINISTER SIX",
     "SPIDER-VERSE",
     "SUPERIOR SIX",
-    "SYMBIOTE",
-    "UNI",
-    "WAKANDIEN",
     "X-FORCE",
-    "YOUNG AVENGERS"
 ]

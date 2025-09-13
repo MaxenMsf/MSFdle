@@ -616,11 +616,16 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        character_name: guessedCharacter.alias
+                        character_name: guessedCharacter.alias,
+                        target_id: targetCharacter.id
                     })
                 });
 
                 const result = await response.json();
+                
+                // Debug: Afficher ce que l'API retourne
+                console.log('🔍 Réponse API:', result);
+                console.log('🔍 Comparaison reçue:', result.comparison);
                 
                 // Ajouter à l'historique
                 guessHistory.push({

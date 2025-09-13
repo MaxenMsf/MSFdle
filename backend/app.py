@@ -710,7 +710,7 @@ def check_guess():
             "comparison": {
                 "alignment": compare_attribute(guessed_char['alignment'], target_char['alignment']),
                 "location": compare_attribute(guessed_char['location'], target_char['location']),
-                "origins": compare_origins_combined(guessed_char['origins'], target_char['origins']),
+                "origins": compare_origins_advanced(guessed_char['origins'], target_char['origins']),
                 "role": compare_attribute(guessed_char['role'], target_char['role']),
                 "tags": compare_tags(guessed_char['tags'], target_char['tags'])
             }
@@ -728,8 +728,37 @@ def compare_attribute(guessed, target):
     else:
         return "incorrect"  # Rouge
 
+def compare_origins_advanced(guess_origins, target_origins):
+    """Compare les origines avec logique améliorée pour correspondances partielles"""
+    
+    # Nettoyer et normaliser les chaînes
+    if not guess_origins:
+        guess_origins = ""
+    if not target_origins:
+        target_origins = ""
+    
+    # Si identiques, c'est correct
+    if guess_origins.strip() == target_origins.strip():
+        return "correct"
+    
+    # Diviser les origines en ensembles
+    guess_set = set(origin.strip() for origin in guess_origins.split(',') if origin.strip())
+    target_set = set(origin.strip() for origin in target_origins.split(',') if origin.strip())
+    
+    # Correspondance exacte des ensembles
+    if guess_set == target_set:
+        return "correct"  # Vert - correspondance exacte
+    
+    # Correspondance partielle (au moins une origine commune)
+    elif guess_set & target_set:  # Intersection non vide
+        return "partial"  # Jaune - correspondance partielle
+    
+    # Aucune correspondance
+    else:
+        return "incorrect"  # Rouge - aucune correspondance
+
 def compare_origins_combined(guess_origins, target_origins):
-    """Compare les origines combinées (ex: 'Avengers, X-Men' vs 'X-Men, Cosmic')"""
+    """Compare les origines combinées (ex: 'Avengers, X-Men' vs 'X-Men, Cosmic') - ANCIENNE VERSION"""
     
     # Diviser les origines en ensembles
     guess_set = set(origin.strip() for origin in guess_origins.split(','))
@@ -743,7 +772,7 @@ def compare_origins_combined(guess_origins, target_origins):
         return "incorrect"  # Rouge - aucune correspondance
 
 def compare_tags(guess_tags, target_tags):
-    """Compare les tags (ex: 'Populaire, Mecha' vs 'Mecha, Avengers')"""
+    """Compare les tags (ex: 'SPIDER-VERSE, SINISTER SIX' vs 'SINISTER SIX, X-FORCE')"""
     
     # Gérer les cas où les tags sont vides ou None
     if not guess_tags:
@@ -751,7 +780,14 @@ def compare_tags(guess_tags, target_tags):
     if not target_tags:
         target_tags = ""
     
-    # Si les deux sont vides, c'est correct
+    # Cas spéciaux pour "AUCUN"
+    if guess_tags.strip() == "AUCUN" and target_tags.strip() == "AUCUN":
+        return "correct"  # Vert - les deux n'ont aucun tag
+    
+    if guess_tags.strip() == "AUCUN" or target_tags.strip() == "AUCUN":
+        return "incorrect"  # Rouge - l'un a des tags, l'autre non
+    
+    # Si les deux sont vides (ne devrait pas arriver avec la logique AUCUN)
     if not guess_tags.strip() and not target_tags.strip():
         return "correct"
     
@@ -759,9 +795,9 @@ def compare_tags(guess_tags, target_tags):
     if not guess_tags.strip() or not target_tags.strip():
         return "incorrect"
     
-    # Diviser les tags en ensembles (séparés par virgules ou espaces)
-    guess_set = set(tag.strip().lower() for tag in guess_tags.replace(',', ' ').split() if tag.strip())
-    target_set = set(tag.strip().lower() for tag in target_tags.replace(',', ' ').split() if tag.strip())
+    # Diviser les tags en ensembles (séparés par virgules)
+    guess_set = set(tag.strip() for tag in guess_tags.split(',') if tag.strip())
+    target_set = set(tag.strip() for tag in target_tags.split(',') if tag.strip())
     
     if guess_set == target_set:
         return "correct"  # Vert - correspondance exacte

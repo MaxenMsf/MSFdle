@@ -6,7 +6,7 @@ Punisher,Punisher,Hero,Ville,Expertise,,Moleculaire,Tireur
 Elektra,Elektra,Vilain,Ville,Mystique,Expertise,Carbonadium,Cogneur
 Deadpool,Deadpool,Hero,Mondial,Mutant,,Formule,Cogneur
 Crossbones,Crossbones,Vilain,Mondial,Techno,,Carbonadium,Protecteur
-ShieldDmg_Defense,Fantassin du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Protecteur
+ShieldDmg_Defense,Fantassin du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Tireur
 Thor,Thor,Hero,Cosmique,Mystique,,Uru,Tireur
 ShieldSupport_Stealth,Agent du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Soutien
 Nebula,Nebula,Vilain,Cosmique,Techno,,Quantique,Cogneur
@@ -268,7 +268,7 @@ Sunspot,Solar,Hero,Mondial,Mutant,,Astral,Tireur
 SymbioteSilverSurfer,Void knight,Hero,Cosmique,Biotechnique,,Spore,Manipulateur
 Gwenom,Gwenom,Hero,Ville,Biotechnique,,Formule,Cogneur
 SuperSkrull,Super Skrull,Vilain,Cosmique,Biotechnique,,Spore,Cogneur
-RedGoblin,Bouffon rouge,Vilain,Ville,Biotechnique,,Hammer,Soutien
+RedGoblin,Bouffon rouge,Vilain,Ville,Biotechnique,,Hammer,Protecteur
 BlackKnight,Chevalier noir,Hero,Mondial,Expertise,,Arcane,Protecteur
 StarBrand,Starbrand,Hero,Mondial,Mystique,,Astral,Cogneur
 CosmicGhostRider,Cosmic ghost rider,Hero,Cosmique,Mystique,,Mucus,Tireur
@@ -333,6 +333,6 @@ SebastianShaw,Sébastian Shaw,Vilain,Mondial,Mutant,,Luminium,Protecteur
 RachelSummers,Rachel Summers,Hero,Mondial,Mutant,,Astral,Manipulateur
 Blastaar,Blastaar,Vilain,Cosmique,Biotechnique,,Infini,Tireur
 PhantomRider,Phantom Rider,Hero,Ville,Mystique,,Judas,Tireur
-Scorpion,Scorpion,Vilain,Ville,Techno,,Formule,Protecteur
+Scorpion,Scorpion,Vilain,Ville,Techno,,Formule,Cogneur
 Hobgoblin,Super-Bouffon,Vilain,Ville,Techno,,Serum,Manipulateur
 SuperiorSpiderMan,Spider-man supérieur,Vilain,Ville,Techno,,Gravitonium,Soutien
