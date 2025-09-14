@@ -19,83 +19,199 @@ except ImportError:
 def extract_tags_from_screenshots():
     """
     Analyse les captures d'écran fournies par l'utilisateur
+    Extrait les tags des personnages visibles dans les captures
     """
     print("🔍 Analyse des captures d'écran MSF")
     print("=" * 50)
     
-    # Basé sur vos captures d'écran, voici les tags que j'ai identifiés:
-    
+    # Basé sur vos captures d'écran, voici tous les tags que j'ai identifiés:
     screenshots_analysis = {
-        "Phantom Rider": {
-            "character_id": "PhantomRider",  # À vérifier dans votre CSV
-            "visible_tags": ["HÉROS", "VILLE", "MYSTIQUE", "TIREUR", "SECRET WARRIOR"],
-            "filtered_tags": ["SECRET WARRIOR"]  # Après filtrage des tags ignorés
+        # ===== PERSONNAGES DES CAPTURES D'ÉCRAN =====
+        
+        "Essaim": {
+            "character_id": "Swarm",
+            "visible_tags": ["SUPER-VILAIN", "VILLE", "BIOTECHNIQUE", "MANIPULATEUR", "SPIDER-VERSE", "SINISTER SIX", "INFESTATION"],
+            "filtered_tags": ["SPIDER-VERSE", "SINISTER SIX", "INFESTATION"]
         },
         
-        "Scorpion": {
-            "character_id": "Scorpion", 
-            "visible_tags": ["SUPER-VILAIN", "VILLE", "TECHNO", "COGNEUR", "SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "INFESTATION", "CHAPITRE 2 - CONQUÉRANT"],
-            "filtered_tags": ["SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "INFESTATION"]
+        "Factionnaire de la Main": {
+            "character_id": "HandTank_Stealth",
+            "visible_tags": ["SUPER-VILAIN", "VILLE", "MYSTIQUE", "PROTECTEUR", "MAIN", "SERVITEUR"],
+            "filtered_tags": ["MAIN", "SERVITEUR"]
         },
         
-        "Spider-Man Supérieur": {
-            "character_id": "SuperiorSpiderMan",
-            "visible_tags": ["SUPER-VILAIN", "VILLE", "TECHNO", "SOUTIEN", "SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "SUPERIOR SIX", "CHAPITRE 2 - CONQUÉRANT"],
-            "filtered_tags": ["SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "SUPERIOR SIX"]
+        "Falcon": {
+            "character_id": "Falcon",
+            "visible_tags": ["HÉROS", "MONDIAL", "TECHNO", "TIREUR", "TECHNO-ARMURE", "MIGHTY AVENGERS", "UNCANNY AVENGERS", "JUNETEENTH"],
+            "filtered_tags": ["TECHNO-ARMURE", "MIGHTY AVENGERS", "UNCANNY AVENGERS", "JUNETEENTH"]
         },
         
-        "Super-Bouffon": {
-            "character_id": "Hobgoblin",
-            "visible_tags": ["SUPER-VILAIN", "VILLE", "TECHNO", "MANIPULATEUR", "SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX", "CHAPITRE 2 - CONQUÉRANT"],
-            "filtered_tags": ["SPIDER-VERSE", "SINISTER SIX", "INSIDIOUS SIX"]
+        "Falcon (Joaquin)": {
+            "character_id": "FalconJoaquin",
+            "visible_tags": ["HÉROS", "MONDIAL", "TECHNO", "SOUTIEN", "LIBERTÉ", "ÉLITES DE L'ANNIVERSAIRE"],
+            "filtered_tags": ["LIBERTÉ"]
         },
         
-        "Domino": {
-            "character_id": "Domino",
-            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "MANIPULATEUR", "X-FORCE", "SECRET WARRIOR", "DEADPOOL ET SES COPAINS"],
-            "filtered_tags": ["X-FORCE"]
+        "Fantassin du S.H.I.E.L.D.": {
+            "character_id": "ShieldDmg_Defense",
+            "visible_tags": ["HÉROS", "MONDIAL", "EXPERTISE", "TIREUR", "S.H.I.E.L.D", "SERVITEUR"],
+            "filtered_tags": ["S.H.I.E.L.D", "SERVITEUR"]
         },
         
-        "Negasonic": {
-            "character_id": "Negasonic",
-            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "TIREUR", "X-FORCE", "SECRET WARRIOR", "PLEIN D'ÉNERGIE", "DEADPOOL ET SES COPAINS"],
-            "filtered_tags": ["X-FORCE"]
+        "Fantôme": {
+            "character_id": "Ghost",
+            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "BIOTECHNIQUE", "TECHNO", "MANIPULATEUR", "PYM TECH", "THUNDERBOLT", "CHAPITRE 1 - ANNONCIATEUR"],
+            "filtered_tags": ["PYM TECH", "THUNDERBOLT"]
         },
         
-        "Quake": {
-            "character_id": "Quake",
-            "visible_tags": ["HÉROS", "MONDIAL", "BIOTECHNIQUE", "MANIPULATEUR", "S.H.I.E.L.D", "INHUMAN", "SECRET WARRIOR"],
-            "filtered_tags": ["S.H.I.E.L.D", "INHUMAN"]
+        "Fantomex": {
+            "character_id": "Fantomex",
+            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "TIREUR", "UNLIMITED X-MEN"],
+            "filtered_tags": ["UNLIMITED X-MEN"]
         },
         
-        "Shocker": {
-            "character_id": "Shocker",
-            "visible_tags": ["SUPER-VILAIN", "VILLE", "TECHNO", "TIREUR", "SPIDER-VERSE", "SINISTER SIX", "CHAPITRE 2 - CONQUÉRANT"],
-            "filtered_tags": ["SPIDER-VERSE", "SINISTER SIX"]
+        "Faucheuse Kree": {
+            "character_id": "KreeDmg_Speed",
+            "visible_tags": ["SUPER-VILAIN", "COSMIQUE", "BIOTECHNIQUE", "COGNEUR", "KREE", "SERVITEUR"],
+            "filtered_tags": ["KREE", "SERVITEUR"]
         },
         
-        "Vautour": {
-            "character_id": "Vulture",
-            "visible_tags": ["SUPER-VILAIN", "VILLE", "TECHNO", "COGNEUR", "SPIDER-VERSE", "SINISTER SIX", "CHAPITRE 2 - CONQUÉRANT"],
-            "filtered_tags": ["SPIDER-VERSE", "SINISTER SIX"]
+        "Fauve": {
+            "character_id": "Beast",
+            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "SOUTIEN", "UNCANNY X-MEN", "ASTONISHING X-MEN", "IMMORTAL X-MEN", "UNCANNY AVENGERS", "ÉLITES DE L'ANNIVERSAIRE"],
+            "filtered_tags": ["UNCANNY X-MEN", "ASTONISHING X-MEN", "IMMORTAL X-MEN", "UNCANNY AVENGERS"]
         },
         
-        "Yo-Yo": {
-            "character_id": "YoYo",
-            "visible_tags": ["HÉROS", "MONDIAL", "BIOTECHNIQUE", "PROTECTEUR", "S.H.I.E.L.D", "INHUMAN", "SECRET WARRIOR"],
-            "filtered_tags": ["S.H.I.E.L.D", "INHUMAN"]
+        "Fauve noir": {
+            "character_id": "DarkBeast",
+            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "MUTANT", "MANIPULATEUR", "GRAINE DE MORT"],
+            "filtered_tags": ["GRAINE DE MORT"]
         },
         
-        "Abomination": {
-            "character_id": "Abomination",
-            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "BIOTECHNIQUE", "COGNEUR", "GAMMA"],
-            "filtered_tags": ["GAMMA"]
+        "Femme invisible": {
+            "character_id": "InvisibleWoman",
+            "visible_tags": ["HÉROS", "COSMIQUE", "BIOTECHNIQUE", "PROTECTEUR", "QUATRE FANTASTIQUES", "MIGHTY AVENGERS", "LÉGENDAIRE", "LE CASSE DE NULLE-PART", "PLEIN D'ÉNERGIE", "MÈRES MARVEL", "EN COUPLE"],
+            "filtered_tags": ["QUATRE FANTASTIQUES", "MIGHTY AVENGERS", "LE CASSE DE NULLE-PART", "MÈRES MARVEL"]
         },
         
-        "Adam Warlock": {
-            "character_id": "AdamWarlock",
-            "visible_tags": ["HÉROS", "COSMIQUE", "MYSTIQUE", "SOUTIEN", "INFINITY WATCH", "LÉGENDAIRE"],
-            "filtered_tags": ["INFINITY WATCH"]
+        "Femme invisible (MCU)": {
+            "character_id": "InvisibleWomanMCU",
+            "visible_tags": ["HÉROS", "COSMIQUE", "BIOTECHNIQUE", "COGNEUR", "QUATRE FANTASTIQUES (MCU)", "CHAPITRE 1 - ANNONCIATEUR", "CHAPITRE 2 - CONQUÉRANT"],
+            "filtered_tags": ["QUATRE FANTASTIQUES (MCU)"]
+        },
+        
+        "Feu du soleil": {
+            "character_id": "Sunfire",
+            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "TIREUR", "UNLIMITED X-MEN", "DIVISION ALPHA"],
+            "filtered_tags": ["UNLIMITED X-MEN", "DIVISION ALPHA"]
+        },
+        
+        "Firestar": {
+            "character_id": "Firestar",
+            "visible_tags": ["HÉROS", "VILLE", "MUTANT", "TIREUR", "NEW WARRIOR"],
+            "filtered_tags": ["NEW WARRIOR"]
+        },
+        
+        "Forge": {
+            "character_id": "Forge",
+            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "SOUTIEN", "X-TREME X-MEN"],
+            "filtered_tags": ["X-TREME X-MEN"]
+        },
+        
+        "Franklin Richards": {
+            "character_id": "FranklinRichards",
+            "visible_tags": ["HÉROS", "COSMIQUE", "BIOTECHNIQUE", "MANIPULATEUR", "QUATRE FANTASTIQUES (MCU)", "CHAPITRE 1 - ANNONCIATEUR", "CHAPITRE 2 - CONQUÉRANT"],
+            "filtered_tags": ["QUATRE FANTASTIQUES (MCU)"]
+        },
+        
+        "Fusilier d'Hydra": {
+            "character_id": "HydraDmg_Buff",
+            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "TECHNO", "TIREUR", "HYDRA", "SERVITEUR"],
+            "filtered_tags": ["HYDRA", "SERVITEUR"]
+        },
+        
+        "Gambit": {
+            "character_id": "Gambit",
+            "visible_tags": ["HÉROS", "MONDIAL", "MUTANT", "TIREUR", "UNLIMITED X-MEN", "X-TREME X-MEN", "EN COUPLE"],
+            "filtered_tags": ["UNLIMITED X-MEN", "X-TREME X-MEN"]
+        },
+        
+        "Gamora": {
+            "character_id": "Gamora",
+            "visible_tags": ["HÉROS", "COSMIQUE", "EXPERTISE", "COGNEUR", "GARDIEN", "INFINITY WATCH"],
+            "filtered_tags": ["GARDIEN", "INFINITY WATCH"]
+        },
+        
+        "Garde cuirassé d'Hydra": {
+            "character_id": "HydraTank_Taunt",
+            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "TECHNO", "PROTECTEUR", "HYDRA", "SERVITEUR"],
+            "filtered_tags": ["HYDRA", "SERVITEUR"]
+        },
+        
+        "Garde royal Kree": {
+            "character_id": "KreeTank_Counter",
+            "visible_tags": ["SUPER-VILAIN", "COSMIQUE", "BIOTECHNIQUE", "PROTECTEUR", "KREE", "SERVITEUR"],
+            "filtered_tags": ["KREE", "SERVITEUR"]
+        },
+        
+        "Ghost Rider": {
+            "character_id": "GhostRider",
+            "visible_tags": ["HÉROS", "VILLE", "MYSTIQUE", "COGNEUR", "SURNATUREL", "CHASSEUR NOIR", "ESPRIT DE VENGEANCE"],
+            "filtered_tags": ["SURNATUREL", "CHASSEUR NOIR", "ESPRIT DE VENGEANCE"]
+        },
+        
+        "Ghost Rider (Robbie)": {
+            "character_id": "GhostRiderRobbie",
+            "visible_tags": ["HÉROS", "VILLE", "MYSTIQUE", "TIREUR", "DÉFENSEUR SECRET", "PLEIN D'ÉNERGIE", "ESPRIT DE VENGEANCE"],
+            "filtered_tags": ["DÉFENSEUR SECRET", "ESPRIT DE VENGEANCE"]
+        },
+        
+        "Ghost-Spider": {
+            "character_id": "GhostSpider",
+            "visible_tags": ["HÉROS", "VILLE", "BIOTECHNIQUE", "EXPERTISE", "MANIPULATEUR", "SPIDER-VERSE", "WEB WARRIOR", "SOCIÉTÉ DES ARAIGNÉES", "TISSEUR DE TOILE", "EN COUPLE"],
+            "filtered_tags": ["SPIDER-VERSE", "WEB WARRIOR", "SOCIÉTÉ DES ARAIGNÉES", "TISSEUR DE TOILE"]
+        },
+        
+        "Gladiator": {
+            "character_id": "Gladiator",
+            "visible_tags": ["SUPER-VILAIN", "COSMIQUE", "BIOTECHNIQUE", "PROTECTEUR", "ANNIHILATEUR"],
+            "filtered_tags": ["ANNIHILATEUR"]
+        },
+        
+        "Gorr": {
+            "character_id": "Gorr",
+            "visible_tags": ["SUPER-VILAIN", "COSMIQUE", "BIOTECHNIQUE", "MANIPULATEUR", "ANNIHILATEUR", "SYMBIOTE"],
+            "filtered_tags": ["ANNIHILATEUR", "SYMBIOTE"]
+        },
+        
+        "Graviton": {
+            "character_id": "Graviton",
+            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "BIOTECHNIQUE", "MANIPULATEUR", "A.I.M."],
+            "filtered_tags": ["A.I.M."]
+        },
+        
+        "Grenadier d'Hydra": {
+            "character_id": "HydraDmg_AoE",
+            "visible_tags": ["SUPER-VILAIN", "MONDIAL", "TECHNO", "TIREUR", "HYDRA", "SERVITEUR"],
+            "filtered_tags": ["HYDRA", "SERVITEUR"]
+        },
+        
+        "Groot": {
+            "character_id": "Groot",
+            "visible_tags": ["HÉROS", "COSMIQUE", "BIOTECHNIQUE", "SOUTIEN", "GARDIEN", "FRÈRES DES ÉTOILES", "ÉLITES DE L'ANNIVERSAIRE"],
+            "filtered_tags": ["GARDIEN", "FRÈRES DES ÉTOILES"]
+        },
+        
+        "Guardian": {
+            "character_id": "Guardian",
+            "visible_tags": ["HÉROS", "MONDIAL", "TECHNO", "COGNEUR", "DIVISION ALPHA"],
+            "filtered_tags": ["DIVISION ALPHA"]
+        },
+        
+        "Guêpe": {
+            "character_id": "Wasp",
+            "visible_tags": ["HÉROS", "MONDIAL", "TECHNO", "TIREUR", "PYM TECH", "A-FORCE ABSOLUE", "EN COUPLE"],
+            "filtered_tags": ["PYM TECH", "A-FORCE ABSOLUE"]
         }
     }
     
