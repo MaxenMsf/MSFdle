@@ -1,339 +1,339 @@
-Character Id,Alias,Allignement,Localisation,Origine,Origine2,Unique,Role
-ShieldSupport_Heal,Infirmière du S.H.I.E.L.D,Hero,Mondial,Expertise,,Serum,Soutien
-SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur
-LukeCage,Luke Cage,Hero,Ville,Biotechnique,,Carbonadium,Protecteur
-Punisher,Punisher,Hero,Ville,Expertise,,Moleculaire,Tireur
-Elektra,Elektra,Vilain,Ville,Mystique,Expertise,Carbonadium,Cogneur
-Deadpool,Deadpool,Hero,Mondial,Mutant,,Formule,Cogneur
-Crossbones,Crossbones,Vilain,Mondial,Techno,,Carbonadium,Protecteur
-ShieldDmg_Defense,Fantassin du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Tireur
-Thor,Thor,Hero,Cosmique,Mystique,,Uru,Tireur
-ShieldSupport_Stealth,Agent du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Soutien
-Nebula,Nebula,Vilain,Cosmique,Techno,,Quantique,Cogneur
-HydraTank_Taunt,Garde cuirassé d'Hydra,Vilain,Mondial,Techno,,Hammer,Protecteur
-ElsaBloodstone,Elsa Bloodstone,Hero,Mondial,Mystique,,Arcane,Tireur
-Hawkeye,Hawkeye,Hero,Mondial,Expertise,,Adamantium,Manipulateur
-HandSupport_Heal,Ensorceleuse de la main,Vilain,Ville,Mystique,,Arcane,Soutien
-HandDmg_Bonus,Maïtre-lame de la Main,Vilain,Ville,Expertise,,Chi,Cogneur
-Bullseye,Bullseye,Vilain,Ville,Expertise,,Moleculaire,Tireur
-Shocker,Shocker,Vilain,Ville,Techno,,Hammer,Tireur
-Wolverine,Wolverine,Hero,Mondial,Mutant,,Adamantium,Cogneur
-ShieldTank_Stun,Surveillant du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Protecteur
-CaptainAmerica,Capitain america,Hero,Mondial,Biotechnique,,Vibranium,Protecteur
-HydraDmg_Buff,Fusilier d'Hydra,Vilain,Mondial,Techno,,Judas,Tireur
-JessicaJones,Jessica Jones,Hero,Ville,Biotechnique,,Moleculaire,Manipulateur
-AmericaChavez,America Chavez,Hero,Cosmique,Mystique,,Astral,Cogneur
-Rescue,Rescousse,Hero,Mondial,Techno,,Gamma,Soutien
-HandDmg_Unbuff,Archer de la main,Vilain,Ville,Expertise,,Chi,Tireur
-Stature,Stature,Hero,Mondial,Techno,,Infini,Protecteur
-Blob,Colosse,Vilain,Mondial,Mutant,,Instable,Protecteur
-Hulk,Hulk,Hero,Mondial,Biotechnique,,Gamma,Protecteur
-WinterSoldier,Winter soldier,Vilain,Mondial,Biotechnique,,Carbonadium,Tireur
-Falcon,Falcon,Hero,Mondial,Techno,,Carbonadium,Tireur
-MsMarvel,Ms.Marvel,Hero,Ville,Biotechnique,,SHIELD,Cogneur
-HandTank_Stealth,Factionnaire de la main,Vilain,Ville,Mystique,,Arcane,Protecteur
-CaptainMarvel,Captain marvel,Hero,Cosmique,Biotechnique,,Adamantium,Cogneur
-RavagerTank_Taunt,Cogneur ravageur,Vilain,Cosmique,Biotechnique,,Promethium,Protecteur
-HandControl_HealBlock,Assassin de la main,Vilain,Ville,Mystique,,Chi,Manipulateur
-HydraDmg_AoE,Grenadier d'hydra,Vilain,Mondial,Techno,,Infini,Tireur
-ShieldDmg_AoE,Soldate du S.H.I.E.L.D,Hero,Mondial,Expertise,,Paladium,Tireur
-RavagerDmg_AoE,Déflagrateur ravageur,Vilain,Cosmique,Techno,,Paladium,Tireur
-UltGreenGoblin,Bouffon vert,Vilain,Ville,Biotechnique,,Formule,Tireur
-HydraSupport_Heal,Scientifique d'hydra,Vilain,Mondial,Expertise,,Nanomachines,Soutien
-SquirrelGirl,Squirrel girl,Hero,Ville,Biotechnique,,Instable,Soutien
-Killmonger,Killmonger,Vilain,Mondial,Expertise,,Vibranium,Tireur
-Rhino,Rhino,Vilain,Ville,Biotechnique,,Adamantium,Protecteur
-RavagerSupport_Heal,Rapiéceur ravageur,Vilain,Cosmique,Techno,,Gamma,Soutien
-Thing,La chose,Hero,Cosmique,Biotechnique,,Treillis,Cogneur
-Daredevil,Daredevil,Hero,Ville,Biotechnique,,Paladium,Cogneur
-MercTank_Debuff,Mercenaire anti-émeute,Vilain,Mondial,Expertise,,Hammer,Protecteur
-UltSpiderMan,Spider-man (Miles),Hero,Ville,Biotechnique,,Formule,Cogneur
-Colossus,Colossus,Hero,Mondial,Mutant,,Titanium,Protecteur
-Yellowjacket,Yellowjacket,Vilain,Mondial,Techno,,Gravitonium,Tireur
-KreeDmg_Speed,Faucheuse kree,Vilain,Cosmique,Biotechnique,,Quantique,Cogneur
-Domino,Domino,Hero,Mondial,Mutant,,Judas,Manipulateur
-Cyclops,Cyclope,Hero,Mondial,Mutant,,Titanium,Tireur
-Kingpin,Le caïd,Vilain,Ville,Expertise,,Vibranium,Protecteur
-MercDmg_Single,Sniper mercenaire,Vilain,Mondial,Techno,,Judas,Tireur
-Storm,Tornade,Hero,Mondial,Mutant,,Adamantium,Manipulateur
-Quake,Quake,Hero,Mondial,Techno,,Vibranium,Manipulateur
-Mysterio,Mystério,Vilain,Ville,Techno,,Luminium,Manipulateur
-Pyro,Pyro,Vilain,Mondial,Mutant,,Hammer,Tireur
-Stryfe,Stryfe,Vilain,Mondial,Mutant,,Titanium,Protecteur
-Karnak,Karnak,Hero,Cosmique,Expertise,,Treillis,Manipulateur
-Shatterstar,Shatterstar,Hero,Cosmique,Mutant,,Gravitonium,Cogneur
-Cable,Cable,Hero,Cosmique,Mutant,,Paladium,Tireur
-Ironheart,Ironheart,Hero,Mondial,Techno,,Luminium,Tireur
-HydraDmg_Single,Sniper d'hydra,Vilain,Mondial,Techno,,Judas,Tireur
-ProximaMidnight,Proxima Midnight,Vilain,Cosmique,Expertise,,Gravitonium,Manipulateur
-KreeControl_Assist,Noble kree,Vilain,Cosmique,Biotechnique,,Moleculaire,Manipulateur
-Yondu,Yondu,Vilain,Cosmique,Mystique,,Uru,Soutien
-Okoye,Okoye,Hero,Mondial,Expertise,,Vibranium,Manipulateur
-DoctorStrange,Docteur Strange,Hero,Cosmique,Mystique,,Paladium,Soutien
-Mystique,Mystique,Vilain,Mondial,Mutant,,Adamantium,Manipulateur
-MercDmg_General,Soldat mercenaire,Vilain,Mondial,Expertise,,Judas,Tireur
-Vision,Vision,Hero,Mondial,Techno,,Gamma,Manipulateur
-Yelena,Yelena Belova,Hero,Mondial,Expertise,,Serum,Tireur
-Ronan,Ronan l'accusateur,Vilain,Cosmique,Mystique,,Promethium,Manipulateur
-Korath,Korath le poursuivant,Vilain,Cosmique,Techno,,Quantique,Tireur
-RedGuardian,Red guardian,Hero,Mondial,Expertise,,Titanium,Protecteur
-Loki,Loki,Vilain,Cosmique,Mystique,,Uru,Manipulateur
-Psylocke,Psylocke,Hero,Mondial,Mutant,,Astral,Cogneur
-Mantis,Mantis,Hero,Cosmique,Biotechnique,,Spore,Manipulateur
-KreeSupport_HoT,Oracle kree,Vilain,Cosmique,Techno,,Arcane,Soutien
-Venom,Venom,Vilain,Ville,Biotechnique,,Spore,Manipulateur
-MercSupport_Buffs,Lieutenant mercenaire,Vilain,Mondial,Techno,,Hammer,Soutien
-BaronMordo,Mordo,Vilain,Cosmique,Mystique,,Arcane,Manipulateur
-AntMan,Ant-man,Hero,Mondial,Techno,,Quantique,Manipulateur
-EmmaFrost,Emma Frost,Vilain,Mondial,Mutant,,Treillis,Manipulateur
-IronMan,Iron man,Hero,Mondial,Techno,,Gamma,Tireur
-BlackPanther,Black panther,Hero,Mondial,Mystique,,Vibranium,Cogneur
-KittyPryde,Kitty Pryde,Hero,Mondial,Mutant,,Mucus,Protecteur
-Ghost,Fantôme,Vilain,Mondial,Techno,Biotechnique,Quantique,Manipulateur
-CullObsidian,Cull obsidian,Vilain,Cosmique,Biotechnique,,Luminium,Protecteur
-KreeDmg_Offense,Cyborg Kree,Vilain,Cosmique,Techno,,Promethium,Tireur
-IronFist,Iron fist,Hero,Ville,Mystique,,Chi,Cogneur
-WarMachine,War machine,Hero,Mondial,Techno,,Hammer,Tireur
-Gamora,Gamora,Hero,Cosmique,Expertise,,Promethium,Cogneur
-Vulture,Vautour,Vilain,Ville,Techno,,Hammer,Cogneur
-KreeTank_Counter,Garde royal kree,Vilain,Cosmique,Biotechnique,,Quantique,Protecteur
-Iceman,Iceman,Hero,Mondial,Mutant,,Astral,Manipulateur
-AimTank_Taunt,Surveillante de l'A.I.M,Vilain,Mondial,Techno,,Infini,Protecteur
-MBaku,M'baku,Hero,Mondial,Mystique,,Vibranium,Protecteur
-Beast,Fauve,Hero,Mondial,Mutant,,Luminium,Soutien
-Toad,Crapaud,Vilain,Mondial,Mutant,,Luminium,Manipulateur
-Electro,Electro,Vilain,Ville,Biotechnique,,Instable,Tireur
-AimDmg_Offense,Monstruosité de l'A.I.M,Vilain,Mondial,Biotechnique,,Nanomachines,Cogneur
-Sif,Sif,Hero,Cosmique,Expertise,,Uru,Protecteur
-ScarletWitch,Sorcière rouge,Hero,Mondial,Mystique,,Promethium,Manipulateur
-Swarm,Essaim,Vilain,Ville,Biotechnique,,Serum,Manipulateur
-NightNurse,Infirmière de nuit,Hero,Ville,Expertise,,Formule,Soutien
-WhiteTiger,Tigre blanc,Hero,Ville,Mystique,,Chi,Cogneur
-Minerva,Minn-erva,Vilain,Cosmique,Techno,,Gamma,Soutien
-Heimdall,Heimdall,Hero,Cosmique,Mystique,,Uru,Cogneur
-CorvusGlaive,Corvus glaive,Vilain,Cosmique,Expertise,,Infini,Cogneur
-X23,X-23,Hero,Mondial,Mutant,,Adamantium,Cogneur
-AimSupport_Heal,Chercheuse de l'A.I.M,Vilain,Mondial,Expertise,,Gamma,Soutien
-Crystal,Crystal,Hero,Cosmique,Biotechnique,,Luminium,Tireur
-Drax,Drax,Hero,Cosmique,Biotechnique,,Spore,Protecteur
-Hela,Hela,Vilain,Cosmique,Mystique,,Mucus,Manipulateur
-Zemo,Baron Zemo,Vilain,Mondial,Expertise,,Serum,Manipulateur
-Scream,Scream,Vilain,Ville,Biotechnique,,Spore,Manipulateur
-MoonKnight,Moon Knight,Hero,Ville,Mystique,,Gravitonium,Cogneur
-Taskmaster,Taskmaster,Vilain,Mondial,Expertise,Biotechnique,Treillis,Manipulateur
-Wasp,Guêpe,Hero,Mondial,Techno,,Moleculaire,Tireur
-BlackWidow,Black widow,Hero,Mondial,Expertise,,SHIELD,Manipulateur
-Sabretooth,Dents-de-sabre,Vilain,Mondial,Mutant,,Moleculaire,Cogneur
-Groot,Groot,Hero,Cosmique,Biotechnique,,Spore,Soutien
-GhostRider,Ghost rider,Hero,Ville,Mystique,,Mucus,Cogneur
-ScientistSupreme,Scientifique Suprême,Vilain,Mondial,Techno,,Infini,Soutien
-Carnage,Carnage,Vilain,Ville,Biotechnique,,Spore,Cogneur
-MrFantastic,Mister fantastic,Hero,Cosmique,Biotechnique,,Titanium,Manipulateur
-MrSinister,Mister sinistre,Vilain,Mondial,Mutant,,Treillis,Soutien
-MultipleMan,Homme-multiple,Hero,Ville,Mutant,,Treillis,Protecteur
-SilverSurfer,Surfer d'argent,Hero,Cosmique,Mystique,,Astral,Tireur
-RedSkull,Crâne rouge,Vilain,Mondial,Biotechnique,,Serum,Manipulateur
-SymbioteSpiderMan,Spider-man (symbiote),Hero,Ville,Biotechnique,,Spore,Cogneur
-Shuri,Shuri,Hero,Mondial,Techno,,Vibranium,Soutien
-Sybil,Crécerelle,Hero,Cosmique,Expertise,Techno,SHIELD,Tireur
-AimDmg_Speed,Assaillant de l'A.I.M,Vilain,Mondial,Techno,,Nanomachines,Tireur
-AntiVenom,Anti-venom,Hero,Ville,Biotechnique,,Spore,Soutien
-YoYo,Yo-Yo,Hero,Mondial,Biotechnique,,Titanium,Protecteur
-Graviton,Graviton,Vilain,Mondial,Biotechnique,,Gravitonium,Manipulateur
-Polaris,Polaris,Hero,Mondial,Mutant,,Carbonadium,Manipulateur
-RocketRaccoon,Rocket Raccoon,Hero,Cosmique,Techno,,Paladium,Tireur
-Longshot,Longshot,Hero,Cosmique,Mutant,,Gravitonium,Tireur
-Negasonic,Negasonic,Hero,Mondial,Mutant,,Instable,Tireur
-Nobu,Nobu,Vilain,Ville,Mystique,,Chi,Manipulateur
-PhylaVell,Phyla-Vell,Hero,Cosmique,Biotechnique,,Astral,Protecteur
-MistyKnight,Misty Knight,Hero,Ville,Expertise,,Nanomachines,Manipulateur
-Bishop,Bishop,Hero,Cosmique,Mutant,,Judas,Tireur
-Moondragon,Dragon-lune,Hero,Cosmique,Expertise,,Arcane,Soutien
-Ultron,Ultron,Vilain,Mondial,Techno,,Adamantium,Tireur
-ColleenWing,Colleen Wing,Hero,Ville,Expertise,,Chi,Cogneur
-NickFury,Nick Fury,Hero,Mondial,Expertise,,Serum,Soutien
-Thanos,Thanos,Vilain,Cosmique,Mystique,,Paladium,Protecteur
-SharonCarter,Sharon Carter,Hero,Mondial,Expertise,,Titanium,Manipulateur
-AimControl_Infect,Infestateur de l'A.I.M,Vilain,Mondial,Biotechnique,,Nanomachines,Manipulateur
-SheHulk,She-Hulk,Hero,Mondial,Biotechnique,,Gravitonium,Protecteur
-BlackBolt,Black bolt,Hero,Cosmique,Biotechnique,,Quantique,Tireur
-Coulson,Agent Coulson,Hero,Mondial,Techno,,SHIELD,Manipulateur
-Namor,Namor,Vilain,Mondial,Mutant,,Promethium,Cogneur
-SamWilson,Captain america (Sam),Hero,Mondial,Expertise,,Vibranium,Protecteur
-Juggernaut,Le fléau,Vilain,Mondial,Mystique,,Promethium,Protecteur
-Deathpool,Deathpool,Hero,Cosmique,Mystique,,Mucus,Cogneur
-Magneto,Magnéto,Vilain,Mondial,Mutant,,Paladium,Manipulateur
-ShangChi,Shang-chi,Hero,Mondial,Expertise,,Moleculaire,Cogneur
-StarLord,Star-lord,Hero,Cosmique,Techno,,Carbonadium,Tireur
-Cloak,Cape,Hero,Ville,Mystique,,Mucus,Manipulateur
-HumanTorch,Torche humaine,Hero,Cosmique,Biotechnique,,Instable,Tireur
-MariaHill,Maria Hill,Hero,Mondial,Expertise,,SHIELD,Soutien
-SilverSamurai,Samouraï d'argent,Vilain,Mondial,Mutant,,Titanium,Protecteur
-Dagger,Epée,Hero,Ville,Mystique,,Infini,Soutien
-InvisibleWoman,Femme invisible,Hero,Cosmique,Biotechnique,,Instable,Protecteur
-LadyDeathstrike,Lady Deathstrike,Vilain,Mondial,Techno,,Adamantium,Cogneur
-Sersi,Circé,Hero,Cosmique,Mystique,,Uru,Manipulateur
-DoctorOctopus,Docteur octopus,Vilain,Ville,Techno,,Titanium,Soutien
-EbonyMaw,Ebony maw,Vilain,Cosmique,Mystique,,Arcane,Soutien
-Ikaris,ikaris,Hero,Cosmique,Mystique,,Astral,Tireur
-Jubilee,Jubilé,Hero,Mondial,Mutant,,Luminium,Manipulateur
-Phoenix,Phénix,Hero,Mondial,Mutant,,Astral,Manipulateur
-Magik,Magik,Hero,Mondial,Mutant,,Arcane,Soutien
-AdamWarlock,Adam Warlock,Hero,Cosmique,Mystique,,Mucus,Soutien
-ScarletSpider,Scarlet spider,Hero,Ville,Biotechnique,,Formule,Cogneur
-SpiderPunk,Spider-punk,Hero,Ville,Biotechnique,,Formule,Cogneur
-GhostSpider,Ghost-spider,Hero,Ville,Biotechnique,Expertise,Spore,Manipulateur
-TChalla,Star-lord (T'Challa),Hero,Cosmique,Techno,,Carbonadium,Tireur
-Echo,Echo,Hero,Mondial,Expertise,,Treillis,Cogneur
-KateBishop,Kate Bishop,Hero,Mondial,Techno,,Moleculaire,Manipulateur
-OmegaRed,Omega red,Vilain,Mondial,Mutant,,Carbonadium,Manipulateur
-Doom,Docteur fatalis,Vilain,Mondial,Mystique,Techno,Mucus,Manipulateur
-DoctorVoodoo,Docteur Vaudoo,Hero,Mondial,Mystique,,Arcane,Soutien
-Morbius,Morbius,Vilain,Ville,Mystique,,Uru,Manipulateur
-StrangeSupreme,Strange (sans coeur),Vilain,Cosmique,Mystique,,Promethium,Tireur
-MorganLeFay,Morgan le Fay,Vilain,Mondial,Mystique,,Osmium,Manipulateur
-Wong,Wong,Hero,Mondial,Mystique,,Chi,Protecteur
-AgathaHarkness,Agatha Harkness,Vilain,Mondial,Mystique,,Arcane,Soutien
-MadelynePryor,Madelyne Pryor,Vilain,Mondial,Mutant,,Astral,Manipulateur
-Ultimus,Ultimus,Vilain,Cosmique,Mystique,,Uru,Cogneur
-NicoMinoru,Nico Minoru,Hero,Ville,Mystique,,Paladium,Manipulateur
-SpiderWoman,Spider-woman,Hero,Ville,Biotechnique,,Instable,Tireur
-Fantomex,Fantomex,Hero,Mondial,Mutant,,Nanomachines,Tireur
-Gambit,Gambit,Hero,Mondial,Mutant,,Osmium,Tireur
-Dazzler,Dazzler,Hero,Mondial,Mutant,,Quantique,Manipulateur
-Sunfire,Feu du soleil,Hero,Mondial,Mutant,,Astral,Tireur
-Rogue,Malicia,Hero,Mondial,Mutant,,Treillis,Protecteur
-JaneThor,Mighty Thor,Hero,Cosmique,Mystique,,Uru,Manipulateur
-Valkyrie,Valkyrie,Hero,Cosmique,Expertise,,Promethium,Cogneur
-VivVision,Viv vision,Hero,Mondial,Techno,,Infini,Soutien
-Deathlok,Deathlok,Hero,Mondial,Techno,,SHIELD,Tireur
-Hulkbuster,Hilkbuster,Hero,Mondial,Techno,,Gravitonium,Protecteur
-Abomination,Abomination,Vilain,Mondial,Biotechnique,,Gamma,Cogneur
-AmadeusCho,Brawn,Hero,Mondial,Biotechnique,,Paladium,Soutien
-RedHulk,Hulk rouge,Hero,Mondial,Biotechnique,,Gamma,Cogneur
-SpiderWeaver,Spider-weaver,Hero,Mondial,Mystique,,Moleculaire,Protecteur
-SpiderManNoir,Spider-man (noir),Hero,Ville,Mystique,Expertise,Treillis,Tireur
-SpiderMan2099,Spider-man 2099,Hero,Ville,Biotechnique,,Moleculaire,Manipulateur
-Dormammu,Dormammu,Vilain,Cosmique,Mystique,,Mucus,Soutien
-ZombieIronMan,Iron man (zombie),Vilain,Mondial,Biotechnique,,Chrome,Cogneur
-BlackPantherBC,Black panther (1MM),Hero,Mondial,Mystique,,Vibranium,Cogneur
-Nakia,Nakia,Hero,Mondial,Expertise,,Luminium,Manipulateur
-DarkBeast,Fauve noir,Vilain,Mondial,Mutant,,Formule,Manipulateur
-Nemesis,Némésis,Vilain,Mondial,Mutant,,Carbonadium,Soutien
-Archangel,Archangel,Vilain,Mondial,Mutant,,Chrome,Tireur
-MrNegative,Mister negative,Vilain,Ville,Mystique,,Infini,Manipulateur
-USAgent,U.S.Agent,Hero,Mondial,Biotechnique,,Judas,Manipulateur
-CaptainCarter,Captain Carter,Hero,Mondial,Biotechnique,,Moleculaire,Soutien
-AgentVenom,Agent Venom,Hero,Mondial,Biotechnique,,Judas,Tireur
-AbsorbingMan,Homme-absorbant,Vilain,Mondial,Mystique,,Instable,Protecteur
-Titania,Titania,Vilain,Mondial,Biotechnique,,Treillis,Cogneur
-KangTheConqueror,Kang le conquérant,Vilain,Cosmique,Techno,,Quantique,Tireur
-Moonstone,Opale,Vilain,Mondial,Biotechnique,,Instable,Manipulateur
-Apocalypse,Apocalypse,Vilain,Mondial,Mutant,,Astral,Soutien
-CaptainAmericaWW2,Captain america (2GM),Hero,Mondial,Expertise,,Serum,Manipulateur
-UnionJack,Union jack,Hero,Mondial,Expertise,,Carbonadium,Tireur
-BuckyBarnes,Bucky Barnes,Hero,Mondial,Expertise,,Instable,Tireur
-IronFistOrson,Iron fist (2GM),Hero,Mondial,Expertise,,Judas,Soutien
-Quicksilver,Vif-argent,Hero,Mondial,Mystique,,Chrome,Cogneur
-Firestar,Firestar,Hero,Ville,Mutant,,Treillis,Tireur
-Nova,Nova,Hero,Cosmique,Biotechnique,,Osmium,Tireur
-Gwenpool,Gwenpool,Hero,Ville,Mystique,,Hammer,Cogneur
-Cosmo,Cosmo,Hero,Cosmique,Biotechnique,,Astral,Soutien
-StarLord_Annihilation,Star-lord (annihilation),Hero,Cosmique,Expertise,,Judas,Cogneur
-Korg,Korg,Hero,Cosmique,Biotechnique,,Gravitonium,Protecteur
-Thor_InfinityWar,Thor (Infinity war),Hero,Cosmique,Mystique,,Uru,Cogneur
-Vahl,Vahl,Hero,Cosmique,Mystique,,Osmium,Cogneur
-LokiTeen,Loki (adolescent),Vilain,Cosmique,Mystique,,Arcane,Soutien
-BetaRayBill,Beta Ray Bill,Hero,Cosmique,Mystique,,Uru,Protecteur
-Sylvie,Sylvie,Vilain,Cosmique,Mystique,,Moleculaire,Manipulateur
-SpiderManBigTime,Spider-man (big time),Hero,Ville,Techno,,Chrome,Manipulateur
-Photon,Photon,Hero,Cosmique,Biotechnique,,Moleculaire,Tireur
-KamalaKhan,Ms.Marvel (lumière solide),Hero,Ville,Mutant,,Promethium,Protecteur
-BlackCat,Chatte noire,Vilain,Ville,Expertise,,Luminium,Cogneur
-GhostRiderRobbie,Ghost rider (Robbie),Hero,Ville,Mystique,,Mucus,Tireur
-Ronin,Ronin,Hero,Mondial,Expertise,,Osmium,Cogneur
-Mockingbird,Oiseau moqueur,Hero,Mondial,Expertise,,SHIELD,Soutien
-IronManInfinityWar,Iron man (Infinity war),Hero,Mondial,Techno,,Osmium,Cogneur
-Tigra,Tigra,Hero,Mondial,Biotechnique,,Carbonadium,Protecteur
-Darkhawk,Darkhawk,Hero,Mondial,Techno,,Chi,Tireur
-ZombieJuggernaut,Le fléau (zombie),Vilain,Mondial,Biotechnique,,Infini,Protecteur
-IronheartMCU,Ironheart (mod II),Hero,Mondial,Techno,,Vibranium,Manipulateur
-GreenGoblinGlider,Bouffon vert (classique),Vilain,Ville,Techno,,Formule,Manipulateur
-KravenTheHunter,Kraven le chasseur,Vilain,Ville,Expertise,,Moleculaire,Cogneur
-SpiderSlayer,Anti-araignée,Vilain,Ville,Techno,,Hammer,Tireur
-Lizard,Lézard,Vilain,Ville,Biotechnique,,Instable,Protecteur
-Nightcrawler,Diablo,Hero,Mondial,Mutant,,Osmium,Cogneur
-Forge,Forge,Hero,Mondial,Mutant,,Infini,Soutien
-Sunspot,Solar,Hero,Mondial,Mutant,,Astral,Tireur
-SymbioteSilverSurfer,Void knight,Hero,Cosmique,Biotechnique,,Spore,Soutien
-Gwenom,Gwenom,Hero,Ville,Biotechnique,,Formule,Cogneur
-SuperSkrull,Super Skrull,Vilain,Cosmique,Biotechnique,,Spore,Cogneur
-RedGoblin,Bouffon rouge,Vilain,Ville,Biotechnique,,Hammer,Protecteur
-BlackKnight,Chevalier noir,Hero,Mondial,Expertise,,Arcane,Protecteur
-StarBrand,Starbrand,Hero,Mondial,Mystique,,Astral,Cogneur
-CosmicGhostRider,Cosmic ghost rider,Hero,Cosmique,Mystique,,Mucus,Manipulateur
-IronPatriot,Iron patriot,Vilain,Mondial,Techno,,Titanium,Tireur
-TheLeader,Le leader,Vilain,Mondial,Biotechnique,,Gamma,Manipulateur
-PeterBParker,Peter B.Parker,Hero,Ville,Biotechnique,Expertise,Formule,Soutien
-SpiderManPavitr,Spider-man (Pavitr),Hero,Ville,Biotechnique, Expertise,Titanium,Cogneur
-PeniParker,Peni Parker,Hero,Ville,Expertise,Techno,Chrome,Protecteur
-PandaPool,Pandapool,Hero,Mondial,Mutant,,Hammer,Protecteur
-OldManLogan,Old man Logan,Hero,Mondial,Mutant,,Adamantium,Manipulateur
-Daken,Daken,Vilain,Mondial,Mutant,,Instable,Manipulateur
-Northstar,Véga,Hero,Mondial,Mutant,,Luminium,Manipulateur
-Guardian,Guardian,Hero,Mondial,Techno,,Gravitonium,Cogneur
-Sasquatch,Sasquatch,Hero,Mondial,Biotechnique,,Gamma,Protecteur
-HankPym,Hank Pym,Hero,Mondial,Techno,,Quantique,Soutien
-BlackPantherShuri,Black panther (Shuri),Hero,Mondial,Mystique,,Vibranium,Manipulateur
-Gladiator,Gladiator,Vilain,Cosmique,Biotechnique,,Promethium,Protecteur
-Gorr,Gorr,Vilain,Cosmique,Biotechnique,,Nanomachines,Manipulateur
-ThanosEndgame,Thanos (Endgame),Vilain,Cosmique,Expertise,,Osmium,Cogneur
-Ares,Arès,Vilain,Mondial,Mystique,,Hammer,Protecteur
-Sentinel,Sentinelle,Vilain,Mondial,Techno,,Hammer,Protecteur
-Blade,Blade,Hero,Ville,Mystique,,Nanomachines,Cogneur
-Nimrod,Nemrod,Vilain,Mondial,Techno,,Infini,Tireur
-CaptainBritain,Captain britain,Hero,Mondial,Mystique,,Chi,Protecteur
-OmegaSentinel,Sentinelle oméga,Vilain,Mondial,Techno,,Hammer,Soutien
-ZombieScarletWitch,Sorcière rouge (zombie),Vilain,Mondial,Biotechnique,Mystique,Arcane,Soutien
-Oath,Serment,Hero,Ville,Mystique,,Nanomachines,Manipulateur
-ManThing,Homme-chose,Hero,Mondial,Mystique,,Serum,Protecteur
-ShadowKing,Roi d'ombre,Vilain,Cosmique,Mutant,,Astral,Manipulateur
-Mephisto,Méphisto,Vilain,Cosmique,Mystique,,Arcane,Protecteur
-AncientOne,Ancien,Hero,Mondial,Mystique,,Moleculaire,Cogneur
-EmmaFrostXMen,Emma Frost (X-men),Hero,Mondial,Mutant,,Promethium,Soutien
-Kahhori,Kahhori,Hero,Cosmique,Mystique,,Infini,Manipulateur
-MsMarvelClassic,Ms.Marvel (classique),Hero,Cosmique,Biotechnique,,SHIELD,Soutien
-Medusa,Médusa,Hero,Cosmique,Biotechnique,,Paladium,Cogneur
-Odin,Odin,Hero,Cosmique,Mystique,,Uru,Tireur
-JeanGrey,Jean Grey,Hero,Mondial,Mutant,,Osmium,Soutien
-OmegaRedPhoenix,Omega red (force phénix),Vilain,Mondial,Mutant,,Carbonadium,Cogneur
-Hercules,Hercule,Hero,Mondial,Mystique,,Promethium,Protecteur
-PeggyCarter,Peggy Carter,Hero,Mondial,Expertise,,SHIELD,Tireur
-Lilandra,Lilandra,Hero,Cosmique,Expertise,,Chrome,Protecteur
-FalconJoaquin,Falcon (Joaquin),Hero,Mondial,Techno,,Hammer,Soutien
-Patriot,Patriot,Hero,Mondial,Biotechnique,,Vibranium,Cogneur
-HowardTheDuck,Howard le canard,Hero,Cosmique,Techno,,Paladium,Tireur
-Havok,Havok,Hero,Cosmique,Mutant,,Infini,Tireur
-Knull,Knull,Vilain,Cosmique,Mystique,,Spore,Manipulateur
-DaredevilModern,Daredevil (moderne),Hero,Ville,Expertise,,SHIELD,Protecteur
-HitMonkey,Hit-monkey,Hero,Ville,Expertise,,Gravitonium,Cogneur
-SilverSable,Silver sable,Hero,Ville,Expertise,,Judas,Tireur
-VictoriaHand,Victoria Hand,Hero,Mondial,Biotechnique,Techno,SHIELD,Soutien
-Songbird,Songbird,Hero,Mondial,Biotechnique,,Titanium,Tireur
-Hyperion,Hypérion,Hero,Cosmique,Biotechnique,,Quantique,Protecteur
-Quasar,Quasar,Hero,Cosmique,Mystique,,Quantique,Cogneur
-Hellverine,Hellverine,Vilain,Cosmique,Mystique,,Chi,Cogneur
-TheHood,Hood,Vilain,Mondial,Mystique,,Judas,Tireur
-Satana,Satana,Vilain,Cosmique,Mystique,,Mucus,Soutien
-InvisibleWomanMCU,Femme invisible (MCU),Hero,Cosmique,Biotechnique,,Moleculaire,Cogneur
-FranklinRichards,Franklin Richards,Hero,Cosmique,Biotechnique,,Instable,Manipulateur
-MrFantasticMCU,Mister fantastic (MCU),Hero,Cosmique,Biotechnique,,Instable,Protecteur
-Azazel,Azazel,Vilain,Cosmique,Mutant,,Treillis,Cogneur
-SebastianShaw,Sébastian Shaw,Vilain,Mondial,Mutant,,Luminium,Protecteur
-RachelSummers,Rachel Summers,Hero,Mondial,Mutant,,Astral,Tireur
-Blastaar,Blastaar,Vilain,Cosmique,Biotechnique,,Infini,Tireur
-PhantomRider,Phantom Rider,Hero,Ville,Mystique,,Judas,Tireur
-Scorpion,Scorpion,Vilain,Ville,Techno,,Formule,Cogneur
-Hobgoblin,Super-Bouffon,Vilain,Ville,Techno,,Serum,Manipulateur
-SuperiorSpiderMan,Spider-man supérieur,Vilain,Ville,Techno,,Gravitonium,Soutien
-Xavier,Professeur Xavier,Hero,Mondial,Mutant,,Luminium,Manipulateur
+Character Id,Alias,Allignement,Localisation,Origine,Origine2,Unique,Role,Tags
+ShieldSupport_Heal,Infirmière du S.H.I.E.L.D,Hero,Mondial,Expertise,,Serum,Soutien,"S.H.I.E.L.D"
+SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB WARRIOR"
+LukeCage,Luke Cage,Hero,Ville,Biotechnique,,Carbonadium,Protecteur,"DÉFENSEUR,HÉROS À LOUER"
+Punisher,Punisher,Hero,Ville,Expertise,,Moleculaire,Tireur,"MILITAIRE,JUSTICIER"
+Elektra,Elektra,Vilain,Ville,Mystique,Expertise,Carbonadium,Cogneur,"MAIN,SHADOWLAND,JUSTICIER"
+Deadpool,Deadpool,Hero,Mondial,Mutant,,Formule,Cogneur,"X-FORCE,MERCENAIRE,MERCENAIRES POUR L'ARGENT"
+Crossbones,Crossbones,Vilain,Mondial,Techno,,Carbonadium,Protecteur,"HYDRA"
+ShieldDmg_Defense,Fantassin du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Tireur,"S.H.I.E.L.D"
+Thor,Thor,Hero,Cosmique,Mystique,,Uru,Tireur,"ASGARDIEN,AVENGER - VAGUE I"
+ShieldSupport_Stealth,Agent du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Soutien,"S.H.I.E.L.D"
+Nebula,Nebula,Vilain,Cosmique,Techno,,Quantique,Cogneur,"INFINITY WATCH,GARDIEN"
+HydraTank_Taunt,Garde cuirassé d'Hydra,Vilain,Mondial,Techno,,Hammer,Protecteur,"HYDRA"
+ElsaBloodstone,Elsa Bloodstone,Hero,Mondial,Mystique,,Arcane,Tireur,"SURNATUREL,CHASSEUR NOIR"
+Hawkeye,Hawkeye,Hero,Mondial,Expertise,,Adamantium,Manipulateur,"S.H.I.E.L.D,AVENGER - VAGUE I"
+HandSupport_Heal,Ensorceleuse de la main,Vilain,Ville,Mystique,,Arcane,Soutien,"MAIN"
+HandDmg_Bonus,Maïtre-lame de la Main,Vilain,Ville,Expertise,,Chi,Cogneur,"MAIN"
+Bullseye,Bullseye,Vilain,Ville,Expertise,,Moleculaire,Tireur,"MERCENAIRE"
+Shocker,Shocker,Vilain,Ville,Techno,,Hammer,Tireur,"SPIDER-VERSE,SINISTER SIX"
+Wolverine,Wolverine,Hero,Mondial,Mutant,,Adamantium,Cogneur,"UNCANNY X-MEN,ARME X,DIVISION ALPHA"
+ShieldTank_Stun,Surveillant du S.H.I.E.L.D,Hero,Mondial,Expertise,,SHIELD,Protecteur,"S.H.I.E.L.D"
+CaptainAmerica,Capitain america,Hero,Mondial,Biotechnique,,Vibranium,Protecteur,"S.H.I.E.L.D,MILITAIRE,AVENGER - VAGUE I,RENAISSANCE,HORS DU TEMPS"
+HydraDmg_Buff,Fusilier d'Hydra,Vilain,Mondial,Techno,,Judas,Tireur,"HYDRA"
+JessicaJones,Jessica Jones,Hero,Ville,Biotechnique,,Moleculaire,Manipulateur,"DÉFENSEUR,A-FORCE"
+AmericaChavez,America Chavez,Hero,Cosmique,Mystique,,Astral,Cogneur,"YOUNG AVENGERS"
+Rescue,Rescousse,Hero,Mondial,Techno,,Gamma,Soutien,"TECHNO-ARMURE,P.E.G.A.S.U.S"
+HandDmg_Unbuff,Archer de la main,Vilain,Ville,Expertise,,Chi,Tireur,"MAIN"
+Stature,Stature,Hero,Mondial,Techno,,Infini,Protecteur,"PYM TECH"
+Blob,Colosse,Vilain,Mondial,Mutant,,Instable,Protecteur,"CONFRÉRIE"
+Hulk,Hulk,Hero,Mondial,Biotechnique,,Gamma,Protecteur,"AVENGER - VAGUE I,GAMMA"
+WinterSoldier,Winter soldier,Vilain,Mondial,Biotechnique,,Carbonadium,Tireur,"HYDRA,MILITAIRE,RENAISSANCE"
+Falcon,Falcon,Hero,Mondial,Techno,,Carbonadium,Tireur,"TECHNO-ARMURE,MIGHTY AVENGERS,UNCANNY AVENGERS"
+MsMarvel,Ms.Marvel,Hero,Ville,Biotechnique,,SHIELD,Cogneur,"INHUMAIN,YOUNG AVENGERS"
+HandTank_Stealth,Factionnaire de la main,Vilain,Ville,Mystique,,Arcane,Protecteur,"MAIN"
+CaptainMarvel,Captain marvel,Hero,Cosmique,Biotechnique,,Adamantium,Cogneur,"KREE,MILITAIRE,A-FORCE"
+RavagerTank_Taunt,Cogneur ravageur,Vilain,Cosmique,Biotechnique,,Promethium,Protecteur,"RAVAGEUR"
+HandControl_HealBlock,Assassin de la main,Vilain,Ville,Mystique,,Chi,Manipulateur,"MAIN"
+HydraDmg_AoE,Grenadier d'hydra,Vilain,Mondial,Techno,,Infini,Tireur,"HYDRA"
+ShieldDmg_AoE,Soldate du S.H.I.E.L.D,Hero,Mondial,Expertise,,Paladium,Tireur,"S.H.I.E.L.D"
+RavagerDmg_AoE,Déflagrateur ravageur,Vilain,Cosmique,Techno,,Paladium,Tireur,"RAVAGEUR"
+UltGreenGoblin,Bouffon vert,Vilain,Ville,Biotechnique,,Formule,Tireur,"SPIDER-VERSE,SINISTER SIX,PÈGRE"
+HydraSupport_Heal,Scientifique d'hydra,Vilain,Mondial,Expertise,,Nanomachines,Soutien,"HYDRA"
+SquirrelGirl,Squirrel girl,Hero,Ville,Biotechnique,,Instable,Soutien,"YOUNG AVENGERS"
+Killmonger,Killmonger,Vilain,Mondial,Expertise,,Vibranium,Tireur,"WAKANDIEN,MERCENAIRE,MILITAIRE"
+Rhino,Rhino,Vilain,Ville,Biotechnique,,Adamantium,Protecteur,"SPIDER-VERSE,SINISTER SIX"
+RavagerSupport_Heal,Rapiéceur ravageur,Vilain,Cosmique,Techno,,Gamma,Soutien,"RAVAGEUR"
+Thing,La chose,Hero,Cosmique,Biotechnique,,Treillis,Cogneur,"QUATRE FANTASTIQUES (MCU),NOUVEL AVENGER"
+Daredevil,Daredevil,Hero,Ville,Biotechnique,,Paladium,Cogneur,"DÉFENSEUR,SHADOWLAND"
+MercTank_Debuff,Mercenaire anti-émeute,Vilain,Mondial,Expertise,,Hammer,Protecteur,"MERCENAIRE"
+UltSpiderMan,Spider-man (Miles),Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,YOUNG AVENGERS,WEB WARRIOR"
+Colossus,Colossus,Hero,Mondial,Mutant,,Titanium,Protecteur,"UNCANNY X-MEN"
+Yellowjacket,Yellowjacket,Vilain,Mondial,Techno,,Gravitonium,Tireur,"PYM TECH,INFESTATION"
+KreeDmg_Speed,Faucheuse kree,Vilain,Cosmique,Biotechnique,,Quantique,Cogneur,"KREE"
+Domino,Domino,Hero,Mondial,Mutant,,Judas,Manipulateur,"X-FORCE,SECRET WARRIOR"
+Cyclops,Cyclope,Hero,Mondial,Mutant,,Titanium,Tireur,"UNCANNY X-MEN,X-TREME X-MEN"
+Kingpin,Le caïd,Vilain,Ville,Expertise,,Vibranium,Protecteur,"SPIDER-VERSE,PÈGRE"
+MercDmg_Single,Sniper mercenaire,Vilain,Mondial,Techno,,Judas,Tireur,"MERCENAIRE"
+Storm,Tornade,Hero,Mondial,Mutant,,Adamantium,Manipulateur,"UNCANNY X-MEN,IMMORTAL X-MEN,UNCANNY AVENGERS"
+Quake,Quake,Hero,Mondial,Techno,,Vibranium,Manipulateur,"S.H.I.E.L.D,INHUMAIN,SECRET WARRIOR"
+Mysterio,Mystério,Vilain,Ville,Techno,,Luminium,Manipulateur,"SPIDER-VERSE,SINISTER SIX"
+Pyro,Pyro,Vilain,Mondial,Mutant,,Hammer,Tireur,"CONFRÉRIE"
+Stryfe,Stryfe,Vilain,Mondial,Mutant,,Titanium,Protecteur,"MARAUDEUR"
+Karnak,Karnak,Hero,Cosmique,Expertise,,Treillis,Manipulateur,"INHUMAIN"
+Shatterstar,Shatterstar,Hero,Cosmique,Mutant,,Gravitonium,Cogneur,"FACTEUR X"
+Cable,Cable,Hero,Cosmique,Mutant,,Paladium,Tireur,"X-FORCE,IMMORTAL X-MEN"
+Ironheart,Ironheart,Hero,Mondial,Techno,,Luminium,Tireur,"TECHNO-ARMURE,A-FORCE ABSOLUTE"
+HydraDmg_Single,Sniper d'hydra,Vilain,Mondial,Techno,,Judas,Tireur,"HYDRA"
+ProximaMidnight,Proxima Midnight,Vilain,Cosmique,Expertise,,Gravitonium,Manipulateur,"ORDRE NOIR"
+KreeControl_Assist,Noble kree,Vilain,Cosmique,Biotechnique,,Moleculaire,Manipulateur,"KREE"
+Yondu,Yondu,Vilain,Cosmique,Mystique,,Uru,Soutien,"RAVAGEUR"
+Okoye,Okoye,Hero,Mondial,Expertise,,Vibranium,Manipulateur,"WAKANDIEN,CHIEN DE GUERRE"
+DoctorStrange,Docteur Strange,Hero,Cosmique,Mystique,,Paladium,Soutien,"SURNATUREL,DÉFENSEUR SECRET,ASTRAL"
+Mystique,Mystique,Vilain,Mondial,Mutant,,Adamantium,Manipulateur,"CONFRÉRIE,MARAUDEUR"
+MercDmg_General,Soldat mercenaire,Vilain,Mondial,Expertise,,Judas,Tireur,"MERCENAIRE"
+Vision,Vision,Hero,Mondial,Techno,,Gamma,Manipulateur,"AVENGERS BIONIQUES,MIGHTY AVENGERS"
+Yelena,Yelena Belova,Hero,Mondial,Expertise,,Serum,Tireur,"MILITAIRE"
+Ronan,Ronan l'accusateur,Vilain,Cosmique,Mystique,,Promethium,Manipulateur,"KREE"
+Korath,Korath le poursuivant,Vilain,Cosmique,Techno,,Quantique,Tireur,"KREE,MERCENAIRE"
+RedGuardian,Red guardian,Hero,Mondial,Expertise,,Titanium,Protecteur,"MILITAIRE"
+Loki,Loki,Vilain,Cosmique,Mystique,,Uru,Manipulateur,"ASGARDIEN,BIFRÖST"
+Psylocke,Psylocke,Hero,Mondial,Mutant,,Astral,Cogneur,"UNCANNY X-MEN,GRAINE DE MORT"
+Mantis,Mantis,Hero,Cosmique,Biotechnique,,Spore,Manipulateur,"GARDIEN"
+KreeSupport_HoT,Oracle kree,Vilain,Cosmique,Techno,,Arcane,Soutien,"KREE"
+Venom,Venom,Vilain,Ville,Biotechnique,,Spore,Manipulateur,"SPIDER-VERSE,SYMBIOTE,CONSCIENCE COLLECTIVE"
+MercSupport_Buffs,Lieutenant mercenaire,Vilain,Mondial,Techno,,Hammer,Soutien,"MERCENAIRE"
+BaronMordo,Mordo,Vilain,Cosmique,Mystique,,Arcane,Manipulateur,"SURNATUREL,CHASSEUR NOIR,MAUDIT"
+AntMan,Ant-man,Hero,Mondial,Techno,,Quantique,Manipulateur,"AVENGER,PYM TECH,INFESTATION"
+EmmaFrost,Emma Frost,Vilain,Mondial,Mutant,,Treillis,Manipulateur,"CLUB DES DAMNÉS"
+IronMan,Iron man,Hero,Mondial,Techno,,Gamma,Tireur,"AVENGER - VAGUE I,TECHNO-ARMURE,AVENGERS BIONIQUES,ILLUMINATI"
+BlackPanther,Black panther,Hero,Mondial,Mystique,,Vibranium,Cogneur,"AVENGER,WAKANDIEN,CHIEN DE GUERRE"
+KittyPryde,Kitty Pryde,Hero,Mondial,Mutant,,Mucus,Protecteur,"ASTONISHING X-MEN"
+Ghost,Fantôme,Vilain,Mondial,Techno,Biotechnique,Quantique,Manipulateur,"PYM TECH,THUNDERBOLT"
+CullObsidian,Cull obsidian,Vilain,Cosmique,Biotechnique,,Luminium,Protecteur,"ORDRE NOIR"
+KreeDmg_Offense,Cyborg Kree,Vilain,Cosmique,Techno,,Promethium,Tireur,"KREE"
+IronFist,Iron fist,Hero,Ville,Mystique,,Chi,Cogneur,"DÉFENSEUR,HÉROS À LOUER"
+WarMachine,War machine,Hero,Mondial,Techno,,Hammer,Tireur,"AVENGER,MILITAIRE,TECHNO-ARMURE,LIBERTÉ"
+Gamora,Gamora,Hero,Cosmique,Expertise,,Promethium,Cogneur,"GARDIEN,INFINITY WATCH"
+Vulture,Vautour,Vilain,Ville,Techno,,Hammer,Cogneur,"SPIDER-VERSE,SINISTER SIX"
+KreeTank_Counter,Garde royal kree,Vilain,Cosmique,Biotechnique,,Quantique,Protecteur,"KREE"
+Iceman,Iceman,Hero,Mondial,Mutant,,Astral,Manipulateur,"ASTONISHING X-MEN"
+AimTank_Taunt,Surveillante de l'A.I.M,Vilain,Mondial,Techno,,Infini,Protecteur,"A.I.M"
+MBaku,M'baku,Hero,Mondial,Mystique,,Vibranium,Protecteur,"WAKANDIEN"
+Beast,Fauve,Hero,Mondial,Mutant,,Luminium,Soutien,"UNCANNY X-MEN,ASTONISHING X-MEN,IMMORTAL X-MEN,UNCANNY AVENGERS"
+Toad,Crapaud,Vilain,Mondial,Mutant,,Luminium,Manipulateur,"CONFRÉRIE"
+Electro,Electro,Vilain,Ville,Biotechnique,,Instable,Tireur,"SPIDER-VERSE,SINISTER SIX"
+AimDmg_Offense,Monstruosité de l'A.I.M,Vilain,Mondial,Biotechnique,,Nanomachines,Cogneur,"A.I.M"
+Sif,Sif,Hero,Cosmique,Expertise,,Uru,Protecteur,"ASGARDIEN"
+ScarletWitch,Sorcière rouge,Hero,Mondial,Mystique,,Promethium,Manipulateur,"SURNATUREL,DARKHOLD,MIGHTY AVENGERS"
+Swarm,Essaim,Vilain,Ville,Biotechnique,,Serum,Manipulateur,"SPIDER-VERSE,SINISTER SIX,INFESTATION"
+NightNurse,Infirmière de nuit,Hero,Ville,Expertise,,Formule,Soutien,"SHADOWLAND"
+WhiteTiger,Tigre blanc,Hero,Ville,Mystique,,Chi,Cogneur,"SHADOWLAND"
+Minerva,Minn-erva,Vilain,Cosmique,Techno,,Gamma,Soutien,"KREE"
+Heimdall,Heimdall,Hero,Cosmique,Mystique,,Uru,Cogneur,"ASGARDIEN"
+CorvusGlaive,Corvus glaive,Vilain,Cosmique,Expertise,,Infini,Cogneur,"ORDRE NOIR"
+X23,X-23,Hero,Mondial,Mutant,,Adamantium,Cogneur,"X-FORCE,X-MEN,ARME X"
+AimSupport_Heal,Chercheuse de l'A.I.M,Vilain,Mondial,Expertise,,Gamma,Soutien,"A.I.M"
+Crystal,Crystal,Hero,Cosmique,Biotechnique,,Luminium,Tireur,"INHUMAIN"
+Drax,Drax,Hero,Cosmique,Biotechnique,,Spore,Protecteur,"GARDIEN"
+Hela,Hela,Vilain,Cosmique,Mystique,,Mucus,Manipulateur,"ASGARDIEN,IMPÉRISSABLE"
+Zemo,Baron Zemo,Vilain,Mondial,Expertise,,Serum,Manipulateur,"HYDRA"
+Scream,Scream,Vilain,Ville,Biotechnique,,Spore,Manipulateur,"SPIDER-VERSE,SYMBIOTE"
+MoonKnight,Moon Knight,Hero,Ville,Mystique,,Gravitonium,Cogneur,"SHADOWLAND,NIGHTSTALKER"
+Taskmaster,Taskmaster,Vilain,Mondial,Expertise,Biotechnique,Treillis,Manipulateur,"MANIPULATEUR,MERCENAIRE,PÈGRE,THUNDERBOLT"
+Wasp,Guêpe,Hero,Mondial,Techno,,Moleculaire,Tireur,"PYM TECH,A-FORCE ABSOLUTE"
+BlackWidow,Black widow,Hero,Mondial,Expertise,,SHIELD,Manipulateur,"S.H.I.E.L.D,AVENGER - VAGUE I,MILITAIRE,INFESTATION"
+Sabretooth,Dents-de-sabre,Vilain,Mondial,Mutant,,Moleculaire,Cogneur,"CONFRÉRIE,MARAUDEUR,ARME X"
+Groot,Groot,Hero,Cosmique,Biotechnique,,Spore,Soutien,"GARDIEN,FRÈRES DES ÉTOILES"
+GhostRider,Ghost rider,Hero,Ville,Mystique,,Mucus,Cogneur,"SURNATUREL,CHASSEUR NOIR"
+ScientistSupreme,Scientifique Suprême,Vilain,Mondial,Techno,,Infini,Soutien,"A.I.M,ORCHIS"
+Carnage,Carnage,Vilain,Ville,Biotechnique,,Spore,Cogneur,"SPIDER-VERSE,SYMBIOTE,CONSCIENCE COLLECTIVE"
+MrFantastic,Mister fantastic,Hero,Cosmique,Biotechnique,,Titanium,Manipulateur,"QUATRE FANTASTIQUES,ILLUMINATI"
+MrSinister,Mister sinistre,Vilain,Mondial,Mutant,,Treillis,Soutien,"MARAUDEUR"
+MultipleMan,Homme-multiple,Hero,Ville,Mutant,,Treillis,Protecteur,"FACTEUR X"
+SilverSurfer,Surfer d'argent,Hero,Cosmique,Mystique,,Astral,Tireur,"ANNIHILATEUR"
+RedSkull,Crâne rouge,Vilain,Mondial,Biotechnique,,Serum,Manipulateur,"HYDRA"
+SymbioteSpiderMan,Spider-man (symbiote),Hero,Ville,Biotechnique,,Spore,Cogneur,"SPIDER-VERSE,SYMBIOTE"
+Shuri,Shuri,Hero,Mondial,Techno,,Vibranium,Soutien,"WAKANDIEN,CHIEN DE GUERRE"
+Sybil,Crécerelle,Hero,Cosmique,Expertise,Techno,SHIELD,Tireur,"P.E.G.A.S.U.S"
+AimDmg_Speed,Assaillant de l'A.I.M,Vilain,Mondial,Techno,,Nanomachines,Tireur,"A.I.M"
+AntiVenom,Anti-venom,Hero,Ville,Biotechnique,,Spore,Soutien,"SPIDER-VERSE,SYMBIOTE"
+YoYo,Yo-Yo,Hero,Mondial,Biotechnique,,Titanium,Protecteur,"S.H.I.E.L.D,INHUMAIN,SECRET WARRIOR"
+Graviton,Graviton,Vilain,Mondial,Biotechnique,,Gravitonium,Manipulateur,"A.I.M"
+Polaris,Polaris,Hero,Mondial,Mutant,,Carbonadium,Manipulateur,"FACTEUR X,IMMORTAL X-MEN"
+RocketRaccoon,Rocket Raccoon,Hero,Cosmique,Techno,,Paladium,Tireur,"GARDIEN, FRÈRES DES ÉTOILES"
+Longshot,Longshot,Hero,Cosmique,Mutant,,Gravitonium,Tireur,"FACTEUR X"
+Negasonic,Negasonic,Hero,Mondial,Mutant,,Instable,Tireur,"X-FORCE,SECRET WARRIOR"
+Nobu,Nobu,Vilain,Ville,Mystique,,Chi,Manipulateur,"MAIN,PÈGRE"
+PhylaVell,Phyla-Vell,Hero,Cosmique,Biotechnique,,Astral,Protecteur,"INFINITY WATCH,KREE"
+MistyKnight,Misty Knight,Hero,Ville,Expertise,,Nanomachines,Manipulateur,"HÉROS À LOUER"
+Bishop,Bishop,Hero,Cosmique,Mutant,,Judas,Tireur,"ASTONISHING X-MEN"
+Moondragon,Dragon-lune,Hero,Cosmique,Expertise,,Arcane,Soutien,"SHADOWLAND,NIGHTSTALKER"
+Ultron,Ultron,Vilain,Mondial,Techno,,Adamantium,Tireur,"MAÎTRES DU MAL"
+ColleenWing,Colleen Wing,Hero,Ville,Expertise,,Chi,Cogneur,"HÉROS À LOUER"
+NickFury,Nick Fury,Hero,Mondial,Expertise,,Serum,Soutien,"AVENGER,S.H.I.E.L.D,LÉGENDAIRE,ENVAHISSEUR"
+Thanos,Thanos,Vilain,Cosmique,Mystique,,Paladium,Protecteur,"AUCUN"
+SharonCarter,Sharon Carter,Hero,Mondial,Expertise,,Titanium,Manipulateur,"AVENGERS SECRETS"
+AimControl_Infect,Infestateur de l'A.I.M,Vilain,Mondial,Biotechnique,,Nanomachines,Manipulateur,"A.I.M"
+SheHulk,She-Hulk,Hero,Mondial,Biotechnique,,Gravitonium,Protecteur,"GAMMA"
+BlackBolt,Black bolt,Hero,Cosmique,Biotechnique,,Quantique,Tireur,"INHUMAIN,ILLUMINATI"
+Coulson,Agent Coulson,Hero,Mondial,Techno,,SHIELD,Manipulateur,"AVENGER,S.H.I.E.L.D,NOUVEL AVENGER"
+Namor,Namor,Vilain,Mondial,Mutant,,Promethium,Cogneur,"CABALE"
+SamWilson,Captain america (Sam),Hero,Mondial,Expertise,,Vibranium,Protecteur,"AVENGERS SECRETS,LIBERTÉ"
+Juggernaut,Le fléau,Vilain,Mondial,Mystique,,Promethium,Protecteur,"CONFRÉRIE,MAUDIT"
+Deathpool,Deathpool,Hero,Cosmique,Mystique,,Mucus,Cogneur,"NEW WARRIOR,MERCENAIRE,MERCENAIRES POUR L'ARGENT"
+Magneto,Magnéto,Vilain,Mondial,Mutant,,Paladium,Manipulateur,"CONFRÉRIE,GRAINE DE MORT"
+ShangChi,Shang-chi,Hero,Mondial,Expertise,,Moleculaire,Cogneur,"HÉROS À LOUER"
+StarLord,Star-lord,Hero,Cosmique,Techno,,Carbonadium,Tireur,"GARDIEN"
+Cloak,Cape,Hero,Ville,Mystique,,Mucus,Manipulateur,"NEW WARRIOR"
+HumanTorch,Torche humaine,Hero,Cosmique,Biotechnique,,Instable,Tireur,"QUATRE FANTASTIQUES (MCU)"
+MariaHill,Maria Hill,Hero,Mondial,Expertise,,SHIELD,Soutien,"S.H.I.E.L.D,AVENGERS SECRETS"
+SilverSamurai,Samouraï d'argent,Vilain,Mondial,Mutant,,Titanium,Protecteur,"ARME X"
+Dagger,Epée,Hero,Ville,Mystique,,Infini,Soutien,"NEW WARRIOR"
+InvisibleWoman,Femme invisible,Hero,Cosmique,Biotechnique,,Instable,Protecteur,"QUATRE FANTASTIQUES,MIGHTY AVENGERS"
+LadyDeathstrike,Lady Deathstrike,Vilain,Mondial,Techno,,Adamantium,Cogneur,"ARME X,ORCHIS"
+Sersi,Circé,Hero,Cosmique,Mystique,,Uru,Manipulateur,"ÉTERNEL"
+DoctorOctopus,Docteur octopus,Vilain,Ville,Techno,,Titanium,Soutien,"SPIDER-VERSE,SINISTER SIX,SUPERIOR SIX"
+EbonyMaw,Ebony maw,Vilain,Cosmique,Mystique,,Arcane,Soutien,"ORDRE NOIR"
+Ikaris,ikaris,Hero,Cosmique,Mystique,,Astral,Tireur,"ÉTERNEL"
+Jubilee,Jubilé,Hero,Mondial,Mutant,,Luminium,Manipulateur,"ASTONISHING X-MEN"
+Phoenix,Phénix,Hero,Mondial,Mutant,,Astral,Manipulateur,"UNCANNY X-MEN,FORCE PHÉNIX"
+Magik,Magik,Hero,Mondial,Mutant,,Arcane,Soutien,"UNCANNY X-MEN"
+AdamWarlock,Adam Warlock,Hero,Cosmique,Mystique,,Mucus,Soutien,"INFINITY WATCH"
+ScarletSpider,Scarlet spider,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB WARRIOR"
+SpiderPunk,Spider-punk,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB WARRIOR"
+GhostSpider,Ghost-spider,Hero,Ville,Biotechnique,Expertise,Spore,Manipulateur,"SPIDER-VERSE,WEB WARRIOR,SOCIÉTÉ DES ARAIGNÉES"
+TChalla,Star-lord (T'Challa),Hero,Cosmique,Techno,,Carbonadium,Tireur,"RAVAGEUR"
+Echo,Echo,Hero,Mondial,Expertise,,Treillis,Cogneur,"YOUNG AVENGERS"
+KateBishop,Kate Bishop,Hero,Mondial,Techno,,Moleculaire,Manipulateur,"YOUNG AVENGERS"
+OmegaRed,Omega red,Vilain,Mondial,Mutant,,Carbonadium,Manipulateur,"ARME X"
+Doom,Docteur fatalis,Vilain,Mondial,Mystique,Techno,Mucus,Manipulateur,"AUCUN"
+DoctorVoodoo,Docteur Vaudoo,Hero,Mondial,Mystique,,Arcane,Soutien,"CHASSEUR NOIR"
+Morbius,Morbius,Vilain,Ville,Mystique,,Uru,Manipulateur,"VAMPIRE,SPIDER-VERSE,CHASSEUR NOIR"
+StrangeSupreme,Strange (sans coeur),Vilain,Cosmique,Mystique,,Promethium,Tireur,"DARKHOLD"
+MorganLeFay,Morgan le Fay,Vilain,Mondial,Mystique,,Osmium,Manipulateur,"DARKHOLD,CAVALIER"
+Wong,Wong,Hero,Mondial,Mystique,,Chi,Protecteur,"DARKHOLD"
+AgathaHarkness,Agatha Harkness,Vilain,Mondial,Mystique,,Arcane,Soutien,"DARKHOLD,NIGHTSTALKER"
+MadelynePryor,Madelyne Pryor,Vilain,Mondial,Mutant,,Astral,Manipulateur,"MARAUDEUR,CLUB DES DAMNÉS"
+Ultimus,Ultimus,Vilain,Cosmique,Mystique,,Uru,Cogneur,"KREE,ANNIHILATEUR"
+NicoMinoru,Nico Minoru,Hero,Ville,Mystique,,Paladium,Manipulateur,"A-FORCE"
+SpiderWoman,Spider-woman,Hero,Ville,Biotechnique,,Instable,Tireur,"SPIDER-VERSE,A-FORCE"
+Fantomex,Fantomex,Hero,Mondial,Mutant,,Nanomachines,Tireur,"UNLIMITED X-MEN"
+Gambit,Gambit,Hero,Mondial,Mutant,,Osmium,Tireur,"UNLIMITED X-MEN,X-TREME X-MEN"
+Dazzler,Dazzler,Hero,Mondial,Mutant,,Quantique,Manipulateur,"UNLIMITED X-MEN"
+Sunfire,Feu du soleil,Hero,Mondial,Mutant,,Astral,Tireur,"UNLIMITED X-MEN,DIVISION ALPHA"
+Rogue,Malicia,Hero,Mondial,Mutant,,Treillis,Protecteur,"UNLIMITED X-MEN,CAVALIER"
+JaneThor,Mighty Thor,Hero,Cosmique,Mystique,,Uru,Manipulateur,"ASGARDIEN"
+Valkyrie,Valkyrie,Hero,Cosmique,Expertise,,Promethium,Cogneur,"ASGARDIEN"
+VivVision,Viv vision,Hero,Mondial,Techno,,Infini,Soutien,"AVENGERS BIONIQUES"
+Deathlok,Deathlok,Hero,Mondial,Techno,,SHIELD,Tireur,"AVENGERS BIONIQUES"
+Hulkbuster,Hilkbuster,Hero,Mondial,Techno,,Gravitonium,Protecteur,"AVENGERS BIONIQUES"
+Abomination,Abomination,Vilain,Mondial,Biotechnique,,Gamma,Cogneur,"GAMMA"
+AmadeusCho,Brawn,Hero,Mondial,Biotechnique,,Paladium,Soutien,"GAMMA"
+RedHulk,Hulk rouge,Hero,Mondial,Biotechnique,,Gamma,Cogneur,"GAMMA,CAVALIER"
+SpiderWeaver,Spider-weaver,Hero,Mondial,Mystique,,Moleculaire,Protecteur,"SPIDER-VERSE,ENTOILAGE"
+SpiderManNoir,Spider-man (noir),Hero,Ville,Mystique,Expertise,Treillis,Tireur,"SPIDER-VERSE,ENTOILAGE,SOCIÉTÉ DES ARAIGNÉES"
+SpiderMan2099,Spider-man 2099,Hero,Ville,Biotechnique,,Moleculaire,Manipulateur,"SPIDER-VERSE,ENTOILAGE"
+Dormammu,Dormammu,Vilain,Cosmique,Mystique,,Mucus,Soutien,"AUCUN"
+ZombieIronMan,Iron man (zombie),Vilain,Mondial,Biotechnique,,Chrome,Cogneur,"IMPÉRISSABLE"
+BlackPantherBC,Black panther (1MM),Hero,Mondial,Mystique,,Vibranium,Cogneur,"WAKANDIEN,CHIEN DE GUERRE"
+Nakia,Nakia,Hero,Mondial,Expertise,,Luminium,Manipulateur,"WAKANDIEN,CHIEN DE GUERRE"
+DarkBeast,Fauve noir,Vilain,Mondial,Mutant,,Formule,Manipulateur,"GRAINE DE MORT"
+Nemesis,Némésis,Vilain,Mondial,Mutant,,Carbonadium,Soutien,"GRAINE DE MORT"
+Archangel,Archangel,Vilain,Mondial,Mutant,,Chrome,Tireur,"GRAINE DE MORT,CAVALIER"
+MrNegative,Mister negative,Vilain,Ville,Mystique,,Infini,Manipulateur,"SPIDER-VERSE,PÈGRE"
+USAgent,U.S.Agent,Hero,Mondial,Biotechnique,,Judas,Manipulateur,"RENAISSANCE"
+CaptainCarter,Captain Carter,Hero,Mondial,Biotechnique,,Moleculaire,Soutien,"RENAISSANCE,HORS DU TEMPS"
+AgentVenom,Agent Venom,Hero,Mondial,Biotechnique,,Judas,Tireur,"SPIDER-VERSE,SYMBIOTE,RENAISSANCE"
+AbsorbingMan,Homme-absorbant,Vilain,Mondial,Mystique,,Instable,Protecteur,"MAÎTRES DU MAL"
+Titania,Titania,Vilain,Mondial,Biotechnique,,Treillis,Cogneur,"MAÎTRES DU MAL"
+KangTheConqueror,Kang le conquérant,Vilain,Cosmique,Techno,,Quantique,Tireur,"MAÎTRES DU MAL"
+Moonstone,Opale,Vilain,Mondial,Biotechnique,,Instable,Manipulateur,"MAÎTRES DU MAL"
+Apocalypse,Apocalypse,Vilain,Mondial,Mutant,,Astral,Soutien,"AUCUN"
+CaptainAmericaWW2,Captain america (2GM),Hero,Mondial,Expertise,,Serum,Manipulateur,"ENVAHISSEUR"
+UnionJack,Union jack,Hero,Mondial,Expertise,,Carbonadium,Tireur,"ENVAHISSEUR"
+BuckyBarnes,Bucky Barnes,Hero,Mondial,Expertise,,Instable,Tireur,"ENVAHISSEUR"
+IronFistOrson,Iron fist (2GM),Hero,Mondial,Expertise,,Judas,Soutien,"ENVAHISSEUR"
+Quicksilver,Vif-argent,Hero,Mondial,Mystique,,Chrome,Cogneur,"AUCUN"
+Firestar,Firestar,Hero,Ville,Mutant,,Treillis,Tireur,"NEW WARRIOR"
+Nova,Nova,Hero,Cosmique,Biotechnique,,Osmium,Tireur,"NULLE-PART"
+Gwenpool,Gwenpool,Hero,Ville,Mystique,,Hammer,Cogneur,"NEW WARRIOR"
+Cosmo,Cosmo,Hero,Cosmique,Biotechnique,,Astral,Soutien,"GARDIEN,NULLE-PART"
+StarLord_Annihilation,Star-lord (annihilation),Hero,Cosmique,Expertise,,Judas,Cogneur,"GARDIEN,NULLE-PART"
+Korg,Korg,Hero,Cosmique,Biotechnique,,Gravitonium,Protecteur,"NULLE-PART"
+Thor_InfinityWar,Thor (Infinity war),Hero,Cosmique,Mystique,,Uru,Cogneur,"AVENGER,ASGARDIEN,NULLE-PART"
+Vahl,Vahl,Hero,Cosmique,Mystique,,Osmium,Cogneur,"BIFRÖST,ASGARDIEN"
+LokiTeen,Loki (adolescent),Vilain,Cosmique,Mystique,,Arcane,Soutien,"BIFRÖST,ASGARDIEN"
+BetaRayBill,Beta Ray Bill,Hero,Cosmique,Mystique,,Uru,Protecteur,"BIFRÖST,ASGARDIEN"
+Sylvie,Sylvie,Vilain,Cosmique,Mystique,,Moleculaire,Manipulateur,"BIFRÖST,ASGARDIEN"
+SpiderManBigTime,Spider-man (big time),Hero,Ville,Techno,,Chrome,Manipulateur,"SPIDER-VERSE,INFESTATION"
+Photon,Photon,Hero,Cosmique,Biotechnique,,Moleculaire,Tireur,"A-FORCE,DÉFENSEUR SECRET"
+KamalaKhan,Ms.Marvel (lumière solide),Hero,Ville,Mutant,,Promethium,Protecteur,"DÉFENSEUR SECRET"
+BlackCat,Chatte noire,Vilain,Ville,Expertise,,Luminium,Cogneur,"SPIDER-VERSE,DÉFENSEUR SECRET"
+GhostRiderRobbie,Ghost rider (Robbie),Hero,Ville,Mystique,,Mucus,Tireur,"DÉFENSEUR SECRET"
+Ronin,Ronin,Hero,Mondial,Expertise,,Osmium,Cogneur,"NOUVEL AVENGER"
+Mockingbird,Oiseau moqueur,Hero,Mondial,Expertise,,SHIELD,Soutien,"NOUVEL AVENGER,S.H.I.E.L.D"
+IronManInfinityWar,Iron man (Infinity war),Hero,Mondial,Techno,,Osmium,Cogneur,"AVENGER,P.E.G.A.S.U.S"
+Tigra,Tigra,Hero,Mondial,Biotechnique,,Carbonadium,Protecteur,"NOUVEL AVENGER"
+Darkhawk,Darkhawk,Hero,Mondial,Techno,,Chi,Tireur,"P.E.G.A.S.U.S"
+ZombieJuggernaut,Le fléau (zombie),Vilain,Mondial,Biotechnique,,Infini,Protecteur,"IMPÉRISSABLE"
+IronheartMCU,Ironheart (mod II),Hero,Mondial,Techno,,Vibranium,Manipulateur,"P.E.G.A.S.U.S"
+GreenGoblinGlider,Bouffon vert (classique),Vilain,Ville,Techno,,Formule,Manipulateur,"SPIDER-VERSE,SINISTER SIX,SUPERIOR SIX"
+KravenTheHunter,Kraven le chasseur,Vilain,Ville,Expertise,,Moleculaire,Cogneur,"SPIDER-VERSE,SINISTER SIX,SUPERIOR SIX"
+SpiderSlayer,Anti-araignée,Vilain,Ville,Techno,,Hammer,Tireur,"SPIDER-VERSE,SINISTER SIX,SUPERIOR SIX"
+Lizard,Lézard,Vilain,Ville,Biotechnique,,Instable,Protecteur,"SPIDER-VERSE,SINISTER SIX,SUPERIOR SIX"
+Nightcrawler,Diablo,Hero,Mondial,Mutant,,Osmium,Cogneur,"X-TREME X-MEN"
+Forge,Forge,Hero,Mondial,Mutant,,Infini,Soutien,"X-TREME X-MEN"
+Sunspot,Solar,Hero,Mondial,Mutant,,Astral,Tireur,"X-TREME X-MEN"
+SymbioteSilverSurfer,Void knight,Hero,Cosmique,Biotechnique,,Spore,Soutien,"SPIDER-VERSE,SYMBIOTE,CONSCIENCE COLLECTIVE"
+Gwenom,Gwenom,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,SYMBIOTE,CONSCIENCE COLLECTIVE"
+SuperSkrull,Super Skrull,Vilain,Cosmique,Biotechnique,,Spore,Cogneur,"AUCUN"
+RedGoblin,Bouffon rouge,Vilain,Ville,Biotechnique,,Hammer,Protecteur,"SPIDER-VERSE,SYMBIOTE,CONSCIENCE COLLECTIVE"
+BlackKnight,Chevalier noir,Hero,Mondial,Expertise,,Arcane,Protecteur,"HORS DU TEMPS"
+StarBrand,Starbrand,Hero,Mondial,Mystique,,Astral,Cogneur,"HORS DU TEMPS"
+CosmicGhostRider,Cosmic ghost rider,Hero,Cosmique,Mystique,,Mucus,Manipulateur,"HORS DU TEMPS"
+IronPatriot,Iron patriot,Vilain,Mondial,Techno,,Titanium,Tireur,"CABALE"
+TheLeader,Le leader,Vilain,Mondial,Biotechnique,,Gamma,Manipulateur,"CABALE,GAMMA"
+PeterBParker,Peter B.Parker,Hero,Ville,Biotechnique,Expertise,Formule,Soutien,"SPIDER-VERSE,SOCIÉTÉ DES ARAIGNÉES"
+SpiderManPavitr,Spider-man (Pavitr),Hero,Ville,Biotechnique, Expertise,Titanium,Cogneur,"SPIDER-VERSE,SOCIÉTÉ DES ARAIGNÉES"
+PeniParker,Peni Parker,Hero,Ville,Expertise,Techno,Chrome,Protecteur,"SPIDER-VERSE,SOCIÉTÉ DES ARAIGNÉES"
+PandaPool,Pandapool,Hero,Mondial,Mutant,,Hammer,Protecteur,"MERCENAIRE,MERCENAIRES POUR L'ARGENT"
+OldManLogan,Old man Logan,Hero,Mondial,Mutant,,Adamantium,Manipulateur,"MERCENAIRE,MERCENAIRES POUR L'ARGENT, X-MEN"
+Daken,Daken,Vilain,Mondial,Mutant,,Instable,Manipulateur,"MERCENAIRE,MERCENAIRES POUR L'ARGENT"
+Northstar,Véga,Hero,Mondial,Mutant,,Luminium,Manipulateur,"DIVISION ALPHA"
+Guardian,Guardian,Hero,Mondial,Techno,,Gravitonium,Cogneur,"DIVISION ALPHA"
+Sasquatch,Sasquatch,Hero,Mondial,Biotechnique,,Gamma,Protecteur,"DIVISION ALPHA"
+HankPym,Hank Pym,Hero,Mondial,Techno,,Quantique,Soutien,"PYM TECH,AVENGER,ILLUMINATI"
+BlackPantherShuri,Black panther (Shuri),Hero,Mondial,Mystique,,Vibranium,Manipulateur,"WAKANDIEN,ILLUMINATI"
+Gladiator,Gladiator,Vilain,Cosmique,Biotechnique,,Promethium,Protecteur,"ANNIHILATEUR"
+Gorr,Gorr,Vilain,Cosmique,Biotechnique,,Nanomachines,Manipulateur,"ANNIHILATEUR,SYMBIOTE"
+ThanosEndgame,Thanos (Endgame),Vilain,Cosmique,Expertise,,Osmium,Cogneur,"ANNIHILATEUR"
+Ares,Arès,Vilain,Mondial,Mystique,,Hammer,Protecteur,"AUCUN"
+Sentinel,Sentinelle,Vilain,Mondial,Techno,,Hammer,Protecteur,"ORCHIS"
+Blade,Blade,Hero,Ville,Mystique,,Nanomachines,Cogneur,"VAMPIRE,NIGHTSTALKER"
+Nimrod,Nemrod,Vilain,Mondial,Techno,,Infini,Tireur,"ORCHIS"
+CaptainBritain,Captain britain,Hero,Mondial,Mystique,,Chi,Protecteur,"ILLUMINATI"
+OmegaSentinel,Sentinelle oméga,Vilain,Mondial,Techno,,Hammer,Soutien,"ORCHIS"
+ZombieScarletWitch,Sorcière rouge (zombie),Vilain,Mondial,Biotechnique,Mystique,Arcane,Soutien,"IMPÉRISSABLE"
+Oath,Serment,Hero,Ville,Mystique,,Nanomachines,Manipulateur,"VAMPIRE,NIGHTSTALKER"
+ManThing,Homme-chose,Hero,Mondial,Mystique,,Serum,Protecteur,"NIGHTSTALKER"
+ShadowKing,Roi d'ombre,Vilain,Cosmique,Mutant,,Astral,Manipulateur,"ASTRAL"
+Mephisto,Méphisto,Vilain,Cosmique,Mystique,,Arcane,Protecteur,"AUCUN"
+AncientOne,Ancien,Hero,Mondial,Mystique,,Moleculaire,Cogneur,"ASTRAL"
+EmmaFrostXMen,Emma Frost (X-men),Hero,Mondial,Mutant,,Promethium,Soutien,"ASTRAL,X-MEN"
+Kahhori,Kahhori,Hero,Cosmique,Mystique,,Infini,Manipulateur,"A-FORCE ABSOLUTE"
+MsMarvelClassic,Ms.Marvel (classique),Hero,Cosmique,Biotechnique,,SHIELD,Soutien,"KREE,A-FORCE ABSOLUTE"
+Medusa,Médusa,Hero,Cosmique,Biotechnique,,Paladium,Cogneur,"INHUMAIN,A-FORCE ABSOLUTE"
+Odin,Odin,Hero,Cosmique,Mystique,,Uru,Tireur,"ASGARDIEN"
+JeanGrey,Jean Grey,Hero,Mondial,Mutant,,Osmium,Soutien,"X-MEN,IMMORTAL X-MEN,UNCANNY AVENGERS"
+OmegaRedPhoenix,Omega red (force phénix),Vilain,Mondial,Mutant,,Carbonadium,Cogneur,"FORCE PHÉNIX"
+Hercules,Hercule,Hero,Mondial,Mystique,,Promethium,Protecteur,"MIGHTY AVENGERS,UNCANNY AVENGERS"
+PeggyCarter,Peggy Carter,Hero,Mondial,Expertise,,SHIELD,Tireur,"LIBERTÉ"
+Lilandra,Lilandra,Hero,Cosmique,Expertise,,Chrome,Protecteur,"FRÈRES DES ÉTOILES"
+FalconJoaquin,Falcon (Joaquin),Hero,Mondial,Techno,,Hammer,Soutien,"LIBERTÉ"
+Patriot,Patriot,Hero,Mondial,Biotechnique,,Vibranium,Cogneur,"LIBERTÉ"
+HowardTheDuck,Howard le canard,Hero,Cosmique,Techno,,Paladium,Tireur,"FRÈRES DES ÉTOILES"
+Havok,Havok,Hero,Cosmique,Mutant,,Infini,Tireur,"FRÈRES DES ÉTOILES,X-MEN"
+Knull,Knull,Vilain,Cosmique,Mystique,,Spore,Manipulateur,"SYMBIOTE"
+DaredevilModern,Daredevil (moderne),Hero,Ville,Expertise,,SHIELD,Protecteur,"JUSTICIER"
+HitMonkey,Hit-monkey,Hero,Ville,Expertise,,Gravitonium,Cogneur,"JUSTICIER"
+SilverSable,Silver sable,Hero,Ville,Expertise,,Judas,Tireur,"MERCENAIRE,SPIDER-VERSE,JUSTICIER"
+VictoriaHand,Victoria Hand,Hero,Mondial,Biotechnique,Techno,SHIELD,Soutien,"S.H.I.E.L.D,THUNDERBOLT"
+Songbird,Songbird,Hero,Mondial,Biotechnique,,Titanium,Tireur,"THUNDERBOLT"
+Hyperion,Hypérion,Hero,Cosmique,Biotechnique,,Quantique,Protecteur,"ÉTERNEL,THUNDERBOLT"
+Quasar,Quasar,Hero,Cosmique,Mystique,,Quantique,Cogneur,"AUCUN"
+Hellverine,Hellverine,Vilain,Cosmique,Mystique,,Chi,Cogneur,"MAUDIT"
+TheHood,Hood,Vilain,Mondial,Mystique,,Judas,Tireur,"MAUDIT"
+Satana,Satana,Vilain,Cosmique,Mystique,,Mucus,Soutien,"MAUDIT"
+InvisibleWomanMCU,Femme invisible (MCU),Hero,Cosmique,Biotechnique,,Moleculaire,Cogneur,"QUATRE FANTASTIQUES (MCU)"
+FranklinRichards,Franklin Richards,Hero,Cosmique,Biotechnique,,Instable,Manipulateur,"QUATRE FANTASTIQUES (MCU)"
+MrFantasticMCU,Mister fantastic (MCU),Hero,Cosmique,Biotechnique,,Instable,Protecteur,"QUATRE FANTASTIQUES (MCU)"
+Azazel,Azazel,Vilain,Cosmique,Mutant,,Treillis,Cogneur,"CLUB DES DAMNÉS,MAUDIT"
+SebastianShaw,Sébastian Shaw,Vilain,Mondial,Mutant,,Luminium,Protecteur,"CLUB DES DAMNÉS"
+RachelSummers,Rachel Summers,Hero,Mondial,Mutant,,Astral,Tireur,"CLUB DES DAMNÉS,IMMORTAL X-MEN"
+Blastaar,Blastaar,Vilain,Cosmique,Biotechnique,,Infini,Tireur,"AUCUN"
+PhantomRider,Phantom Rider,Hero,Ville,Mystique,,Judas,Tireur,"SECRET WARRIOR"
+Scorpion,Scorpion,Vilain,Ville,Techno,,Formule,Cogneur,"SPIDER-VERSE,SINISTER SIX,INSIDIOUS SIX,INFESTATION"
+Hobgoblin,Super-Bouffon,Vilain,Ville,Techno,,Serum,Manipulateur,"SPIDER-VERSE,SINISTER SIX,INSIDIOUS SIX,SUPERIOR SIX"
+SuperiorSpiderMan,Spider-man supérieur,Vilain,Ville,Techno,,Gravitonium,Soutien,"SPIDER-VERSE,SINISTER SIX,INSIDIOUS SIX"
+Xavier,Professeur Xavier,Hero,Mondial,Mutant,,Luminium,Manipulateur,"X-MEN"
