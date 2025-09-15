@@ -3,217 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MSFdle - Devine le Personnage MSF ! (Auto-Reload)</title>
+    <title>MSFdle - Devine le Personnage MSF !</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 1200px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
-            color: #eee;
+            background: linear-gradient(135deg, #0C0F1A 0%, #1a1d3a 25%, #2d1b69 50%, #7c3aed 100%);
+            color: #ffffff;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Effet de particules en arrière-plan */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 58, 237, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         .container {
-            background: linear-gradient(145deg, #1E293B, #0F172A);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 
+                0 32px 64px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(120, 58, 237, 0.2);
+            position: relative;
+            animation: containerSlideIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        
+        @keyframes containerSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(120, 58, 237, 0.05) 50%, transparent 70%);
+            border-radius: 24px;
+            pointer-events: none;
+        }
+        
         h1 {
             text-align: center;
-            background: linear-gradient(45deg, #F59E0B, #FCD34D);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 25%, #10b981 50%, #f59e0b 75%, #ef4444 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 30px;
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+            margin-bottom: 40px;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+            letter-spacing: -0.02em;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.5));
+            }
+            100% {
+                filter: drop-shadow(0 0 40px rgba(124, 58, 237, 0.8));
+            }
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #7c3aed, #10b981, #f59e0b);
+            border-radius: 2px;
+            opacity: 0.7;
         }
         .game-info {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(120, 58, 237, 0.1);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(120, 58, 237, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .stats-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .stats-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stats-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #7c3aed;
         }
         .search-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             position: relative;
         }
+        
         input {
             width: 100%;
-            padding: 15px 20px 15px 60px; /* Espace pour le portrait */
+            padding: 20px 25px 20px 70px;
             font-size: 18px;
-            border: 2px solid #334155;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #1E293B, #334155);
+            font-weight: 500;
+            border: 2px solid rgba(120, 58, 237, 0.3);
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
             color: white;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 4px 20px rgba(120, 58, 237, 0.1);
             box-sizing: border-box;
+            font-family: inherit;
         }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+        }
+        
         input:focus {
             outline: none;
-            border-color: #F59E0B;
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            border-color: #7c3aed;
+            box-shadow: 
+                0 0 0 4px rgba(124, 58, 237, 0.2),
+                0 8px 32px rgba(124, 58, 237, 0.3),
+                inset 0 2px 4px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
+            background: rgba(15, 23, 42, 0.95);
         }
+        
         .search-portrait {
             position: absolute;
-            left: 10px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(245, 158, 11, 0.5);
+            border: 2px solid rgba(124, 58, 237, 0.5);
             display: none;
             z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         .suggestions {
-            background: linear-gradient(145deg, #1E293B, #334155);
-            border: 2px solid #334155;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(120, 58, 237, 0.3);
             border-top: none;
-            max-height: 250px;
+            max-height: 300px;
             overflow-y: auto;
-            border-radius: 0 0 15px 15px;
+            border-radius: 0 0 20px 20px;
             position: absolute;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(124, 58, 237, 0.5) transparent;
         }
+        
+        .suggestions::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .suggestions::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .suggestions::-webkit-scrollbar-thumb {
+            background: rgba(124, 58, 237, 0.5);
+            border-radius: 3px;
+        }
+        
+        .suggestions::-webkit-scrollbar-thumb:hover {
+            background: rgba(124, 58, 237, 0.7);
+        }
+        
         .suggestion {
-            padding: 12px 20px;
+            padding: 16px 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 1px solid rgba(120, 58, 237, 0.1);
             display: flex;
             align-items: center;
             gap: 15px;
+            font-weight: 500;
         }
+        
         .suggestion:hover {
-            background: linear-gradient(145deg, #F59E0B, #FCD34D);
-            color: #0F172A;
-            transform: translateX(5px);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
+            transform: translateX(8px);
+            border-bottom-color: transparent;
         }
+        
+        .suggestion:last-child {
+            border-bottom: none;
+        }
+        
         .suggestion-portrait {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             object-fit: cover;
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            border: 2px solid rgba(124, 58, 237, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
         }
         .portrait {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(245, 158, 11, 0.5);
+            border: 3px solid rgba(124, 58, 237, 0.6);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
+        
         .portrait-cell {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 80px;
+            min-width: 90px;
         }
         .guess-history {
-            margin-top: 20px;
+            margin-top: 40px;
         }
+        
         .guess-row {
             display: grid;
-            grid-template-columns: 80px 2fr 1fr 1.5fr 1.5fr 1fr 2fr;
-            gap: 12px;
-            margin-bottom: 12px;
-            padding: 15px;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #1E293B, #334155);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(245, 158, 11, 0.1);
+            grid-template-columns: 90px 2fr 1.2fr 1.5fr 1.5fr 1.2fr 2fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(120, 58, 237, 0.1);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .guess-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s;
+        }
+        
         .guess-row:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(120, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.3);
         }
+        
+        .guess-row:hover::before {
+            left: 100%;
+        }
+        
         .guess-header {
-            font-weight: bold;
-            background: linear-gradient(145deg, #F59E0B, #FCD34D);
-            color: #0F172A;
-            border: 2px solid #FCD34D;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
+            border: 2px solid #7c3aed;
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+        
+        .guess-header:hover {
+            transform: none;
         }
         .cell {
-            padding: 12px;
+            padding: 15px;
             text-align: center;
-            border-radius: 10px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 40px;
+            min-height: 50px;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            position: relative;
+            font-size: 15px;
         }
+        
+        .cell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cell:hover::before {
+            opacity: 1;
+        }
+        
         .correct {
-            background: linear-gradient(145deg, #10B981, #059669);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 
+                0 6px 20px rgba(16, 185, 129, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             color: white;
+            border: 1px solid rgba(16, 185, 129, 0.6);
         }
+        
         .partial {
-            background: linear-gradient(145deg, #F59E0B, #D97706);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 
+                0 6px 20px rgba(245, 158, 11, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             color: white;
+            border: 1px solid rgba(245, 158, 11, 0.6);
         }
+        
         .incorrect {
-            background: linear-gradient(145deg, #EF4444, #DC2626);
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 
+                0 6px 20px rgba(239, 68, 68, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             color: white;
+            border: 1px solid rgba(239, 68, 68, 0.6);
         }
+        
         .character {
-            background: linear-gradient(145deg, #3B82F6, #2563EB);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            box-shadow: 
+                0 6px 20px rgba(59, 130, 246, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             color: white;
+            border: 1px solid rgba(59, 130, 246, 0.6);
         }
         .message {
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 16px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: messageShine 2s infinite;
+        }
+        
         .message.success {
-            background: linear-gradient(145deg, #10B981, #059669);
-            color: white;
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #10b981;
+            color: #d1fae5;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
         }
+        
         .message.error {
-            background: linear-gradient(145deg, #EF4444, #DC2626);
-            color: white;
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #fecaca;
+            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2);
         }
+        
         .message.info {
-            background: linear-gradient(145deg, #3B82F6, #2563EB);
-            color: white;
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            color: #dbeafe;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+        }
+        
+        @keyframes messageShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         .button {
-            background: linear-gradient(145deg, #F59E0B, #FCD34D);
-            color: #0F172A;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
             border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
+            padding: 16px 32px;
+            border-radius: 16px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 0;
+            box-shadow: 
+                0 8px 24px rgba(124, 58, 237, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.6);
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
         .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 32px rgba(124, 58, 237, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        }
+        
+        .button:hover::before {
+            left: 100%;
+        }
+        
+        .button:active {
+            transform: translateY(-1px) scale(0.98);
         }
         /* Animation de flip pour les nouvelles cellules uniquement */
         .cell.new-cell {
-            animation: flipCard 0.6s ease-in-out;
+            animation: flipCard 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        
         /* Animation en cascade pour les cellules d'une ligne */
         .cell.new-cell:nth-child(1) { animation-delay: 0s; }
         .cell.new-cell:nth-child(2) { animation-delay: 0.1s; }
@@ -227,119 +520,233 @@
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
+        
         @keyframes flipCard {
-            0% { transform: rotateY(0deg); }
-            50% { transform: rotateY(-90deg); }
-            100% { transform: rotateY(0deg); }
+            0% { 
+                transform: rotateY(0deg) scale(1); 
+                opacity: 0.7;
+            }
+            50% { 
+                transform: rotateY(-90deg) scale(1.1); 
+                opacity: 0.3;
+            }
+            100% { 
+                transform: rotateY(0deg) scale(1); 
+                opacity: 1;
+            }
         }
-        /* Animation de victoire */
+        /* Animation de victoire améliorée */
         .victory-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(245, 158, 11, 0.2) 50%, rgba(0, 0, 0, 0.1) 100%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, rgba(16, 185, 129, 0.3) 30%, rgba(245, 158, 11, 0.2) 60%, rgba(0, 0, 0, 0.4) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10000;
-            animation: victoryFadeIn 0.8s ease-in-out;
+            animation: victoryFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
+            backdrop-filter: blur(8px);
         }
+        
         .victory-content {
-            background: linear-gradient(145deg, #10B981, #059669);
-            padding: 40px 60px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(16, 185, 129, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 50px 70px;
+            border-radius: 24px;
             text-align: center;
             color: white;
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
-            animation: victoryBounce 1s ease-out;
-            border: 3px solid #FCD34D;
+            box-shadow: 
+                0 32px 64px rgba(16, 185, 129, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: victoryBounce 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(16, 185, 129, 0.6);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .victory-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: victoryShine 2s infinite;
+        }
+        
         .victory-title {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
             animation: victoryPulse 2s infinite;
+            font-weight: 800;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
         }
+        
         .victory-message {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
+        
         .victory-confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #FCD34D;
-            animation: confetti 3s linear infinite;
+            width: 12px;
+            height: 12px;
+            background: #fcd34d;
+            animation: confetti 4s linear infinite;
+            border-radius: 2px;
         }
+        
         @keyframes victoryFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { 
+                opacity: 0; 
+                backdrop-filter: blur(0px);
+            }
+            to { 
+                opacity: 1; 
+                backdrop-filter: blur(8px);
+            }
         }
+        
         @keyframes victoryBounce {
-            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
-            50% { transform: scale(1.1) rotate(5deg); }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            0% { 
+                transform: scale(0.3) rotate(-15deg); 
+                opacity: 0; 
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg); 
+                opacity: 1;
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1; 
+            }
         }
+        
         @keyframes victoryPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.05); }
         }
+        
+        @keyframes victoryShine {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
         @keyframes confetti {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(720deg); }
+            0% { 
+                transform: translateY(-100vh) rotate(0deg) scale(1); 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(720deg) scale(0.5); 
+                opacity: 0;
+            }
         }
         .loading {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 500;
         }
+        
         .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(245, 158, 11, 0.3);
-            border-top-color: #F59E0B;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(124, 58, 237, 0.3);
+            border-top-color: #7c3aed;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            background: rgba(245, 158, 11, 0.1);
-            padding: 15px;
-            border-radius: 10px;
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+            }
+            
+            .guess-row {
+                grid-template-columns: 70px 1.5fr 1fr 1fr 1fr 1fr 1.5fr;
+                gap: 8px;
+                padding: 15px;
+            }
+            
+            .cell {
+                padding: 10px;
+                font-size: 12px;
+                min-height: 40px;
+            }
+            
+            .portrait {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .portrait-cell {
+                min-width: 60px;
+            }
+            
+            input {
+                padding: 18px 20px 18px 60px;
+                font-size: 16px;
+            }
+            
+            .search-portrait {
+                width: 35px;
+                height: 35px;
+                left: 12px;
+            }
         }
-        .dev-info {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid #EF4444;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: block;
-            font-size: 14px;
-            color: #EF4444;
-        }
-        .debug-section {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid #3B82F6;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 12px;
-            color: #3B82F6;
+        
+        @media (max-width: 480px) {
+            .guess-row {
+                grid-template-columns: 60px 1fr 0.8fr 0.8fr 0.8fr 0.8fr 1fr;
+                gap: 6px;
+                padding: 12px;
+            }
+            
+            .cell {
+                padding: 8px;
+                font-size: 11px;
+                min-height: 35px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -347,26 +754,12 @@
     <div class="container">
         <h1>🎯 MSFdle</h1>
         
-        <div class="dev-info" id="devInfo">
-            <strong>🎯 PERSONNAGE À DEVINER</strong><br>
-            <span id="targetDebug">Aucun personnage chargé</span>
-        </div>
-
-        <div class="debug-section" id="debugSection">
-            <strong>📊 DEBUG INFO</strong><br>
-            <div>Personnages chargés: <span id="charCount">0</span></div>
-            <div>Statut API: <span id="apiStatus">Non testé</span></div>
-            <div>Dernière erreur: <span id="lastError">Aucune</span></div>
-        </div>
-
         <div class="stats">
-            <div>
-                <strong>Tentatives:</strong>
-                <span id="attemptCount">0</span>
+            <div class="stats-item">
+                <div class="stats-label">Tentatives</div>
+                <div class="stats-value" id="attemptCount">0</div>
             </div>
-            <div>
-                <button class="button" onclick="startNewGame()">Nouvelle Partie</button>
-            </div>
+            <button class="button" onclick="startNewGame()">Nouvelle Partie</button>
         </div>
 
         <div class="search-container">
@@ -402,17 +795,11 @@
         const messageDiv = document.getElementById('message');
         const historyDiv = document.getElementById('guessHistory');
         const attemptCountDiv = document.getElementById('attemptCount');
-        const devInfo = document.getElementById('devInfo');
-        const targetDebug = document.getElementById('targetDebug');
-        const charCount = document.getElementById('charCount');
-        const apiStatus = document.getElementById('apiStatus');
-        const lastError = document.getElementById('lastError');
         const searchPortrait = document.getElementById('searchPortrait');
 
         // Charger tous les personnages au démarrage
         async function loadCharacters() {
             try {
-                apiStatus.textContent = 'Tentative de connexion...';
                 const response = await fetch('http://localhost:5001/api/characters');
                 
                 if (!response.ok) {
@@ -422,12 +809,6 @@
                 const data = await response.json();
                 if (data.success) {
                     allCharacters = data.characters;
-                    charCount.textContent = allCharacters.length;
-                    apiStatus.textContent = 'Connecté ✅';
-                    lastError.textContent = 'Aucune';
-                    
-                    console.log(`✅ ${allCharacters.length} personnages chargés`);
-                    console.log('Premier personnage:', allCharacters[0]);
                     
                     if (allCharacters.length === 0) {
                         throw new Error('Aucun personnage trouvé dans la base de données');
@@ -438,9 +819,6 @@
                 
             } catch (error) {
                 console.error('❌ Erreur chargement personnages:', error);
-                apiStatus.textContent = 'Erreur ❌';
-                lastError.textContent = error.message;
-                charCount.textContent = '0';
                 showMessage('❌ Erreur de chargement des personnages: ' + error.message, 'error');
             }
         }
@@ -481,7 +859,6 @@
             showLoading(true);
             
             try {
-                console.log('🎮 Démarrage nouvelle partie...');
                 const response = await fetch('http://localhost:5001/api/random-character', {
                     method: 'GET'
                 });
@@ -491,7 +868,6 @@
                 }
                 
                 const data = await response.json();
-                console.log('🎯 Personnage reçu:', data);
                 
                 if (data.id) {
                     targetCharacter = data;
@@ -503,24 +879,12 @@
                     historyDiv.innerHTML = '';
                     attemptCountDiv.textContent = '0';
                     
-                    // Afficher clairement le personnage à deviner
-                    targetDebug.innerHTML = `
-                        <strong>${targetCharacter.alias}</strong><br>
-                        Affiliation: ${targetCharacter.alignment}<br>
-                        Secteur: ${targetCharacter.location}<br>
-                        Origine: ${targetCharacter.origins}<br>
-                        Rôle: ${targetCharacter.role}<br>
-                        Tags: ${targetCharacter.tags}
-                    `;
-                    
                     showMessage('🎯 Nouvelle partie commencée ! Devinez le personnage...', 'info');
-                    console.log('🎯 Nouveau personnage cible:', targetCharacter);
                 } else {
                     throw new Error('Réponse API invalide - pas d\'ID trouvé');
                 }
             } catch (error) {
                 showMessage('❌ Erreur lors du démarrage de la partie: ' + error.message, 'error');
-                lastError.textContent = error.message;
                 console.error('Erreur startNewGame:', error);
             } finally {
                 showLoading(false);
@@ -534,14 +898,9 @@
                 return;
             }
 
-            console.log(`🔍 Recherche de personnages contenant: "${value}"`);
-            console.log(`📊 Nombre total de personnages: ${allCharacters.length}`);
-
             const filtered = allCharacters.filter(char => 
                 char.alias.toLowerCase().includes(value.toLowerCase())
             ).slice(0, 10);
-
-            console.log(`✅ ${filtered.length} personnages trouvés`);
 
             if (filtered.length === 0) {
                 suggestions.style.display = 'none';
@@ -622,10 +981,6 @@
                 });
 
                 const result = await response.json();
-                
-                // Debug: Afficher ce que l'API retourne
-                console.log('🔍 Réponse API:', result);
-                console.log('🔍 Comparaison reçue:', result.comparison);
                 
                 // Ajouter à l'historique
                 guessHistory.push({
