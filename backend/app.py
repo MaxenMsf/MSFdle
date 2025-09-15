@@ -457,21 +457,17 @@ def get_all_characters():
             character_tags = tags_result[0] if tags_result and tags_result[0] else "AUCUN"
             
             character = {
-                'id': row[0],
-                'character_id': row[1],  # Le character_id est maintenant en position 1
-                'alias': row[2],
-                'alignment': row[3],
-                'location': row[4],
-                'origins': row[5],
-                'role': row[6],
-                'portrait_path': f"portraits/Portrait_{row[1]}.png",  # Chemin vers le portrait
+                'id': row[0],                     # Position 0: id
+                'alias': row[1],                  # Position 1: alias
+                'alignment': row[2],              # Position 2: alignment
+                'location': row[3],               # Position 3: location
+                'origins': row[4],                # Position 4: origin1
+                'origins2': row[5] if row[5] else None,  # Position 5: origin2
+                'role': row[6],                   # Position 6: role
+                'character_id': row[7],           # Position 7: character_id
+                'portrait_path': f"portraits/Portrait_{row[7]}.png",  # Chemin vers le portrait
                 'tags': character_tags
             }
-            # Ajouter origins2 si disponible (colonne 7)
-            if len(row) > 7:
-                character['origins2'] = row[7] if row[7] else None
-            else:
-                character['origins2'] = None
             
             characters.append(character)
         
@@ -514,43 +510,71 @@ def create_character():
         
         # Insérer le nouveau personnage
         origins2 = data.get('origins2', '').strip() if data.get('origins2') else None
-        tags = data.get('tags', '').strip() if data.get('tags') else ""
+        character_id_str = data.get('character_id', '').strip() if data.get('character_id') else data['alias'].strip()
         
         cursor.execute("""
-            INSERT INTO characters (alias, alignment, location, origins, role, origins2, tags)
+            INSERT INTO characters (alias, alignment, location, origin1, origin2, role, character_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """, (
             data['alias'].strip(),
             data['alignment'].strip(),
             data['location'].strip(),
             data['origins'].strip(),
-            data['role'].strip(),
             origins2,
-            tags
+            data['role'].strip(),
+            character_id_str
         ))
         
-        character_id = cursor.lastrowid
+        character_db_id = cursor.lastrowid
         conn.commit()
         
-        # Récupérer le personnage créé
-        cursor.execute("SELECT * FROM characters WHERE id = ?", (character_id,))
+        # Gérer les tags si fournis
+        tags_str = data.get('tags', '').strip() if data.get('tags') else ""
+        if tags_str and tags_str != "AUCUN":
+            # Parser les tags et les associer au personnage
+            tags_list = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
+            for tag_name in tags_list:
+                # Créer le tag s'il n'existe pas
+                cursor.execute("INSERT OR IGNORE INTO tags (name) VALUES (?)", (tag_name,))
+                # Récupérer l'ID du tag
+                cursor.execute("SELECT id FROM tags WHERE name = ?", (tag_name,))
+                tag_id = cursor.fetchone()[0]
+                # Associer le tag au personnage
+                cursor.execute("INSERT OR IGNORE INTO character_tags (character_id, tag_id) VALUES (?, ?)", 
+                             (character_db_id, tag_id))
+        
+        conn.commit()
+        
+        # Récupérer le personnage créé avec ses tags
+        cursor.execute("SELECT * FROM characters WHERE id = ?", (character_db_id,))
         row = cursor.fetchone()
         
+        # Récupérer les tags
+        cursor.execute('''
+            SELECT GROUP_CONCAT(t.name, ', ') as tags
+            FROM character_tags ct
+            JOIN tags t ON ct.tag_id = t.id
+            WHERE ct.character_id = ?
+        ''', (character_db_id,))
+        tags_result = cursor.fetchone()
+        character_tags = tags_result[0] if tags_result and tags_result[0] else "AUCUN"
+        
         new_character = {
-            'id': row[0],
-            'alias': row[1],
-            'alignment': row[2],
-            'location': row[3],
-            'origins': row[4],
-            'role': row[5],
-            'origins2': row[6] if len(row) > 6 and row[6] else None,
-            'tags': row[7] if len(row) > 7 and row[7] else ""
+            'id': row[0],                    # Position 0: id
+            'alias': row[1],                 # Position 1: alias
+            'alignment': row[2],             # Position 2: alignment
+            'location': row[3],              # Position 3: location
+            'origins': row[4],               # Position 4: origin1
+            'origins2': row[5] if row[5] else None,  # Position 5: origin2
+            'role': row[6],                  # Position 6: role
+            'character_id': row[7],          # Position 7: character_id
+            'tags': character_tags
         }
         
         cursor.close()
         conn.close()
         
-        print(f"✅ Nouveau personnage créé: {data['alias']} (ID: {character_id})")
+        print(f"✅ Nouveau personnage créé: {data['alias']} (ID: {character_db_id})")
         
         return jsonify({
             "message": f"Personnage '{data['alias']}' créé avec succès",
@@ -587,16 +611,16 @@ def get_random_character():
             character_tags = tags_result[0] if tags_result and tags_result[0] else "AUCUN"
             
             character = {
-                'id': row[0],
-                'character_id': row[1],  # Le character_id est en position 1
-                'alias': row[2],
-                'alignment': row[3],
-                'location': row[4],
-                'origins': row[5],
-                'role': row[6],
-                'origins2': row[7] if len(row) > 7 and row[7] else None,
+                'id': row[0],                     # Position 0: id
+                'alias': row[1],                  # Position 1: alias
+                'alignment': row[2],              # Position 2: alignment
+                'location': row[3],               # Position 3: location
+                'origins': row[4],                # Position 4: origin1
+                'origins2': row[5] if row[5] else None,  # Position 5: origin2
+                'role': row[6],                   # Position 6: role
+                'character_id': row[7],           # Position 7: character_id
                 'tags': character_tags,
-                'portrait_path': f"portraits/Portrait_{row[1]}.png"  # Chemin vers le portrait
+                'portrait_path': f"portraits/Portrait_{row[7]}.png"  # Chemin vers le portrait
             }
         else:
             character = None
@@ -678,27 +702,27 @@ def check_guess():
         
         # Convertir les rows en dictionnaires
         guessed_char = {
-            'id': guessed_row[0],
-            'character_id': guessed_row[1],  # Le character_id est en position 1
-            'alias': guessed_row[2],
-            'alignment': guessed_row[3],
-            'location': guessed_row[4],
-            'origins': guessed_row[5],
-            'role': guessed_row[6],
-            'origins2': guessed_row[7] if len(guessed_row) > 7 and guessed_row[7] else None,
+            'id': guessed_row[0],                    # Position 0: id
+            'alias': guessed_row[1],                 # Position 1: alias
+            'alignment': guessed_row[2],             # Position 2: alignment
+            'location': guessed_row[3],              # Position 3: location
+            'origins': guessed_row[4],               # Position 4: origin1
+            'origins2': guessed_row[5] if guessed_row[5] else None,  # Position 5: origin2
+            'role': guessed_row[6],                  # Position 6: role
+            'character_id': guessed_row[7],          # Position 7: character_id
             'tags': guessed_tags,
-            'portrait_path': f"portraits/Portrait_{guessed_row[1]}.png"
+            'portrait_path': f"portraits/Portrait_{guessed_row[7]}.png"
         }
         
         target_char = {
-            'id': target_row[0],
-            'character_id': target_row[1],  # Le character_id est en position 1
-            'alias': target_row[2],
-            'alignment': target_row[3],
-            'location': target_row[4],
-            'origins': target_row[5],
-            'role': target_row[6],
-            'origins2': target_row[7] if len(target_row) > 7 and target_row[7] else None,
+            'id': target_row[0],                     # Position 0: id
+            'alias': target_row[1],                  # Position 1: alias
+            'alignment': target_row[2],              # Position 2: alignment
+            'location': target_row[3],               # Position 3: location
+            'origins': target_row[4],                # Position 4: origin1
+            'origins2': target_row[5] if target_row[5] else None,  # Position 5: origin2
+            'role': target_row[6],                   # Position 6: role
+            'character_id': target_row[7],           # Position 7: character_id
             'tags': target_tags
         }
         
@@ -859,22 +883,41 @@ def update_character(character_id):
         
         # Mettre à jour le personnage
         origins2 = data.get('origins2', '').strip() if data.get('origins2') else None
-        tags = data.get('tags', '').strip() if data.get('tags') else ""
+        character_id_str = data.get('character_id', '').strip() if data.get('character_id') else data['alias'].strip()
         
         cursor.execute("""
             UPDATE characters 
-            SET alias = ?, alignment = ?, location = ?, origins = ?, role = ?, origins2 = ?, tags = ?
+            SET alias = ?, alignment = ?, location = ?, origin1 = ?, origin2 = ?, role = ?, character_id = ?
             WHERE id = ?
         """, (
             data['alias'].strip(),
             data['alignment'].strip(),
             data['location'].strip(),
             data['origins'].strip(),
-            data['role'].strip(),
             origins2,
-            tags,
+            data['role'].strip(),
+            character_id_str,
             character_id
         ))
+        
+        # Gérer les tags si fournis
+        tags_str = data.get('tags', '').strip() if data.get('tags') else ""
+        
+        # Supprimer tous les anciens tags du personnage
+        cursor.execute("DELETE FROM character_tags WHERE character_id = ?", (character_id,))
+        
+        # Ajouter les nouveaux tags
+        if tags_str and tags_str != "AUCUN":
+            tags_list = [tag.strip() for tag in tags_str.split(',') if tag.strip()]
+            for tag_name in tags_list:
+                # Créer le tag s'il n'existe pas
+                cursor.execute("INSERT OR IGNORE INTO tags (name) VALUES (?)", (tag_name,))
+                # Récupérer l'ID du tag
+                cursor.execute("SELECT id FROM tags WHERE name = ?", (tag_name,))
+                tag_id = cursor.fetchone()[0]
+                # Associer le tag au personnage
+                cursor.execute("INSERT OR IGNORE INTO character_tags (character_id, tag_id) VALUES (?, ?)", 
+                             (character_id, tag_id))
         
         conn.commit()
         cursor.close()
