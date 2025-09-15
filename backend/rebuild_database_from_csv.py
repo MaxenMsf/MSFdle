@@ -64,8 +64,7 @@ def rebuild_database_from_csv():
                 location VARCHAR(50) NOT NULL,
                 origin1 VARCHAR(50) NOT NULL,
                 origin2 VARCHAR(50),
-                character_id VARCHAR(100) UNIQUE NOT NULL
-            );,
+                role VARCHAR(50) NOT NULL,
                 character_id VARCHAR(100) UNIQUE NOT NULL
             );
 

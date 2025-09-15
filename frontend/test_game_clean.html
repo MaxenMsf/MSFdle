@@ -12,6 +12,11 @@
             padding: 0;
         }
         
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             max-width: 1400px;
@@ -22,6 +27,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            width: 100%;
         }
         
         /* Effet de particules en arrière-plan */
@@ -300,6 +306,8 @@
             border: 1px solid rgba(120, 58, 237, 0.1);
             position: relative;
             overflow: hidden;
+            max-width: 100%;
+            overflow: hidden;
         }
         
         .guess-row::before {
@@ -555,7 +563,7 @@
             justify-content: center;
             z-index: 10000;
             animation: victoryFadeIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
+            pointer-events: auto;
             backdrop-filter: blur(8px);
         }
         
@@ -574,6 +582,8 @@
             border: 2px solid rgba(16, 185, 129, 0.6);
             position: relative;
             overflow: hidden;
+            max-width: 500px;
+            width: 90%;
         }
         
         .victory-content::before {
@@ -589,7 +599,7 @@
         
         .victory-title {
             font-size: 3.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             animation: victoryPulse 2s infinite;
             font-weight: 800;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -597,12 +607,71 @@
             z-index: 1;
         }
         
+        .victory-portrait {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            margin: 20px auto;
+            animation: victoryPortraitFloat 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
         .victory-message {
             font-size: 1.3rem;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-weight: 500;
             position: relative;
             z-index: 1;
+        }
+        
+        .victory-button {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 20px;
+            box-shadow: 
+                0 8px 24px rgba(124, 58, 237, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.6);
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .victory-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .victory-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 32px rgba(124, 58, 237, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        }
+        
+        .victory-button:hover::before {
+            left: 100%;
         }
         
         .victory-confetti {
@@ -648,6 +717,11 @@
         @keyframes victoryShine {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        @keyframes victoryPortraitFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
         }
         
         @keyframes confetti {
@@ -893,13 +967,13 @@
 
         // Filtrer et afficher les suggestions
         function showSuggestions(value) {
-            if (value.length < 2) {
+            if (value.length < 1) {
                 suggestions.style.display = 'none';
                 return;
             }
 
             const filtered = allCharacters.filter(char => 
-                char.alias.toLowerCase().includes(value.toLowerCase())
+                char.alias.toLowerCase().startsWith(value.toLowerCase())
             ).slice(0, 10);
 
             if (filtered.length === 0) {
@@ -932,7 +1006,7 @@
 
         // Mettre à jour le portrait dans la barre de recherche
         function updateSearchPortrait(value) {
-            if (value.length < 2) {
+            if (value.length < 1) {
                 searchPortrait.style.display = 'none';
                 return;
             }
@@ -1090,14 +1164,21 @@
         function showVictoryAnimation() {
             const victoryDiv = document.createElement('div');
             victoryDiv.className = 'victory-animation';
+            victoryDiv.id = 'victoryAnimation';
+            
+            // Construire le chemin du portrait à partir du character_id
+            const portraitSrc = `http://localhost:5001/portraits/Portrait_${targetCharacter.character_id}.png`;
             
             victoryDiv.innerHTML = `
                 <div class="victory-content">
                     <div class="victory-title">🎉 VICTOIRE ! 🎉</div>
+                    <img src="${portraitSrc}" alt="${targetCharacter.alias}" class="victory-portrait" 
+                         onerror="this.style.display='none'">
                     <div class="victory-message">
                         Vous avez trouvé <strong>${targetCharacter.alias}</strong><br>
                         en ${guessHistory.length} tentative${guessHistory.length > 1 ? 's' : ''} !
                     </div>
+                    <button class="victory-button" onclick="restartGame()">🔄 Recommencer</button>
                 </div>
             `;
             
@@ -1113,10 +1194,19 @@
             
             document.body.appendChild(victoryDiv);
             
-            // Supprimer l'animation après 4 secondes
-            setTimeout(() => {
+            // L'animation ne se supprime plus automatiquement
+        }
+        
+        // Fonction pour recommencer le jeu
+        function restartGame() {
+            // Supprimer l'animation de victoire
+            const victoryDiv = document.getElementById('victoryAnimation');
+            if (victoryDiv) {
                 victoryDiv.remove();
-            }, 4000);
+            }
+            
+            // Relancer une nouvelle partie
+            startNewGame();
         }
 
         // Initialiser le jeu
