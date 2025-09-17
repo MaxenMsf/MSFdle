@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSFdle - Jeu Emoji</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { overflow-x: hidden; max-width: 100%; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 25%, #252b47 50%, #2c3548 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+                repeating-linear-gradient(0deg, transparent, transparent 98px, rgba(59, 130, 246, 0.03) 100px),
+                repeating-linear-gradient(90deg, transparent, transparent 98px, rgba(59, 130, 246, 0.03) 100px);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .container {
+            background: rgba(26, 31, 53, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+            border: 1px solid rgba(59,130,246,0.3);
+            position: relative;
+            max-width: 420px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, #3b82f6 0%, #fb923c 50%, #22c55e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            font-size: clamp(2.2rem, 5vw, 2.1rem);
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(59,130,246,0.3);
+            letter-spacing: 0.05em;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(59,130,246,0.5)); }
+            100% { filter: drop-shadow(0 0 40px rgba(59,130,246,0.8)); }
+        }
+        .emoji-box {
+            font-size: 2.5rem;
+            margin: 2rem 0 1.5rem 0;
+            letter-spacing: 0.2em;
+            min-height: 3.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .input-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            width: 100%;
+            margin-bottom: 1.2rem;
+        }
+        .input-row input[type="text"] {
+            font-size: 1.2rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0.7rem 0 0 0.7rem;
+            border: 2px solid #3b82f6;
+            background: #181c2f;
+            color: #fff;
+            width: 70%;
+            border-right: none;
+            outline: none;
+        }
+        .input-row button {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            border: none;
+            border-radius: 0 0.7rem 0.7rem 0;
+            padding: 0.7rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 16px #0008;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .input-row button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 8px 24px #000a;
+        }
+        .result {
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-height: 1.5rem;
+            width: 100%;
+            text-align: center;
+        }
+        .menu-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            border: none;
+            border-radius: 0.7rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 16px #0008;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-top: 1.2rem;
+        }
+        .menu-btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0 8px 24px #000a;
+        }
+        a { color: #3b82f6; text-decoration: underline; margin-top: 1.5rem; display: inline-block; }
+        .emoji-reveal {
+            position: relative;
+        }
+        .emoji-case {
+            background: #181c2f;
+            border-radius: 0.5em;
+            box-shadow: 0 2px 8px #0006;
+            overflow: hidden;
+        }
+        .emoji-cover {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(17,27,42,0.92);
+            border-radius: 0.5em;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .victory {
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 1.3em;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 12px #22c55e99;
+            animation: popVictory 0.7s cubic-bezier(.2,1.8,.5,1) 1;
+        }
+        @keyframes popVictory {
+            0% { transform: scale(0.7); opacity: 0.2; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .victory-anim {
+            animation: boxVictory 1.2s cubic-bezier(.2,1.8,.5,1) 1;
+        }
+        @keyframes boxVictory {
+            0% { box-shadow: 0 0 0 0 #22c55e00; }
+            40% { box-shadow: 0 0 32px 8px #22c55e88; }
+            100% { box-shadow: 0 0 0 0 #22c55e00; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            h1 { font-size: 1.3rem; }
+            .emoji-box { font-size: 1.3rem; }
+            .input-row input[type="text"] { width: 60%; }
+        }
+        .emoji-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 0.4em;
+            margin-bottom: 1.2em;
+        }
+        .emoji-case {
+            width: 2.7em;
+            height: 2.7em;
+            background: #181c2f;
+            border-radius: 0.5em;
+            box-shadow: 0 2px 8px #0006;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.12em;
+        }
+        .emoji-char {
+            font-size: 2.1rem;
+            z-index: 1;
+        }
+        .emoji-cover {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(17,27,42,0.92);
+            border-radius: 0.5em;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DEVINE LE PERSONNAGE AVEC LES EMOJIS !</h1>
+        <div class="emoji-box" id="emojiBox">Chargement...</div>
+        <form class="input-row" onsubmit="submitGuess(); return false;">
+            <div style="position:relative;width:100%;">
+                <input type="text" id="guessInput" placeholder="Tape le nom d'un personnage..." autocomplete="off" style="width:100%;padding-left:70px;">
+                <div id="suggestions" class="suggestions" style="display:none;position:absolute;left:0;top:100%;width:100%;z-index:10;"></div>
+            </div>
+            <button type="submit">Valider</button>
+        </form>
+        <div class="result" id="result"></div>
+        <button class="menu-btn" onclick="nextEmoji()">Emoji suivant</button>
+        <a href="index.html">Retour au menu</a>
+    </div>
+    <script>
+    let current = null;
+    let revealed = 1; // On commence par révéler uniquement le premier emoji
+    let allCharacters = [];
+
+    async function fetchAllCharacters() {
+        try {
+            const res = await fetch('/api/characters');
+            const data = await res.json();
+            if (data.success) {
+                allCharacters = data.characters;
+            } else {
+                allCharacters = [];
+            }
+        } catch (e) {
+            allCharacters = [];
+        }
+    }
+
+    async function fetchData() {
+        try {
+            const res = await fetch('/emoji_random');
+            current = await res.json();
+            if (!current || !current.name) {
+                document.getElementById('emojiBox').textContent = 'Aucun personnage trouvé.';
+                return;
+            }
+            revealed = 1; // Affiche uniquement le premier emoji
+            showEmojis();
+            document.getElementById('result').textContent = '';
+            document.getElementById('guessInput').value = '';
+        } catch (e) {
+            document.getElementById('emojiBox').textContent = 'Erreur de chargement des données.';
+        }
+    }
+
+    function nextEmoji() {
+        fetchData();
+    }
+
+    function showEmojis() {
+        if (!current.emojis) {
+            document.getElementById('emojiBox').textContent = 'Aucun emoji pour ce personnage.';
+            return;
+        }
+        let emojisArr = current.emojis.split(',');
+        let html = '';
+        for (let i = 0; i < revealed; i++) {
+            html += `<span class="emoji-char">${emojisArr[i]}</span> `;
+        }
+        document.getElementById('emojiBox').innerHTML = html;
+    }
+
+    function submitGuess() {
+        const guess = document.getElementById('guessInput').value.trim().toLowerCase();
+        if (guess === current.name.toLowerCase()) {
+            document.getElementById('result').innerHTML = '<span class="victory">Bravo ! 🎉</span>';
+            animateVictory();
+            revealed = current.emojis.split(',').length;
+            showEmojis();
+        } else {
+            if (revealed < current.emojis.split(',').length) {
+                revealed++;
+                showEmojis();
+                document.getElementById('result').textContent = 'Raté ! Un emoji révélé.';
+            } else {
+                document.getElementById('result').textContent = 'Raté !';
+            }
+        }
+    }
+
+    function animateVictory() {
+        const box = document.getElementById('emojiBox');
+        box.classList.add('victory-anim');
+        setTimeout(() => box.classList.remove('victory-anim'), 1200);
+    }
+
+    // Suggestions avec portraits
+    const input = document.getElementById('guessInput');
+    const suggestions = document.getElementById('suggestions');
+    input.addEventListener('input', (e) => {
+        const value = e.target.value.trim();
+        showSuggestions(value);
+    });
+    input.addEventListener('focus', (e) => {
+        showSuggestions(e.target.value.trim());
+    });
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.input-row')) {
+            suggestions.style.display = 'none';
+        }
+    });
+    function showSuggestions(value) {
+        if (!allCharacters.length || value.length < 1) {
+            suggestions.style.display = 'none';
+            return;
+        }
+        const searchTerm = value.toLowerCase();
+        const filtered = allCharacters.filter(char => char.alias.toLowerCase().includes(searchTerm));
+        if (filtered.length === 0) {
+            suggestions.style.display = 'none';
+            return;
+        }
+        suggestions.innerHTML = filtered.map(char => {
+            // On tente d'abord avec characterID, sinon fallback sur l'alias sans espace/accents/majuscules
+            let portraitName = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
+            return `<div class="suggestion" style="display:flex;align-items:center;padding:12px 20px;cursor:pointer;transition:all 0.3s;background:#181c2f;border-bottom:1px solid #3b82f6;" onclick="selectCharacter('${char.alias.replace(/'/g, "\\'")}')"><img src="${portraitName}" alt="portrait" style="width:32px;height:32px;object-fit:cover;border-radius:50%;margin-right:14px;box-shadow:0 2px 8px #0006;"><span>${char.alias}</span></div>`;
+        }).join('');
+        suggestions.style.display = 'block';
+    }
+    function selectCharacter(name) {
+        input.value = name;
+        suggestions.style.display = 'none';
+        input.focus();
+    }
+
+    window.onload = async function() {
+        await fetchAllCharacters();
+        fetchData();
+    };
+    </script>
+</body>
+</html>

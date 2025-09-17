@@ -25,15 +25,15 @@ def get_db_connection():
         return None
 
 @app.route('/')
-def serve_game():
-    """Sert le jeu MSFdle"""
-    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'test_game_clean.html')
+def serve_index():
+    """Sert la page d'accueil (menu)"""
+    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'index.html')
     try:
         with open(frontend_path, 'r', encoding='utf-8') as f:
             content = f.read()
         return content
     except FileNotFoundError:
-        return "Jeu non trouvé", 404
+        return "Menu non trouvé", 404
 
 @app.route('/admin')
 def admin():
@@ -119,7 +119,8 @@ def fix_database():
                 alignment TEXT NOT NULL,
                 location TEXT NOT NULL,
                 origins TEXT NOT NULL,
-                role TEXT NOT NULL
+                role TEXT NOT NULL,
+                emoji TEXT
             )
         ''')
         
@@ -151,14 +152,15 @@ def fix_database():
                 combined_origins = f"{origin1}, {origin2}" if origin2 else origin1
                 
                 cursor.execute('''
-                    INSERT INTO characters (alias, alignment, location, origins, role)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO characters (alias, alignment, location, origins, role, emoji)
+                    VALUES (?, ?, ?, ?, ?, ?)
                 ''', (
                     row["Alias"].strip(),
                     row["Allignement"].strip(),
                     row["Localisation"].strip(),
                     combined_origins,
-                    row["Role"].strip()
+                    row["Role"].strip(),
+                    row["Emoji"].strip()
                 ))
         
         conn.commit()
@@ -208,7 +210,8 @@ def replace_support_with_soutien():
                 alignment TEXT NOT NULL,
                 location TEXT NOT NULL,
                 origins TEXT NOT NULL,
-                role TEXT NOT NULL
+                role TEXT NOT NULL,
+                emoji TEXT
             )
         ''')
         
@@ -238,14 +241,15 @@ def replace_support_with_soutien():
                 combined_origins = f"{origin1}, {origin2}" if origin2 else origin1
                 
                 cursor.execute('''
-                    INSERT INTO characters (alias, alignment, location, origins, role)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO characters (alias, alignment, location, origins, role, emoji)
+                    VALUES (?, ?, ?, ?, ?, ?)
                 ''', (
                     row["Alias"].strip(),
                     row["Allignement"].strip(),
                     row["Localisation"].strip(),
                     combined_origins,
-                    row["Role"].strip()
+                    row["Role"].strip(),
+                    row["Emoji"].strip()
                 ))
         
         conn.commit()
@@ -965,6 +969,69 @@ def delete_character(character_id):
     except Exception as e:
         print(f"❌ Erreur lors de la suppression: {e}")
         return jsonify({"error": str(e)}), 500
+
+@app.route('/emoji_data')
+def emoji_data():
+    """Renvoie la liste des personnages et leurs emojis depuis la base de données"""
+    conn = get_db_connection()
+    if not conn:
+        return jsonify([])
+    cursor = conn.cursor()
+    cursor.execute("SELECT alias, emoji FROM characters WHERE emoji IS NOT NULL AND emoji != ''")
+    result = []
+    for row in cursor.fetchall():
+        result.append({
+            'name': row[0],
+            'emojis': row[1]
+        })
+    cursor.close()
+    conn.close()
+    return jsonify(result)
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    """Sert les fichiers statiques du dossier frontend (HTML, CSS, JS, images)"""
+    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+    try:
+        return send_from_directory(frontend_path, filename)
+    except FileNotFoundError:
+        return "Fichier non trouvé", 404
+
+@app.route('/classique_game.html')
+def serve_classique_game():
+    """Sert la page du jeu classique"""
+    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'classique_game.html')
+    try:
+        with open(frontend_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        return content
+    except FileNotFoundError:
+        return "Jeu classique non trouvé", 404
+
+@app.route('/emoji_random')
+def emoji_random():
+    """Retourne un personnage aléatoire de la base avec ses emojis du CSV"""
+    import csv
+    conn = get_db_connection()
+    if not conn:
+        return jsonify({'error': 'DB error'}), 500
+    cursor = conn.cursor()
+    cursor.execute("SELECT alias FROM characters ORDER BY RANDOM() LIMIT 1")
+    row = cursor.fetchone()
+    if not row:
+        return jsonify({'error': 'No character found'}), 404
+    alias = row[0]
+    # Chercher les emojis dans le CSV
+    csv_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'perso.csv')
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for r in reader:
+            if r['Alias'].strip().lower() == alias.strip().lower():
+                return jsonify({
+                    'name': alias,
+                    'emojis': r['Emoji'].strip()
+                })
+    return jsonify({'name': alias, 'emojis': ''})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

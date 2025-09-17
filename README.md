@@ -76,7 +76,7 @@ MSFdle/
 │   ├── requirements.txt       # Dépendances Python
 │   └── rebuild_database_from_csv.py  # Maintenance DB
 ├── frontend/
-│   ├── test_game_clean.html   # Interface de jeu
+│   ├── classique_game.html   # Interface de jeu
 │   ├── admin_tags.html        # Interface d'admin
 │   └── portraits/             # Images des personnages (339 portraits)
 ├── data/
@@ -135,7 +135,7 @@ SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB 
 ## 🎨 Personnalisation
 
 ### Modifier l'interface
-- Éditez `frontend/test_game_clean.html`
+- Éditez `frontend/classique_game.html`
 - Les styles CSS sont intégrés dans le fichier
 
 ### Ajouter des fonctionnalités
