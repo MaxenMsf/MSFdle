@@ -4,7 +4,11 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 
 ## 🎯 Comment jouer
 
-### Règles du jeu
+### Modes de jeu
+- **Mode Classique** : Devinez le personnage mystère Marvel Strike Force à partir d'indices colorés sur ses caractéristiques (alignement, localisation, origines, rôle, tags).
+- **Mode Emoji** : Devinez le personnage mystère uniquement à partir d'une série d'emojis représentant ses caractéristiques ou son histoire !
+
+### Règles du jeu classique
 1. **Objectif** : Devinez le personnage mystère Marvel Strike Force
 2. **Indices** : Chaque tentative vous donne des indices colorés :
    - 🟢 **Vert** : Correspondance exacte
@@ -13,7 +17,13 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 3. **Catégories** : Alignement, Localisation, Origines, Rôle, Tags
 4. **Portraits** : Le portrait du personnage s'affiche progressivement
 
-### Exemple de partie
+### Règles du jeu Emoji
+1. **Objectif** : Devinez le personnage mystère à partir d'une suite d'emojis !
+2. **Indices** : À chaque mauvaise tentative, un nouvel emoji est révélé.
+3. **Suggestions** : L'autocomplétion vous aide à trouver le bon personnage.
+4. **Victoire** : Trouvez le personnage avec le moins de tentatives possible !
+
+### Exemple de partie classique
 - Vous devinez "Spider-Man"
 - Alignement : Hero ✅ (correct)
 - Localisation : Ville ❌ (le personnage mystère n'est pas en Ville)
@@ -45,11 +55,12 @@ python app.py
 ### 🎮 Jouer
 1. Ouvrez votre navigateur
 2. Allez à : `http://127.0.0.1:5001`
-3. Commencez à deviner !
+3. Choisissez un mode de jeu (Classique ou Emoji) et commencez à deviner !
 
 ## 📊 Fonctionnalités
 
 ### 🎯 Jeu principal
+- **2 modes de jeu** : Classique (indices) et Emoji (devinette par emojis)
 - **338 personnages** Marvel Strike Force
 - **91 tags uniques** (équipes, affiliations, etc.)
 - **Système de hints intelligent** avec correspondances partielles
@@ -76,9 +87,10 @@ MSFdle/
 │   ├── requirements.txt       # Dépendances Python
 │   └── rebuild_database_from_csv.py  # Maintenance DB
 ├── frontend/
-│   ├── classique_game.html   # Interface de jeu
-│   ├── admin_tags.html        # Interface d'admin
-│   └── portraits/             # Images des personnages (339 portraits)
+│   ├── classique_game.html   # Interface de jeu classique
+│   ├── emoji_game.html      # Interface du jeu des emojis
+│   ├── admin_tags.html      # Interface d'admin
+│   └── portraits/           # Images des personnages (339 portraits)
 ├── data/
 │   ├── perso.csv             # Données des personnages
 │   └── msfdle.db             # Base de données SQLite
@@ -135,8 +147,8 @@ SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB 
 ## 🎨 Personnalisation
 
 ### Modifier l'interface
-- Éditez `frontend/classique_game.html`
-- Les styles CSS sont intégrés dans le fichier
+- Éditez `frontend/classique_game.html` ou `frontend/emoji_game.html`
+- Les styles CSS sont intégrés dans les fichiers
 
 ### Ajouter des fonctionnalités
 - Modifiez `backend/app.py` pour l'API
@@ -173,7 +185,6 @@ Développé avec ❤️ pour les fans de Marvel Strike Force
 │   └── import_data.py
 └── data/              # Données CSV
     └── perso.csv
-```
 
 ## 🚀 Plan de développement
 
