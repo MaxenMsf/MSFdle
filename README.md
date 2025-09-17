@@ -34,8 +34,11 @@ cd MSFdle
 # 2. Installer les dépendances Python
 pip install flask flask-cors python-dotenv
 
-# 3. Lancer le serveur
+# 4. Créer la base de données
 cd backend
+python rebuild_database_from_csv.py
+
+# 4. Lancer le serveur
 python app.py
 ```
 
