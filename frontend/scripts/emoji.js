@@ -1,6 +1,7 @@
 let current = null;
 let revealed = 1;
 let allCharacters = [];
+let guessedCharacters = [];
 
 async function fetchAllCharacters() {
     try {
@@ -34,6 +35,8 @@ async function fetchData() {
 }
 
 function nextEmoji() {
+    guessedCharacters = [];
+    updateGuessedList();
     fetchData();
 }
 
@@ -83,14 +86,43 @@ function showVictoryAnimationEmoji() {
 function restartEmojiGame() {
     const victoryDiv = document.getElementById('victoryAnimation');
     if (victoryDiv) victoryDiv.remove();
+    guessedCharacters = [];
+    updateGuessedList();
     nextEmoji();
+}
+
+function updateGuessedList() {
+    const guessedListDiv = document.getElementById('guessedList');
+    if (!guessedListDiv) return;
+    if (guessedCharacters.length === 0) {
+        guessedListDiv.innerHTML = '';
+        return;
+    }
+    guessedListDiv.innerHTML = guessedCharacters.map(char => {
+        const portrait = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
+        return `<div style="display:inline-flex;align-items:center;margin:0 12px 12px 0;padding:6px 12px;background:#181c2f;border-radius:12px;box-shadow:0 2px 8px #0003;">
+            <img src="${portrait}" alt="${char.alias}" style="width:32px;height:32px;object-fit:cover;border-radius:50%;margin-right:10px;box-shadow:0 2px 8px #0006;">
+            <span style="color:#fff;font-weight:500;">${char.alias}</span>
+        </div>`;
+    }).join('');
 }
 
 function submitGuess() {
     // Empêche toute interaction si la victoire est affichée
     if (document.getElementById('victoryAnimation')) return;
     const guess = document.getElementById('guessInput').value.trim().toLowerCase();
+    // Cherche le personnage correspondant à la saisie
+    let guessedChar = allCharacters.find(char => char.alias.toLowerCase() === guess);
+    if (!guessedChar && guess.length > 0) {
+        // Recherche souple si pas trouvé (ex: accents, espaces)
+        guessedChar = allCharacters.find(char => char.alias.toLowerCase().replace(/[^a-z0-9]/g, '') === guess.replace(/[^a-z0-9]/g, ''));
+    }
     if (guess === current.name.toLowerCase()) {
+        // Ajoute le personnage trouvé à la liste si pas déjà présent
+        if (!guessedCharacters.some(c => c.character_id === current.character_id)) {
+            guessedCharacters.push({ character_id: current.character_id, alias: current.name });
+            updateGuessedList();
+        }
         showVictoryAnimationEmoji();
         revealed = current.emojis.split(',').length;
         showEmojis();
@@ -98,6 +130,11 @@ function submitGuess() {
         updateSearchPortrait('');
         return;
     } else {
+        // Ajoute le mauvais choix à la liste si pas déjà présent et si trouvé dans la base
+        if (guessedChar && !guessedCharacters.some(c => c.character_id === guessedChar.character_id)) {
+            guessedCharacters.push({ character_id: guessedChar.character_id, alias: guessedChar.alias });
+            updateGuessedList();
+        }
         if (revealed < current.emojis.split(',').length) {
             revealed++;
             showEmojis();
@@ -207,4 +244,5 @@ input.addEventListener('focus', (e) => {
 window.onload = async function () {
     await fetchAllCharacters();
     fetchData();
+    updateGuessedList();
 };
