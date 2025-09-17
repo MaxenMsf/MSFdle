@@ -1044,19 +1044,10 @@
                 return;
             }
             
-            // Recherche exact d'abord, puis souple
+            // Recherche exact
             let match = allCharacters.find(char => 
                 char.alias.toLowerCase() === value.toLowerCase()
             );
-            
-            // Si pas de correspondance exacte, recherche souple
-            if (!match) {
-                const searchTerm = value.toLowerCase().replace(/[^a-z0-9]/g, '');
-                match = allCharacters.find(char => {
-                    const alias = char.alias.toLowerCase().replace(/[^a-z0-9]/g, '');
-                    return alias === searchTerm || alias.includes(searchTerm);
-                });
-            }
             
             if (match) {
                 // Utiliser le character_id pour construire le chemin du portrait
