@@ -110,33 +110,26 @@ function showSuggestions(value) {
         suggestions.style.display = 'none';
         return;
     }
-
-    // Recherche simple : TOUS les personnages qui commencent par la lettre/mot tapé
     const searchTerm = value.toLowerCase().trim();
-
+    // Exclure les persos déjà devinés ou proposés
+    const excludedIds = guessHistory.map(g => g.character.character_id);
     const filtered = allCharacters.filter(char => {
         const alias = char.alias.toLowerCase();
-        // Retourner true si l'alias commence par le terme de recherche
-        return alias.startsWith(searchTerm);
-    }); // Pas de limitation - on veut TOUS les résultats
-
+        return alias.startsWith(searchTerm) && !excludedIds.includes(char.character_id);
+    });
     if (filtered.length === 0) {
         suggestions.style.display = 'none';
         return;
     }
-
     suggestions.innerHTML = filtered.map(char => {
-        // Utiliser le character_id pour construire le chemin du portrait
         const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
         return `
-                    <div class="suggestion" onclick="selectCharacter('${char.alias}')">
-                        <img src="${portraitSrc}" alt="${char.alias}" class="suggestion-portrait" 
-                             onerror="this.style.display='none'">
-                        <span>${char.alias}</span>
-                    </div>
-                `;
+            <div class="suggestion" onclick="selectCharacter('${char.alias}')">
+                <img src="${portraitSrc}" alt="${char.alias}" class="suggestion-portrait" onerror="this.style.display='none'">
+                <span>${char.alias}</span>
+            </div>
+        `;
     }).join('');
-
     suggestions.style.display = 'block';
 }
 

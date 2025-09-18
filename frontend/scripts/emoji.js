@@ -168,8 +168,9 @@ function showSuggestions(value) {
         return;
     }
     const searchTerm = value.toLowerCase();
-    // Affiche tous les persos qui CONTIENNENT le terme (et plus seulement ceux qui commencent par)
-    const filtered = allCharacters.filter(char => char.alias.toLowerCase().includes(searchTerm));
+    // Exclure les persos déjà devinés ou proposés
+    const excludedIds = guessedCharacters.map(c => c.character_id);
+    const filtered = allCharacters.filter(char => char.alias.toLowerCase().includes(searchTerm) && !excludedIds.includes(char.character_id));
     if (filtered.length === 0) {
         suggestions.style.display = 'none';
         return;
