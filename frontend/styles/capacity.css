@@ -1,0 +1,73 @@
+/* Styles spécifiques au mode capacité, réutilise la base emoji.css */
+.capacity-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    min-height: 180px;
+}
+.capacity-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #0008;
+    background: #181c2f;
+    transition: filter 0.3s, transform 0.5s;
+    border: 2px solid #3b82f6;
+}
+.capacity-img.bw {
+    filter: grayscale(1) brightness(0.7) contrast(1.2);
+}
+.capacity-img.colored {
+    filter: none;
+}
+.capacity-img.rotated {
+    transform: rotate(var(--rotation, 0deg));
+}
+.switch-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 18px;
+}
+.switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+.switch input {
+    display: none;
+}
+.slider {
+    width: 40px;
+    height: 22px;
+    background: #222b44;
+    border-radius: 12px;
+    position: relative;
+    margin-right: 10px;
+    transition: background 0.3s;
+}
+.slider:before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+.switch input:checked + .slider {
+    background: #3b82f6;
+}
+.switch input:checked + .slider:before {
+    transform: translateX(18px);
+}
+.switch-label {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+}

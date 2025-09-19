@@ -1033,5 +1033,14 @@ def emoji_random():
                 })
     return jsonify({'name': alias, 'emojis': ''})
 
+@app.route('/capacites/<filename>')
+def serve_capacity_icon(filename):
+    """Sert les icônes de capacité depuis le dossier capacites"""
+    capacites_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'capacites')
+    try:
+        return send_from_directory(capacites_path, filename)
+    except FileNotFoundError:
+        return jsonify({"error": "Icône de capacité non trouvée"}), 404
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

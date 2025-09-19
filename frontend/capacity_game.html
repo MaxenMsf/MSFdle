@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSFdle - Jeu Capacité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/emoji.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="styles/capacity.css" type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container">
+        <img src="images/logo.png" alt="MSFdle Logo" style="display:block;margin:0 auto 24px auto;max-width:180px;width:100%;height:auto;">
+        <div class="capacity-box" id="capacityBox">
+            <img id="capacityImage" src="" alt="Capacité" class="capacity-img bw rotated">
+        </div>
+        <div class="switch-row">
+            <label class="switch">
+                <input type="checkbox" id="rotationSwitch" checked>
+                <span class="slider"></span>
+                <span class="switch-label">Rotation</span>
+            </label>
+            <label class="switch">
+                <input type="checkbox" id="colorSwitch">
+                <span class="slider"></span>
+                <span class="switch-label">Couleur</span>
+            </label>
+        </div>
+        <form class="input-row" onsubmit="submitGuess(); return false;">
+            <div style="position:relative;width:100%;">
+                <input type="text" id="guessInput" placeholder="Tape le nom d'un personnage..." autocomplete="off" style="width:100%;padding-left:70px;">
+                <div id="suggestions" class="suggestions" style="display:none;position:absolute;left:0;top:100%;width:100%;z-index:10;"></div>
+            </div>
+            <button type="submit">Valider</button>
+        </form>
+        <div class="result" id="result"></div>
+        <div id="guessedList" class="guessed-list" style="margin:24px 0 0 0;"></div>
+        <button class="menu-btn" onclick="nextCapacity()">Capacité suivante</button>
+        <a href="index.html" class="menu-btn retour-btn" style="margin-top:30px;text-align:center;">Retour au menu</a>
+    </div>
+    <script src="scripts/capacity.js"></script>
+</body>
+</html>
