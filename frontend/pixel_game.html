@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSFdle - Jeu Pixelisé</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/pixel.css" type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container">
+        <img src="images/logo.png" alt="MSFdle Logo" style="display:block;margin:0 auto 24px auto;max-width:180px;width:100%;height:auto;">
+        
+        <div class="pixel-container">
+            <canvas id="pixelCanvas" width="200" height="200" style="border-radius:12px;"></canvas>
+            <div class="attempts-counter" id="attemptsCounter" style="display: none;"></div>
+        </div>
+        
+        <form class="input-row" onsubmit="submitGuess(); return false;">
+            <div style="position:relative;width:100%;">
+                <input type="text" id="guessInput" placeholder="Tape le nom d'un personnage..." autocomplete="off" style="width:100%;padding-left:70px;">
+                <div id="suggestions" class="suggestions" style="display:none;position:absolute;left:0;top:100%;width:100%;z-index:10;"></div>
+            </div>
+            <button type="submit">Valider</button>
+        </form>
+        
+        <div class="result" id="result"></div>
+        <div id="guessedList" class="guessed-list" style="margin:24px 0 0 0;"></div>
+        
+        <button class="menu-btn" onclick="nextPixelGame()">Personnage suivant</button>
+        <a href="index.html" class="menu-btn retour-btn" style="margin-top:30px;text-align:center;">Retour au menu</a>
+    </div>
+    <script src="scripts/pixel.js"></script>
+</body>
+</html>

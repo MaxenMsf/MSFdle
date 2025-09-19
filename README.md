@@ -7,7 +7,8 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 ### Modes de jeu
 - **Mode Classique** : Devinez le personnage mystère Marvel Strike Force à partir d'indices colorés sur ses caractéristiques (alignement, localisation, origines, rôle, tags).
 - **Mode Emoji** : Devinez le personnage mystère uniquement à partir d'une série d'emojis représentant ses caractéristiques ou son histoire !
-- **Mode Capacité** : Devinez le personnage mystère uniquement à partir d'une des capacités du personnage. Une fois trouver il faut aussi deviner si c'est le basique, le spécial, l'ultime ou le passif du personnage.
+- **Mode Capacité** : Devinez le personnage mystère uniquement à partir d'une des capacités du personnage. Une fois trouvé, il faut aussi deviner si c'est le basique, le spécial, l'ultime ou le passif du personnage !
+- **Mode Pixelisé** : Devinez le personnage mystère à partir d'un portrait très pixelisé qui se dépixelise progressivement à chaque tentative !
 
 ### Règles du jeu classique
 1. **Objectif** : Devinez le personnage mystère Marvel Strike Force
@@ -28,7 +29,13 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 1. Une icône de capacité est affichée (avec options de rotation et de couleur).
 2. Saisissez le nom du personnage dans la barre de recherche (autocomplétion et portraits disponibles).
 3. Si la réponse est correcte, choisissez le type de capacité parmi les boutons proposés.
-4. Le score dépend du nombre d’essais.
+4. Le score dépend du nombre d'essais.
+
+### Règles du jeu Pixelisé
+1. **Objectif** : Devinez le personnage mystère à partir d'un portrait très pixelisé !
+2. **Indices** : À chaque mauvaise tentative, l'image se dépixelise progressivement (15 niveaux de dépixelisation).
+3. **Suggestions** : L'autocomplétion avec portraits vous aide à trouver le bon personnage.
+4. **Victoire** : Trouvez le personnage avec le moins de tentatives possible !
 
 ### Exemple de partie classique
 - Vous devinez "Spider-Man"
@@ -51,7 +58,7 @@ cd MSFdle
 # 2. Installer les dépendances Python
 pip install flask flask-cors python-dotenv
 
-# 4. Créer la base de données
+# 3. Créer la base de données
 cd backend
 python rebuild_database_from_csv.py
 
@@ -62,17 +69,18 @@ python app.py
 ### 🎮 Jouer
 1. Ouvrez votre navigateur
 2. Allez à : `http://127.0.0.1:5001`
-3. Choisissez un mode de jeu (Classique ou Emoji) et commencez à deviner !
+3. Choisissez un mode de jeu et commencez à deviner !
 
 ## 📊 Fonctionnalités
 
 ### 🎯 Jeu principal
-- **3 modes de jeu** : Classique (indices), Emoji (devinette par emojis) et Capacité (devinette par capacité)
+- **4 modes de jeu** : Classique (indices), Emoji (devinette par emojis), Capacité (devinette par capacité) et Pixelisé (portrait pixelisé)
 - **338 personnages** Marvel Strike Force
 - **91 tags uniques** (équipes, affiliations, etc.)
 - **Système de hints intelligent** avec correspondances partielles
 - **Portraits automatiques** pour chaque personnage
 - **Interface responsive** et intuitive
+- **Autocomplétion avancée** avec portraits dans tous les modes
 
 ### 🔧 Administration
 - Interface d'admin : `http://127.0.0.1:5001/admin`
@@ -94,11 +102,22 @@ MSFdle/
 │   ├── requirements.txt       # Dépendances Python
 │   └── rebuild_database_from_csv.py  # Maintenance DB
 ├── frontend/
+│   ├── index.html            # Menu principal
 │   ├── classique_game.html   # Interface de jeu classique
-│   ├── emoji_game.html      # Interface du jeu des emojis
-│   ├── admin_tags.html      # Interface d'admin
+│   ├── emoji_game.html       # Interface du jeu des emojis
 │   ├── capacity_game.html    # Interface du jeu Capacité
-│   └── portraits/           # Images des personnages (339 portraits)
+│   ├── pixel_game.html       # Interface du jeu Pixelisé
+│   ├── scripts/              # Scripts JavaScript
+│   │   ├── classique.js
+│   │   ├── emoji.js
+│   │   ├── capacity.js
+│   │   └── pixel.js
+│   ├── styles/               # Feuilles de style CSS
+│   │   ├── style.css
+│   │   ├── emoji.css
+│   │   ├── capacity.css
+│   │   └── pixel.css
+│   └── portraits/            # Images des personnages (339 portraits)
 ├── data/
 │   ├── perso.csv             # Données des personnages
 │   └── msfdle.db             # Base de données SQLite
@@ -123,14 +142,15 @@ MSFdle/
 ## 🎮 API Endpoints
 
 ### Jeu
-- `GET /` - Interface de jeu
-- `GET /api/random-character` - Personnage mystère
+- `GET /` - Interface principale (menu)
+- `GET /api/random-character` - Personnage mystère (mode classique)
+- `GET /emoji_random` - Personnage mystère avec emojis (mode emoji)
 - `POST /api/guess` - Vérifier une tentative
 - `GET /api/search?q=spider` - Recherche avec autocomplete
+- `GET /api/characters` - Liste tous les personnages
 
 ### Administration
 - `GET /admin` - Interface d'administration
-- `GET /api/characters` - Liste tous les personnages
 - `GET /api/tags` - Liste tous les tags
 - `POST /api/characters` - Créer un personnage
 - `PUT /api/characters/{id}` - Modifier un personnage
@@ -148,15 +168,16 @@ MSFdle/
 
 ### Format CSV
 ```csv
-Character Id,Alias,Alignement,Localisation,Origine,Origine2,Unique,Role,Tags
-SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB WARRIOR"
+Character Id,Alias,Alignement,Localisation,Origine,Origine2,Unique,Role,Tags,emojis
+SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB WARRIOR","🕷️,🕸️,🦸‍♂️"
 ```
 
 ## 🎨 Personnalisation
 
 ### Modifier l'interface
-- Éditez `frontend/classique_game.html` ou `frontend/emoji_game.html`
-- Les styles CSS sont intégrés dans les fichiers
+- Éditez les fichiers HTML dans `frontend/`
+- Les styles CSS sont dans le dossier `frontend/styles/`
+- Les scripts JavaScript sont dans `frontend/scripts/`
 
 ### Ajouter des fonctionnalités
 - Modifiez `backend/app.py` pour l'API
@@ -168,6 +189,7 @@ SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB 
 - **91 tags uniques** (SPIDER-VERSE, X-MEN, AVENGER, etc.)
 - **556 associations** personnage-tag
 - **339 portraits** haute qualité
+- **4 modes de jeu** différents
 
 ## 🔄 Arrêter le serveur
 
@@ -187,60 +209,3 @@ Ce projet utilise :
 ## 🎉 Amusez-vous bien !
 
 Développé avec ❤️ pour les fans de Marvel Strike Force
-├── database/           # Schéma SQL
-│   └── schema.sql
-├── scripts/            # Scripts d'import
-│   └── import_data.py
-└── data/              # Données CSV
-    └── perso.csv
-
-## 🚀 Plan de développement
-
-### Phase 1: Backend API (Flask)
-1. **Setup Flask avec PostgreSQL**
-2. **Routes API essentielles:**
-   - `GET /api/random-character` - Personnage à deviner
-   - `GET /api/characters` - Liste tous les personnages
-   - `POST /api/guess` - Vérifier une proposition
-   - `GET /api/character/{id}` - Détails d'un personnage
-
-### Phase 2: Frontend (React)
-1. **Interface de jeu:**
-   - Zone de saisie avec autocomplete
-   - Grille des tentatives avec code couleur
-   - Système de victoire/défaite
-2. **Logique de comparaison:**
-   - Vert: correspondance exacte
-   - Jaune: correspondance partielle (pour les origines)
-   - Rouge: aucune correspondance
-
-### Phase 3: Déploiement
-1. **Base de données:** Supabase (PostgreSQL gratuit)
-2. **Backend:** Railway (Flask gratuit)
-3. **Frontend:** Vercel (React gratuit)
-
-## 🎨 Interface utilisateur
-
-Inspiré de Loldle avec:
-- Header avec logo MSFdle
-- Zone de recherche avec autocomplete
-- Tableau des tentatives avec indicateurs colorés
-- Statistiques de jeu
-- Bouton "Nouveau jeu"
-
-## 🎲 Logique de jeu
-
-Chaque personnage est comparé sur:
-- **Affiliation:** Hero/Vilain (Vert/Rouge)
-- **Localisation:** Ville/Mondial/Cosmique (Vert/Rouge)
-- **Origine 1:** Match exact (Vert/Rouge)
-- **Origine 2:** Partielle si une des deux correspond (Jaune/Rouge)
-- **Rôle:** Support/Cogneur/etc. (Vert/Rouge)
-- **Tags:** Spiderverse/Ordre Noir/etc. (Vert/Jaune/Rouge)
-
-## 📦 Technologies utilisées
-
-- **Frontend:** React + Vite + TypeScript + Tailwind CSS
-- **Backend:** Flask + SQLAlchemy + PostgreSQL
-- **Base de données:** PostgreSQL (Supabase)
-- **Déploiement:** Vercel + Railway + Supabase
