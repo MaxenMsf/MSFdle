@@ -2,6 +2,7 @@ let current = null;
 let revealed = 1;
 let allCharacters = [];
 let guessedCharacters = [];
+let currentCharacterId = null;
 
 async function fetchAllCharacters() {
     try {
@@ -25,7 +26,11 @@ async function fetchData() {
             document.getElementById('emojiBox').textContent = 'Aucun personnage trouvé.';
             return;
         }
-        revealed = 1; // Affiche uniquement le premier emoji
+        
+        const foundChar = allCharacters.find(char => char.alias.toLowerCase() === current.name.toLowerCase());
+        currentCharacterId = foundChar ? foundChar.character_id : null;
+        
+        revealed = 1;
         showEmojis();
         document.getElementById('result').textContent = '';
         document.getElementById('guessInput').value = '';
@@ -57,7 +62,7 @@ function showVictoryAnimationEmoji() {
     const victoryDiv = document.createElement('div');
     victoryDiv.className = 'victory-animation';
     victoryDiv.id = 'victoryAnimation';
-    const portraitSrc = `http://localhost:5001/portraits/Portrait_${current.character_id}.png`;
+    const portraitSrc = `http://localhost:5001/portraits/Portrait_${currentCharacterId}.png`;
     victoryDiv.innerHTML = `
         <div class="victory-content">
             <div class="victory-title">🎉 VICTOIRE ! 🎉</div>
@@ -108,19 +113,23 @@ function updateGuessedList() {
 }
 
 function submitGuess() {
-    // Empêche toute interaction si la victoire est affichée
     if (document.getElementById('victoryAnimation')) return;
     const guess = document.getElementById('guessInput').value.trim().toLowerCase();
-    // Cherche le personnage correspondant à la saisie
+    
+    // Si le champ est vide, ne rien faire
+    if (guess.length === 0) {
+        return;
+    }
+    
     let guessedChar = allCharacters.find(char => char.alias.toLowerCase() === guess);
     if (!guessedChar && guess.length > 0) {
-        // Recherche souple si pas trouvé (ex: accents, espaces)
         guessedChar = allCharacters.find(char => char.alias.toLowerCase().replace(/[^a-z0-9]/g, '') === guess.replace(/[^a-z0-9]/g, ''));
     }
+    
     if (guess === current.name.toLowerCase()) {
-        // Ajoute le personnage trouvé à la liste si pas déjà présent
-        if (!guessedCharacters.some(c => c.character_id === current.character_id)) {
-            guessedCharacters.push({ character_id: current.character_id, alias: current.name });
+        // Bonne réponse
+        if (!guessedCharacters.some(c => c.character_id === currentCharacterId)) {
+            guessedCharacters.push({ character_id: currentCharacterId, alias: current.name });
             updateGuessedList();
         }
         showVictoryAnimationEmoji();
@@ -130,18 +139,21 @@ function submitGuess() {
         updateSearchPortrait('');
         return;
     } else {
-        // Ajoute le mauvais choix à la liste si pas déjà présent et si trouvé dans la base
+        // Mauvaise réponse - ajouter à la liste des tentatives
         if (guessedChar && !guessedCharacters.some(c => c.character_id === guessedChar.character_id)) {
             guessedCharacters.push({ character_id: guessedChar.character_id, alias: guessedChar.alias });
             updateGuessedList();
         }
+        
+        // Révéler le prochain emoji seulement après une tentative
         if (revealed < current.emojis.split(',').length) {
             revealed++;
             showEmojis();
             document.getElementById('result').textContent = 'Raté ! Un emoji révélé.';
         } else {
-            document.getElementById('result').textContent = 'Raté !';
+            document.getElementById('result').textContent = 'Raté ! Tous les emojis sont révélés.';
         }
+        
         input.value = '';
         updateSearchPortrait('');
     }
