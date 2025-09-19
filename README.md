@@ -7,6 +7,7 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 ### Modes de jeu
 - **Mode Classique** : Devinez le personnage mystère Marvel Strike Force à partir d'indices colorés sur ses caractéristiques (alignement, localisation, origines, rôle, tags).
 - **Mode Emoji** : Devinez le personnage mystère uniquement à partir d'une série d'emojis représentant ses caractéristiques ou son histoire !
+- **Mode Capacité** : Devinez le personnage mystère uniquement à partir d'une des capacités du personnage. Une fois trouver il faut aussi deviner si c'est le basique, le spécial, l'ultime ou le passif du personnage.
 
 ### Règles du jeu classique
 1. **Objectif** : Devinez le personnage mystère Marvel Strike Force
@@ -22,6 +23,12 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 2. **Indices** : À chaque mauvaise tentative, un nouvel emoji est révélé.
 3. **Suggestions** : L'autocomplétion vous aide à trouver le bon personnage.
 4. **Victoire** : Trouvez le personnage avec le moins de tentatives possible !
+
+### Règles du jeu Capacité
+1. Une icône de capacité est affichée (avec options de rotation et de couleur).
+2. Saisissez le nom du personnage dans la barre de recherche (autocomplétion et portraits disponibles).
+3. Si la réponse est correcte, choisissez le type de capacité parmi les boutons proposés.
+4. Le score dépend du nombre d’essais.
 
 ### Exemple de partie classique
 - Vous devinez "Spider-Man"
@@ -60,7 +67,7 @@ python app.py
 ## 📊 Fonctionnalités
 
 ### 🎯 Jeu principal
-- **2 modes de jeu** : Classique (indices) et Emoji (devinette par emojis)
+- **3 modes de jeu** : Classique (indices), Emoji (devinette par emojis) et Capacité (devinette par capacité)
 - **338 personnages** Marvel Strike Force
 - **91 tags uniques** (équipes, affiliations, etc.)
 - **Système de hints intelligent** avec correspondances partielles
@@ -90,6 +97,7 @@ MSFdle/
 │   ├── classique_game.html   # Interface de jeu classique
 │   ├── emoji_game.html      # Interface du jeu des emojis
 │   ├── admin_tags.html      # Interface d'admin
+│   ├── capacity_game.html    # Interface du jeu Capacité
 │   └── portraits/           # Images des personnages (339 portraits)
 ├── data/
 │   ├── perso.csv             # Données des personnages
@@ -228,7 +236,7 @@ Chaque personnage est comparé sur:
 - **Origine 1:** Match exact (Vert/Rouge)
 - **Origine 2:** Partielle si une des deux correspond (Jaune/Rouge)
 - **Rôle:** Support/Cogneur/etc. (Vert/Rouge)
-- **Tags:** À implémenter plus tard
+- **Tags:** Spiderverse/Ordre Noir/etc. (Vert/Jaune/Rouge)
 
 ## 📦 Technologies utilisées
 
