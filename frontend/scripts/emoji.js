@@ -2,13 +2,11 @@ let current = null;
 let revealed = 1;
 let allCharacters = [];
 let guessedCharacters = [];
-let currentChar    guessedListDiv.innerHTML = guessedCharacters.map(char => {
-        const portrait = `${API_ENDPOINTS.portraits}/Portrait_${char.character_id}.png`;
-        return `<div style="display:inline-flex;align-items:center;margin:0 12px 12px 0;padding:6px 12px;background:#181c2f;border-radius:12px;box-shadow:0 2px 8px #0003;">`;erId = null;
+let currentCharacterId = null;
 
 async function fetchAllCharacters() {
     try {
-        const res = await fetch(API_ENDPOINTS.characters);
+        const res = await fetch('/api/characters');
         const data = await res.json();
         if (data.success) {
             allCharacters = data.characters;
@@ -22,7 +20,7 @@ async function fetchAllCharacters() {
 
 async function fetchData() {
     try {
-        const res = await fetch(`${API_BASE_URL}/emoji_random`);
+        const res = await fetch('/emoji_random');
         current = await res.json();
         if (!current || !current.name) {
             document.getElementById('emojiBox').textContent = 'Aucun personnage trouvé.';
@@ -64,7 +62,7 @@ function showVictoryAnimationEmoji() {
     const victoryDiv = document.createElement('div');
     victoryDiv.className = 'victory-animation';
     victoryDiv.id = 'victoryAnimation';
-    const portraitSrc = `${API_ENDPOINTS.portraits}/Portrait_${currentCharacterId}.png`;
+    const portraitSrc = `http://localhost:5001/portraits/Portrait_${currentCharacterId}.png`;
     victoryDiv.innerHTML = `
         <div class="victory-content">
             <div class="victory-title">🎉 VICTOIRE ! 🎉</div>
@@ -106,7 +104,7 @@ function updateGuessedList() {
         return;
     }
     guessedListDiv.innerHTML = guessedCharacters.map(char => {
-        const portrait = `${API_ENDPOINTS.portraits}/Portrait_${char.character_id}.png`;
+        const portrait = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
         return `<div style="display:inline-flex;align-items:center;margin:0 12px 12px 0;padding:6px 12px;background:#181c2f;border-radius:12px;box-shadow:0 2px 8px #0003;">
             <img src="${portrait}" alt="${char.alias}" style="width:32px;height:32px;object-fit:cover;border-radius:50%;margin-right:10px;box-shadow:0 2px 8px #0006;">
             <span style="color:#fff;font-weight:500;">${char.alias}</span>
@@ -190,7 +188,7 @@ function showSuggestions(value) {
         return;
     }
     suggestions.innerHTML = filtered.map(char => {
-        let portraitName = `${API_ENDPOINTS.portraits}/Portrait_${char.character_id}.png`;
+        let portraitName = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
         return `<div class="suggestion" style="display:flex;align-items:center;padding:12px 20px;cursor:pointer;transition:all 0.3s;background:#181c2f;border-bottom:1px solid #3b82f6;" onclick="selectCharacter('${char.alias.replace(/'/g, "\\'")}')"><img src="${portraitName}" alt="portrait" style="width:32px;height:32px;object-fit:cover;border-radius:50%;margin-right:14px;box-shadow:0 2px 8px #0006;"><span>${char.alias}</span></div>`;
     }).join('');
     suggestions.style.display = 'block';
@@ -234,7 +232,7 @@ function updateSearchPortrait(value) {
         char.alias.toLowerCase() === value.toLowerCase()
     );
     if (match) {
-        const portraitSrc = `${API_ENDPOINTS.portraits}/Portrait_${match.character_id}.png`;
+        const portraitSrc = `http://localhost:5001/portraits/Portrait_${match.character_id}.png`;
         searchPortrait.src = portraitSrc;
         searchPortrait.style.display = 'block';
         searchPortrait.onerror = () => {
