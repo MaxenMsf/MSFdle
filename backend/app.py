@@ -7,8 +7,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app, origins=["*"], allow_headers=["Content-Type"], methods=["GET", "POST", "OPTIONS"])
+app = Flask(__name__, 
+            static_folder='../frontend',  # Pointer vers le dossier frontend
+            template_folder='../frontend') # Pour les templates HTML
 
 # Configuration de la base de données SQLite
 DATABASE_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'msfdle.db')
@@ -25,15 +26,12 @@ def get_db_connection():
         return None
 
 @app.route('/')
-def serve_index():
-    """Sert la page d'accueil (menu)"""
-    frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'index.html')
-    try:
-        with open(frontend_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        return content
-    except FileNotFoundError:
-        return "Menu non trouvé", 404
+def index():
+    return send_from_directory('../frontend', 'index.html')
+
+@app.route('/<path:filename>')
+def static_files(filename):
+    return send_from_directory('../frontend', filename)
 
 @app.route('/admin')
 def admin():
