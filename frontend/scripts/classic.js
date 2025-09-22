@@ -13,7 +13,7 @@ const searchPortrait = document.getElementById('searchPortrait');
 // Charger tous les personnages au démarrage
 async function loadCharacters() {
     try {
-        const response = await fetch('http://localhost:5001/api/characters');
+        const response = await fetch(API_ENDPOINTS.characters);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -72,7 +72,7 @@ async function startNewGame() {
     showLoading(true);
 
     try {
-        const response = await fetch('http://localhost:5001/api/random-character', {
+        const response = await fetch(API_ENDPOINTS.randomCharacter, {
             method: 'GET'
         });
 
@@ -122,7 +122,7 @@ function showSuggestions(value) {
         return;
     }
     suggestions.innerHTML = filtered.map(char => {
-        const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
+        const portraitSrc = `${API_ENDPOINTS.portraits}/Portrait_${char.character_id}.png`;
         return `
             <div class="suggestion" onclick="selectCharacter('${char.alias}')">
                 <img src="${portraitSrc}" alt="${char.alias}" class="suggestion-portrait" onerror="this.style.display='none'">
@@ -155,7 +155,7 @@ function updateSearchPortrait(value) {
 
     if (match) {
         // Utiliser le character_id pour construire le chemin du portrait
-        const portraitSrc = `http://localhost:5001/portraits/Portrait_${match.character_id}.png`;
+        const portraitSrc = `${API_ENDPOINTS.portraits}/Portrait_${match.character_id}.png`;
         searchPortrait.src = portraitSrc;
         searchPortrait.style.display = 'block';
         searchPortrait.onerror = () => {
@@ -193,7 +193,7 @@ async function makeGuess() {
     showLoading(true);
 
     try {
-        const response = await fetch('http://localhost:5001/api/guess', {
+        const response = await fetch(API_ENDPOINTS.guess, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -257,7 +257,7 @@ function updateGuessHistory() {
         const isNewGuess = index === 0;
 
         // Construire le chemin du portrait à partir du character_id
-        const portraitSrc = `http://localhost:5001/portraits/Portrait_${char.character_id}.png`;
+        const portraitSrc = `${API_ENDPOINTS.portraits}/Portrait_${char.character_id}.png`;
 
         return `
                     <div class="guess-row" style="animation: slideIn 0.5s ease-out;">
@@ -315,7 +315,7 @@ function showVictoryAnimation() {
     victoryDiv.id = 'victoryAnimation';
 
     // Construire le chemin du portrait à partir du character_id
-    const portraitSrc = `http://localhost:5001/portraits/Portrait_${targetCharacter.character_id}.png`;
+    const portraitSrc = `${API_ENDPOINTS.portraits}/Portrait_${targetCharacter.character_id}.png`;
 
     victoryDiv.innerHTML = `
                 <div class="victory-content">
