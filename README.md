@@ -9,6 +9,7 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 - **Mode Emoji** : Devinez le personnage mystère uniquement à partir d'une série d'emojis représentant ses caractéristiques ou son histoire !
 - **Mode Capacité** : Devinez le personnage mystère uniquement à partir d'une des capacités du personnage. Une fois trouvé, il faut aussi deviner si c'est le basique, le spécial, l'ultime ou le passif du personnage !
 - **Mode Pixelisé** : Devinez le personnage mystère à partir d'un portrait très pixelisé qui se dépixelise progressivement à chaque tentative !
+- **Mode Hunter** : Un mini-jeu d'action où vous devez cliquer sur les héros Marvel (Iron Man) qui volent à travers l'écran avant qu'ils ne s'échappent ! La vitesse augmente progressivement pour un défi croissant.
 
 ### Règles du jeu classique
 1. **Objectif** : Devinez le personnage mystère Marvel Strike Force
@@ -36,6 +37,18 @@ Un jeu de devinettes basé sur les personnages de Marvel Strike Force, inspiré 
 2. **Indices** : À chaque mauvaise tentative, l'image se dépixelise progressivement (15 niveaux de dépixelisation).
 3. **Suggestions** : L'autocomplétion avec portraits vous aide à trouver le bon personnage.
 4. **Victoire** : Trouvez le personnage avec le moins de tentatives possible !
+
+### Règles du jeu Hunter
+1. **Objectif** : Cliquez sur les héros Marvel (Iron Man) qui volent à travers l'écran !
+2. **Mécaniques** : 
+   - Vous avez 3 vies (❤️)
+   - +10 points par héros cliqué
+   - Perdez une vie si un héros s'échappe de l'écran
+   - La vitesse augmente toutes les 5 secondes
+   - Jusqu'à 5 héros peuvent apparaître simultanément
+3. **Contrôles** : Utilisez votre curseur personnalisé (gant de l'infini) pour cliquer sur les héros
+4. **Ambiance** : Musique Avengers 8-bit et effet sonore du snap de Thanos à chaque clic !
+5. **Victoire** : Survivez le plus longtemps possible et maximisez votre score !
 
 ### Exemple de partie classique
 - Vous devinez "Spider-Man"
@@ -74,9 +87,8 @@ python app.py
 ## 📊 Fonctionnalités
 
 ### 🎯 Jeu principal
-- **4 modes de jeu** : Classique (indices), Emoji (devinette par emojis), Capacité (devinette par capacité) et Pixelisé (portrait pixelisé)
-- **338 personnages** Marvel Strike Force
-- **91 tags uniques** (équipes, affiliations, etc.)
+- **5 modes de jeu** : Classique (indices), Emoji (devinette par emojis), Capacité (devinette par capacité), Pixelisé (portrait pixelisé) et Hunter (mini-jeu d'action)
+- **341 personnages** Marvel Strike Force
 - **Système de hints intelligent** avec correspondances partielles
 - **Portraits automatiques** pour chaque personnage
 - **Interface responsive** et intuitive
@@ -107,17 +119,24 @@ MSFdle/
 │   ├── emoji_game.html       # Interface du jeu des emojis
 │   ├── capacity_game.html    # Interface du jeu Capacité
 │   ├── pixel_game.html       # Interface du jeu Pixelisé
+│   ├── hunter_game.html      # Interface du jeu Hunter
 │   ├── scripts/              # Scripts JavaScript
 │   │   ├── classique.js
 │   │   ├── emoji.js
 │   │   ├── capacity.js
-│   │   └── pixel.js
+│   │   ├── pixel.js
+│   │   └── hunter_game.js
 │   ├── styles/               # Feuilles de style CSS
 │   │   ├── style.css
 │   │   ├── emoji.css
 │   │   ├── capacity.css
-│   │   └── pixel.css
-│   └── portraits/            # Images des personnages (339 portraits)
+│   │   ├── pixel.css
+│   │   └── hunter_game.css
+│   ├── portraits/            # Images des personnages (339 portraits)
+│   └── hunter/               # Ressources du mode Hunter
+│       ├── sprites/          # Sprites animés (Iron Man, curseur)
+│       ├── music/            # Musique et effets sonores
+│       └── hunter_background.png
 ├── data/
 │   ├── perso.csv             # Données des personnages
 │   └── msfdle.db             # Base de données SQLite
@@ -135,7 +154,7 @@ MSFdle/
 - **Index optimisés** pour de meilleures performances
 
 ### Données
-- **338 personnages** avec toutes leurs caractéristiques
+- **341 personnages** avec toutes leurs caractéristiques
 - **Tags intégrés** depuis le CSV (équipes, affiliations, etc.)
 - **Portraits automatiquement liés** via character_id
 
@@ -148,16 +167,6 @@ MSFdle/
 - `POST /api/guess` - Vérifier une tentative
 - `GET /api/search?q=spider` - Recherche avec autocomplete
 - `GET /api/characters` - Liste tous les personnages
-
-### Administration
-- `GET /admin` - Interface d'administration
-- `GET /api/tags` - Liste tous les tags
-- `POST /api/characters` - Créer un personnage
-- `PUT /api/characters/{id}` - Modifier un personnage
-
-### Système
-- `GET /api/health` - État de l'API
-- `GET /api/test-db` - Test de la base de données
 
 ## 🔧 Maintenance
 
@@ -182,14 +191,6 @@ SpiderMan,Spider-Man,Hero,Ville,Biotechnique,,Formule,Cogneur,"SPIDER-VERSE,WEB 
 ### Ajouter des fonctionnalités
 - Modifiez `backend/app.py` pour l'API
 - La base de données est extensible
-
-## 🏆 Statistiques
-
-- **338 personnages** disponibles
-- **91 tags uniques** (SPIDER-VERSE, X-MEN, AVENGER, etc.)
-- **556 associations** personnage-tag
-- **339 portraits** haute qualité
-- **4 modes de jeu** différents
 
 ## 🔄 Arrêter le serveur
 
