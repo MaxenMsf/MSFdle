@@ -158,6 +158,9 @@ function showVictoryAnimationCapacity() {
             <div class="victory-message">
                 Vous avez trouvé <strong>${alias}</strong> !<br><br>
                 <span>À quel type de capacité correspond cette icône ?</span>
+                <div class="capacity-box" id="capacityBox">
+                    <img id="capacityImage" src="${current.icon}" alt="Capacité" class="capacity-img rotated">
+                </div>
                 <div id="capacityTypeChoices" style="margin:18px 0 0 0;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;"></div>
                 <div id="capacityTypeResult" style="margin-top:14px;font-weight:700;font-size:1.15em;"></div>
             </div>
