@@ -30,8 +30,8 @@ def parse_tags(tags_string):
 
 def rebuild_database_from_csv():
     # Chemins des fichiers
-    csv_path = os.path.join("..", "data", "perso.csv")
-    db_path = os.path.join("..", "data", "msfdle.db")
+    csv_path = os.path.join("data", "perso.csv")
+    db_path = os.path.join("data", "msfdle.db")
     
     if not os.path.exists(csv_path):
         print(f"❌ Fichier CSV non trouvé: {csv_path}")
@@ -49,7 +49,7 @@ def rebuild_database_from_csv():
     print("🏗️ Création de la nouvelle structure de base de données...")
     
     # Lire et exécuter le schéma
-    schema_path = os.path.join("..", "database", "schema.sql")
+    schema_path = os.path.join("database", "schema.sql")
     if os.path.exists(schema_path):
         with open(schema_path, 'r', encoding='utf-8') as schema_file:
             schema_sql = schema_file.read()
@@ -172,7 +172,7 @@ def rebuild_database_from_csv():
 
 def test_database():
     """Test rapide pour vérifier que la base fonctionne"""
-    db_path = os.path.join("..", "data", "msfdle.db")
+    db_path = os.path.join("data", "msfdle.db")
     
     if not os.path.exists(db_path):
         print("❌ Base de données non trouvée pour le test")
